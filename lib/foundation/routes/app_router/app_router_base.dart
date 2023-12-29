@@ -54,33 +54,38 @@ class RouteInfo {
   }
 
   ///like: general/home/
-  String? get parentPath => parent == null
-      ? null
-      : (parent!.fullPath == '/' ? null : "${parent!.fullPath}/");
-
-  String get fullPath => "${parentPath ?? ""}$name";
-
-  CustomRoute get route => CustomRoute(
-        transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
-        durationInMilliseconds: 400,
-        initial: initial,
-        page: page,
-        path: name,
-        children: children?.map((info) => info.route).toList(),
-      );
-
-  static List<MapEntry<Type, String>> controllerTypePaths(
-      List<RouteInfo> infoRoutes) {
-    List<MapEntry<Type, String>> entries = [];
-    for (var info in infoRoutes) {
-      if (info.controllerType != null) {
-        //print("Add entry : ${info.controllerType} : ${info.fullPath} - name is ${info.name} ");
-        entries.add(MapEntry(info.controllerType!, info.fullPath));
-      }
-      if (info.children?.isNotEmpty ?? false) {
-        entries.addAll(RouteInfo.controllerTypePaths(info.children!));
-      }
-    }
-    return entries;
+  String? get parentPath {
+    var _parentPath = parent == null
+        ? null
+        : (parent!.fullPath == '/' ? null : "${parent!.fullPath}/");
+    print("NODE : $name PARENT PATH : $_parentPath, parent name - ${parent?.name}, parent full path - ${parent?.fullPath}");
+    return _parentPath;
   }
+
+    String get fullPath => "${parentPath ?? ""}$name";
+
+    CustomRoute get route => CustomRoute(
+      transitionsBuilder: TransitionsBuilders.slideLeftWithFade,
+      durationInMilliseconds: 400,
+      initial: initial,
+      page: page,
+      path: name,
+      children: children?.map((info) => info.route).toList(),
+    );
+
+    static List<MapEntry<Type, String>> controllerTypePaths(
+        List<RouteInfo> infoRoutes) {
+      List<MapEntry<Type, String>> entries = [];
+      for (var info in infoRoutes) {
+        if (info.controllerType != null) {
+          //print("Add entry : ${info.controllerType} : ${info.fullPath} - name is ${info.name} ");
+          entries.add(MapEntry(info.controllerType!, info.fullPath));
+        }
+        if (info.children?.isNotEmpty ?? false) {
+          entries.addAll(RouteInfo.controllerTypePaths(info.children!));
+        }
+      }
+      return entries;
+    }
+
 }

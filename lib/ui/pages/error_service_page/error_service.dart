@@ -1,8 +1,6 @@
 // ignore_for_file: avoid_print
 
-import 'package:mobx/mobx.dart';
-
-part 'error_service.g.dart';
+part of '../../../ice_flutter_toolkit.dart';
 
 class ErrorService extends ErrorServiceBase with _$ErrorService {
   ErrorService._();

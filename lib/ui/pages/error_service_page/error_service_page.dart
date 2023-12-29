@@ -1,18 +1,14 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:ice_flutter_toolkit/ui/pages/error_service_page/error_service.dart';
-import 'package:ice_flutter_toolkit/utils/app_colors.dart';
-import 'package:mobx/mobx.dart';
+part of '../../../ice_flutter_toolkit.dart';
 
-@RoutePage()
-class ErrorServicePage extends StatefulWidget {
-  const ErrorServicePage({super.key});
+class ErrorServiceWidget extends StatefulWidget {
+  const ErrorServiceWidget({super.key, required this.child});
+  final Widget child;
 
   @override
-  State<ErrorServicePage> createState() => _ErrorServicePageState();
+  State<ErrorServiceWidget> createState() => ErrorServicePageState();
 }
 
-class _ErrorServicePageState extends State<ErrorServicePage> {
+class ErrorServicePageState extends State<ErrorServiceWidget> {
   final ErrorService service = ErrorService.get();
 
   final List<ReactionDisposer> _disposers = [];
@@ -57,9 +53,10 @@ class _ErrorServicePageState extends State<ErrorServicePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: AppColors.white,
-      body: AutoRouter(),
-    );
+    return widget.child;
+    // return const Scaffold(
+    //   backgroundColor: AppColors.white,
+    //   body: AutoRouter(),
+    // );
   }
 }

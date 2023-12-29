@@ -1,7 +1,7 @@
 name: ice_flutter_toolkit
 description: "Ledokol Flutter UI Library"
-version: 0.0.1
-homepage:
+version: 0.0.5
+#homepage:
 
 environment:
   sdk: '>=3.2.1 <4.0.0'
@@ -12,10 +12,10 @@ dependencies:
     sdk: flutter
 
   #Architecture Packages
-  mobx: ^2.2.0                            #для стейтменеджмента
-  flutter_mobx: ^2.0.6+5                  #для стейтменеджмента
-  auto_route: ^6.1.0                      #для навигации между страницами
-  dio: ^5.1.1                             #для REST/CURL запросов
+  mobx: ^2.3.0                            #для стейтменеджмента
+  flutter_mobx: ^2.2.0+1                  #для стейтменеджмента
+  auto_route: ^7.8.4                      #для навигации между страницами
+  dio: ^5.4.0                             #для REST/CURL запросов
   retrofit: ^4.0.3                        #для упрощенной разработки запросов на основе dio/http
   #  web_socket_channel: ^2.4.0              #для чатов на websocket-ах
   #  socket_io_client: ^2.0.3+1              #для чатов на websocket-ах
@@ -31,16 +31,16 @@ dependencies:
   #  camera_camera: ^3.0.0                   #это упрощенная библиотека камеры
   #  camera_avfoundation: ^0.9.13+6          #camera dependency
   #  package_info_plus: ^4.2.0               #для получения информации о Flutter version, и версии приложения без hard-coding
-  shared_preferences: ^2.0.6              #это не защищенное хранилище общего назначения
-  flutter_secure_storage: ^8.0.0          #это защищенное от чтения из вне хранилище
+  shared_preferences: ^2.2.2             #это не защищенное хранилище общего назначения
+  flutter_secure_storage: ^9.0.0          #это защищенное от чтения из вне хранилище
   #  path_provider: ^2.1.1                   #для доступа к разным директориям памяти
   #  url_launcher: ^6.1.14                   #для открытия в системном бразузере нужных ссылок
-  connection_notifier: ^2.0.1             #для отслеживания connect-соединения
+  connection_notifier: ^2.0.1           #для отслеживания connect-соединения
   #  image_picker: ^1.0.4                    #для выбора фоток из галлереи
   responsive_framework: ^1.1.1            #для адаптивного интерфейса под разные размеры
 
   #UI Packages
-  flutter_svg: ^2.0.7                     #для векторных изображений
+  flutter_svg: ^2.0.9                     #для векторных изображений
   cached_network_image: ^3.3.0            #для загрузки фото по url с кэшированием внутри приложения
   #  pinput: ^3.0.0                          #для ввода Pin-кода
   shimmer: ^3.0.0                         #для шиммер-анимации загрузки
@@ -61,27 +61,16 @@ dependencies:
 #  mime: ^1.0.4                            #для сбора и записи mime type
 
 dev_dependencies:
-  build_runner: ^2.4.6                    #для кодогенерации
-  mobx_codegen: ^2.1.1                    #для кодогенерации стейт-менеджеров
-  auto_route_generator: ^6.1.0            #для кодогенерации навигации
-  auto_mappr: ^2.1.1                      #для кодогенерации сопоставителей dto к моделям
+  build_runner: ^2.4.7                    #для кодогенерации
+  mobx_codegen: ^2.6.0                    #для кодогенерации стейт-менеджеров
+  auto_route_generator: ^7.3.2            #для кодогенерации навигации
+  auto_mappr: ^2.2.0                      #для кодогенерации сопоставителей dto к моделям
   json_serializable: ^6.7.1               #для кодогенерации моделей и dto
-  freezed: ^2.4.1                         #для кодогенерации моделей и dto
-  retrofit_generator: ^8.0.5              #для кодогенерации REST/CURL запросов
-  flutter_lints: ^2.0.0                   #линтер
+  freezed: ^2.4.6                         #для кодогенерации моделей и dto
+  retrofit_generator: ^8.0.6              #для кодогенерации REST/CURL запросов
+  flutter_lints: ^3.0.1                   #линтер
   flutter_test:
     sdk: flutter
 
 flutter:
   uses-material-design: true
-
-#  assets:
-#    - assets/svg/
-#    - assets/png/
-#  fonts:
-#    - family: font
-#      fonts:
-#        - asset: assets/Montserrat/Montserrat-VariableFont_wght.ttf
-#    - family: fontItalic
-#      fonts:
-#        - asset: assets/Montserrat/Montserrat-Italic-VariableFont_wght.ttf

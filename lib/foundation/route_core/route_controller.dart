@@ -1,4 +1,4 @@
-part of 'route_core.dart';
+part of '../../ice_flutter_toolkit.dart';
 
 abstract class RouteController {
   final RouteCore core = RouteCore.get();

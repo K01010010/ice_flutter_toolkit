@@ -1,6 +1,4 @@
-import 'dart:ui' as ui;
-
-import 'package:flutter/material.dart';
+part of '../ice_flutter_toolkit.dart';
 
 extension FutureList on List {
   Future<Iterable<T>> transform<T>(Future<T> Function(T e) method) async {
@@ -11,6 +9,7 @@ extension FutureList on List {
     return result;
   }
 }
+
 enum JustDateType {
   onlyTime,
   onlyDate,
@@ -39,9 +38,12 @@ extension DescribeDate on DateTime {
   ];
 
   String get monthDescribe => monthes[month];
-  String get paddedMinute => minute.toString().padLeft(2,'0');
-  String get paddedDay => day.toString().padLeft(2,'0');
-  String get paddedMonth => month.toString().padLeft(2,'0');
+
+  String get paddedMinute => minute.toString().padLeft(2, '0');
+
+  String get paddedDay => day.toString().padLeft(2, '0');
+
+  String get paddedMonth => month.toString().padLeft(2, '0');
 
   // justDate({JustDateType? type}) {
   //   type ??= JustDateType.onlyDate;
@@ -57,14 +59,22 @@ extension DescribeDate on DateTime {
 
   String describe([JustDateType type = JustDateType.relative]) {
     switch (type) {
-      case JustDateType.onlyTime : return "$hour:$paddedMinute";
-      case JustDateType.onlyDate : return "$paddedDay.$paddedMonth.${year%100}";
-      case JustDateType.onlyDateNamed : return "$day $monthDescribe $year";
-      case JustDateType.dateTime : return "$paddedDay.$paddedMonth.${year%100} $hour:$paddedMinute";
-      case JustDateType.timeDate : return "$hour:$paddedMinute $paddedDay.$paddedMonth.${year%100}";
-      case JustDateType.dateTimeNamed : return "$day $monthDescribe $year - $hour:$paddedMinute";
-      case JustDateType.timeDateNamed : return "$hour:$paddedMinute - $day $monthDescribe $year";
-      case JustDateType.relative : return _describe();
+      case JustDateType.onlyTime:
+        return "$hour:$paddedMinute";
+      case JustDateType.onlyDate:
+        return "$paddedDay.$paddedMonth.${year % 100}";
+      case JustDateType.onlyDateNamed:
+        return "$day $monthDescribe $year";
+      case JustDateType.dateTime:
+        return "$paddedDay.$paddedMonth.${year % 100} $hour:$paddedMinute";
+      case JustDateType.timeDate:
+        return "$hour:$paddedMinute $paddedDay.$paddedMonth.${year % 100}";
+      case JustDateType.dateTimeNamed:
+        return "$day $monthDescribe $year - $hour:$paddedMinute";
+      case JustDateType.timeDateNamed:
+        return "$hour:$paddedMinute - $day $monthDescribe $year";
+      case JustDateType.relative:
+        return _describe();
     }
   }
 
@@ -130,11 +140,10 @@ extension DescribeDate on DateTime {
     return result ?? "Только что";
   }
 
-
   String? _chooseVariant(int negativeVal,
       {String firstVariant = "минуту назад",
-        String secondVariant = "минут назад",
-        String thirdVariant = "минуты назад"}) {
+      String secondVariant = "минут назад",
+      String thirdVariant = "минуты назад"}) {
     //[10,20,30,40,50] минут назад"
     if (negativeVal % 10 == 0 && negativeVal != 0) {
       return "${negativeVal.abs()} $secondVariant";
@@ -162,8 +171,9 @@ extension DescribeDate on DateTime {
     return null;
   }
 }
+
 extension PrintString on String {
-  void printFull({int maxSymbols = 1023}){
+  void printFull({int maxSymbols = 1023}) {
     var str = this;
     while (str.length > maxSymbols) {
       String segment = str.substring(0, maxSymbols);
@@ -177,19 +187,63 @@ extension PrintString on String {
   }
 }
 
-extension TextStyleGet on TextStyle {
-  static TextStyle get(
-      {required double size,
-        required FontWeight weight,
-        required Color color}) =>
+class AppStyleBase extends AppStyle {
+  AppStyleBase({
+    super.errorText = const TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.w500,
+      color: AppColors.errorText,
+    ),
+    super.text = const TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.w500,
+      color: AppColors.gray12, //.gray85,
+    ),
+  }) {
+    throw Exception("Не установлен стиль приложения");
+  }
+
+  @override
+  TextStyle getTextStyle({
+    required double size,
+    required ui.FontWeight weight,
+    required ui.Color color,
+    String? fontFamily,
+  }) =>
       TextStyle(
         overflow: TextOverflow.ellipsis,
         fontSize: size,
-        fontFamily: 'font',
+        fontFamily: fontFamily,
         height: 1,
         fontVariations: [
           ui.FontVariation('wght', weight.index * 100 + 100),
         ],
         color: color,
       );
+}
+
+abstract class AppStyle {
+  AppStyle({
+    required this.text,
+    required this.errorText,
+  });
+
+  static AppStyle? _style;
+
+  static set style(AppStyle val) => _style = val;
+
+  static AppStyle get style {
+    _style ??= AppStyleBase();
+    return _style!;
+  }
+
+  final TextStyle text;
+  final TextStyle errorText;
+
+  TextStyle getTextStyle({
+    required double size,
+    required FontWeight weight,
+    required Color color,
+    String? fontFamily,
+  });
 }

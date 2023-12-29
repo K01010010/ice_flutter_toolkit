@@ -1,19 +1,4 @@
-library core;
-
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:mobx/mobx.dart';
-import 'package:ice_flutter_toolkit/api/api_config.dart';
-import 'package:ice_flutter_toolkit/foundation/routes/app_router/app_router_base.dart';
-import 'package:ice_flutter_toolkit/foundation/services_repository/services_repository.dart';
-
-part 'route_core.g.dart';
-
-part 'route_controller.dart';
-
-part 'route_node.dart';
-
-part 'repository_container.dart';
+part of '../../ice_flutter_toolkit.dart';
 
 class RouteCore extends RouteCoreBase with _$RouteCore {
   static RouteCollection getRouteCollection(BuildContext ctx) =>
@@ -27,8 +12,7 @@ class RouteCore extends RouteCoreBase with _$RouteCore {
 
   factory RouteCore.create(RepositoryContainerBase repositoryContainer,
       {RouteCollection? routeCollection}) {
-    _singleton ??=
-        RouteCore._(repositoryContainer, routeCollection: routeCollection);
+    _singleton ??= RouteCore._(repositoryContainer, routeCollection: routeCollection);
     return _singleton!;
   }
 
@@ -43,6 +27,9 @@ abstract class RouteCoreBase with Store {
     if (container != null) this.container = container;
     load(routeCollection);
   }
+
+  @observable
+  String imageUrl = "";
 
   @observable
   RepositoryContainerBase container = EmptyRepositoryContainer();
@@ -65,11 +52,12 @@ abstract class RouteCoreBase with Store {
     var paths = routeCollection?.getPath() ?? [];
     for (var element in paths) {
       // ignore: avoid_print
-      print('ice_flutter_toolkit: contain $element');
+      print('ice_flutter_toolkit: $element');
     }
     tree = RouteNode.create(paths, 0);
 
     await loading;
+    imageUrl = container.imageUrl;
 
     _loading = false;
   }

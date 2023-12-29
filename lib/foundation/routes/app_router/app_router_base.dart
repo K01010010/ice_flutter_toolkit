@@ -1,4 +1,4 @@
-import 'package:auto_route/auto_route.dart';
+part of '../../../ice_flutter_toolkit.dart';
 
 // @AutoRouterConfig(replaceInRouteName: 'Page,Route')
 class EmptyRouter extends AppRouterBase {
@@ -7,7 +7,7 @@ class EmptyRouter extends AppRouterBase {
       throw Exception("Не реализован AppRouterBase и/или не передан в синглтон");
 
 }
-abstract class AppRouterBase {
+mixin class AppRouterBase implements RootStackRouter{
 
   static AppRouterBase? _singleton;
   static set singleton(AppRouterBase router) {
@@ -18,25 +18,11 @@ abstract class AppRouterBase {
     return _singleton!;
   }
 
-  //
-  // RouteCore._(RepositoryContainerBase repositoryContainer, {RouteCollection? routeCollection})
-  //     : super(repositoryContainer, routeCollection);
-  //
-  // factory RouteCore.create(RepositoryContainerBase repositoryContainer, {RouteCollection? routeCollection}) {
-  //   _singleton ??= RouteCore._(repositoryContainer, routeCollection: routeCollection);
-  //   return _singleton!;
-  // }
-  //
-  // factory RouteCore.get() {
-  //   _singleton ??= RouteCore.create(EmptyRepositoryContainer());
-  //   return _singleton!;
-  // }
-
   @override
   List<AutoRoute> get routes => infoRoutes.map((e) => e.route).toList();
 
   List<RouteInfo> get infoRoutes;
-  static Map<Type, String>? _fullForServices;
+  Map<Type, String>? _fullForServices;
 
   // set fullForServices(Map<Type, String> val) => _fullForServices = val;
 
@@ -44,6 +30,9 @@ abstract class AppRouterBase {
     _fullForServices ??= RouteInfo.controllerTypePaths(infoRoutes).asMap().map((key, value) => value);
     return _fullForServices!;
   }
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
 class RouteInfo {
@@ -77,9 +66,7 @@ class RouteInfo {
         initial: initial,
         page: page,
         path: name,
-        children: children == null
-            ? null
-            : children!.map((info) => info.route).toList(),
+        children: children?.map((info) => info.route).toList(),
       );
 
   static List<MapEntry<Type, String>> controllerTypePaths(

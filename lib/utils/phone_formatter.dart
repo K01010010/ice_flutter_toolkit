@@ -1,4 +1,4 @@
-import 'package:flutter/services.dart';
+part of '../ice_flutter_toolkit.dart';
 
 class PhoneFormatter extends TextInputFormatter {
   @override

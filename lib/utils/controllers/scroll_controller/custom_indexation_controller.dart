@@ -1,7 +1,4 @@
-import 'package:flutter/widgets.dart';
-import 'package:mobx/mobx.dart';
-
-part 'custom_indexation_controller.g.dart';
+part of '../../../ice_flutter_toolkit.dart';
 
 class CustomIndexationController extends CustomIndexationControllerBase
     with _$CustomIndexationController {

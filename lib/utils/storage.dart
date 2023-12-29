@@ -1,42 +1,39 @@
-import 'dart:convert';
-import 'dart:typed_data';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-enum SecureKey {  phone, token } // email, password,
-
-enum SharePrefsKey {
-  cameraAccess,
-  galleryAccess,
-  onboarding,
-  pushes,
-  authInfo,
-  user,
-  profilePhotos,
-  photos,
-  settings,
-  typeAccount
-}
+part of '../ice_flutter_toolkit.dart';
+//
+// enum SecureKey {  phone, token } // email, password,
+//
+// enum SharePrefsKey {
+//   cameraAccess,
+//   galleryAccess,
+//   onboarding,
+//   pushes,
+//   authInfo,
+//   user,
+//   profilePhotos,
+//   photos,
+//   settings,
+//   typeAccount
+// }
 
 class Storage {
   static FlutterSecureStorage get _secureStorage =>
       const FlutterSecureStorage();
 
-  static Future<void> writeToSecureStorage(SecureKey key, String? value) async {
+  static Future<void> writeToSecureStorage(Enum key, String? value) async {
     print("writeToSecureStorage -> ${key.toString()}   :    $value");
     await _secureStorage.write(key: key.toString(), value: value);
   }
 
-  static Future<String?> readFromSecureStorage(SecureKey key) async {
+  static Future<String?> readFromSecureStorage(Enum key) async {
     return await _secureStorage.read(key: key.toString());
   }
 
-  static Future<void> deleteFromSecureStorage(SecureKey key) async {
+  static Future<void> deleteFromSecureStorage(Enum key) async {
     await _secureStorage.delete(key: key.toString());
   }
 
   static Future<void> writeToSharedPreferences<T>(
-      SharePrefsKey key, dynamic value) async {
+      Enum key, dynamic value) async {
     final sharedPrefs = await SharedPreferences.getInstance();
     if (T == String) {
       //print(value);
@@ -80,14 +77,14 @@ class Storage {
 
     try {
       throw Exception(
-          "type = ${T} not handled : write handle in writeToSharedPreferences<T>()");
+          "type = $T not handled : write handle in writeToSharedPreferences<T>()");
       // sharedPrefs.setString(key.toString(), jsonEncode(value));
     } catch (e, st) {
       print('$e - $st');
     }
   }
 
-  static Future<T?> readFromSharedPreferences<T>(SharePrefsKey key) async {
+  static Future<T?> readFromSharedPreferences<T>(Enum key) async {
     try {
       final sharedPrefs = await SharedPreferences.getInstance();
       if (T == int) return sharedPrefs.getInt(key.toString()) as T?;
@@ -122,7 +119,7 @@ class Storage {
     }
   }
 
-  static Future<void> deleteFromSharedPreferences(SharePrefsKey key) async {
+  static Future<void> deleteFromSharedPreferences(Enum key) async {
     final sharedPrefs = await SharedPreferences.getInstance();
     sharedPrefs.remove(key.toString());
   }

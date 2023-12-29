@@ -1,4 +1,4 @@
-part of 'route_core.dart';
+part of '../../ice_flutter_toolkit.dart';
 
 class RouteNode {
   RouteNode({required this.paths, required this.rank, required this.name});

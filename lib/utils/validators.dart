@@ -1,3 +1,4 @@
+part of '../ice_flutter_toolkit.dart';
 
 enum ValidatorType {
   email,

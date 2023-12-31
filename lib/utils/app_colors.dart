@@ -39,6 +39,8 @@ class AppColors {
   static const ui.Color gray5E = ui.Color(0xFF5E5E5E);
   static const ui.Color gray5C = ui.Color(0xFF5C5C5C);
   static const ui.Color gray52 = ui.Color(0xFF525252);
+  static const ui.Color gray39 = ui.Color(0xFF393939);
+  static const ui.Color gray38 = ui.Color(0xFF383838);
   static const ui.Color gray37 = ui.Color(0xFF373737);
   static const ui.Color gray2F = ui.Color(0xFF2F2F2F);
   static const ui.Color gray1C = ui.Color(0xFF1C1C1C);

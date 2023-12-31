@@ -12,7 +12,8 @@ class RouteCore extends RouteCoreBase with _$RouteCore {
 
   factory RouteCore.create(RepositoryContainerBase repositoryContainer,
       {RouteCollection? routeCollection}) {
-    _singleton ??= RouteCore._(repositoryContainer, routeCollection: routeCollection);
+    _singleton ??=
+        RouteCore._(repositoryContainer, routeCollection: routeCollection);
     return _singleton!;
   }
 
@@ -23,7 +24,8 @@ class RouteCore extends RouteCoreBase with _$RouteCore {
 }
 
 abstract class RouteCoreBase with Store {
-  RouteCoreBase(RepositoryContainerBase? container, RouteCollection? routeCollection) {
+  RouteCoreBase(
+      RepositoryContainerBase? container, RouteCollection? routeCollection) {
     if (container != null) this.container = container;
     load(routeCollection);
   }
@@ -56,6 +58,9 @@ abstract class RouteCoreBase with Store {
     }
     tree = RouteNode.create(paths, 0);
 
+    print("TREE NODE DEBUG_TAG : created route : ");
+    tree.toString().printFull();
+
     await loading;
     imageUrl = container.imageUrl;
 
@@ -66,11 +71,44 @@ abstract class RouteCoreBase with Store {
 }
 
 extension PathOfRouteCollection on RouteCollection {
-  List<String> getPath([String parentPath = ""]) {
+  // /*
+  List<String> getPath([String? parentPath]) {
+
+
+    String? parent = parentPath;
+
+
+    // route.children
     List<String> paths = [];
     for (var route in routes) {
-      paths.add("$parentPath${route.path}");
-      paths.addAll(route.children?.getPath("$parentPath${route.path}/") ?? []);
+
+      if(route.name == "Redirect#") {
+
+      }
+
+      String fullPath = route.path;
+      if (parent != null) fullPath = parent.endsWith('/')
+          ? "${parentPath ?? ""}${route.path}"
+          : "${parentPath ?? ""}/${route.path}";
+
+
+      paths.add(fullPath);
+      paths.addAll(route.children?.getPath(fullPath) ?? []);
+      // paths.add("${parent ?? ""}${route.path}");
+
+
+
+
+
+
+      //
+      // if (parent == "") {
+      //   paths.addAll(route.children?.getPath(route.path) ?? []);
+      // } else {
+      //   paths.addAll(route.children?.getPath(
+      //           "$parent${parent.endsWith('/') ? "" : "/"}${route.path}") ??
+      //       []);
+      // }
     }
     return paths;
   }

@@ -73,6 +73,7 @@ part 'ui/widgets/bottom_bars/date_picker_bar.dart';
 part 'utils/controllers/scroll_controller/custom_indexation_controller.dart';
 // part 'utils/controllers/scroll_controller/custom_indexation_controller.g.dart';
 part 'utils/app_colors.dart';
+part 'utils/app_style.dart';
 part 'utils/extensions.dart';
 part 'utils/phone_formatter.dart';
 part 'utils/storage.dart';

@@ -41,7 +41,7 @@ abstract class RouteController {
 
   navigateRoute([StackRouter? sRouter, useName = false]) =>
       (sRouter ?? router)?.navigateNamed(
-          useName ? name : (path.startsWith('/') ? path.substring(1) : path));
+          useName ? name : path);//(path.startsWith('/') ? path.substring(1) : path));
 
   // pushRoute([StackRouter? sRouter, useName = false]) =>
   //     (sRouter ?? router)?.pushNamed(

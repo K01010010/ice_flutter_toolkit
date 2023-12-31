@@ -58,14 +58,7 @@ class RouteInfo {
   }
 
   ///like: general/home/
-  String? get parentPath {
-    // var _parentPath = parent == null
-    //     ? null
-    //     : (parent!.fullPath == '/' ? null : "${parent!.fullPath}/");
-    // print("NODE : $name PARENT PATH : $_parentPath, parent name - ${parent?.name}, parent full path - ${parent?.fullPath}");
-    return parent?.fullPath;
-  }
-
+  String? get parentPath => parent?.fullPath;
   String get fullPath {
     String? parent = parentPath;
     if (parent == null) return name;
@@ -89,7 +82,6 @@ class RouteInfo {
     List<MapEntry<Type, String>> entries = [];
     for (var info in infoRoutes) {
       if (info.controllerType != null) {
-        //print("Add entry : ${info.controllerType} : ${info.fullPath} - name is ${info.name} ");
         entries.add(MapEntry(info.controllerType!, info.fullPath));
       }
       if (info.children?.isNotEmpty ?? false) {

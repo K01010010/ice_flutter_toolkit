@@ -57,58 +57,29 @@ abstract class RouteCoreBase with Store {
       print('ice_flutter_toolkit: $element');
     }
     tree = RouteNode.create(paths, 0);
-
-    print("TREE NODE DEBUG_TAG : created route : ");
-    tree.toString().printFull();
-
+    // print("TREE NODE DEBUG_TAG : created route : "); // tree.toString().printFull();
     await loading;
     imageUrl = container.imageUrl;
 
     _loading = false;
   }
-
-// StackRouter? generalWrapperRouter;
 }
 
 extension PathOfRouteCollection on RouteCollection {
-  // /*
-  List<String> getPath([String? parentPath]) {
+  List<String> getPath([String? parent]) {
 
-
-    String? parent = parentPath;
-
-
-    // route.children
     List<String> paths = [];
     for (var route in routes) {
 
-      if(route.name == "Redirect#") {
-
-      }
-
       String fullPath = route.path;
-      if (parent != null) fullPath = parent.endsWith('/')
-          ? "${parentPath ?? ""}${route.path}"
-          : "${parentPath ?? ""}/${route.path}";
-
+      if (parent != null) {
+        fullPath = parent.endsWith('/')
+          ? "${parent ?? ""}${route.path}"
+          : "${parent ?? ""}/${route.path}";
+      }
 
       paths.add(fullPath);
       paths.addAll(route.children?.getPath(fullPath) ?? []);
-      // paths.add("${parent ?? ""}${route.path}");
-
-
-
-
-
-
-      //
-      // if (parent == "") {
-      //   paths.addAll(route.children?.getPath(route.path) ?? []);
-      // } else {
-      //   paths.addAll(route.children?.getPath(
-      //           "$parent${parent.endsWith('/') ? "" : "/"}${route.path}") ??
-      //       []);
-      // }
     }
     return paths;
   }

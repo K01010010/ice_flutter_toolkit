@@ -1,76 +1,90 @@
 part of '../../ice_flutter_toolkit.dart';
 
 class ColoredButton extends StatelessWidget {
-  const ColoredButton({
+  ColoredButton({
     super.key,
-    required this.textButton,
-    this.textStyle,
-    this.color,
-    this.splashColor = AppColors.grayF2,
     this.height,
     this.width,
-    this.borderRadius,
-    this.boxData,
-    this.border,
-    this.margin,
-    this.padding,
-    this.child,
     this.splashEffect = true,
+    this.splashColor,
     this.onTap,
-    this.useShadow = false,
-    this.boxShadow,
-  });
+    BoxData? box,
 
-  final String textButton;
-  final TextStyle? textStyle;
+    required this.title,
+    this.titleStyle,
+    this.child,
+    this.paddingContent,
+    this.marginWidget,
+    required this.shadow,
+    this.shadowColor,
+    this.shadowBox, this.splashOpacity,
+  }) : _box = box ?? AppStyle.style.coloredStyle.box;
 
-  final Color? color;
-  final Color splashColor;
+  final Color? splashColor;
+  final double? splashOpacity;
+  final bool splashEffect;
 
   final double? height;
   final double? width;
-  final BorderRadius? borderRadius;
-  final BoxData? boxData;
-  final BoxBorder? border;
-  final EdgeInsets? margin;
-  final EdgeInsets? padding;
-  final Widget? child;
-  final bool splashEffect;
   final void Function()? onTap;
-  final bool useShadow;
-  final BoxShadow? boxShadow;
+
+  final BoxData _box;
+
+  final String title;
+  final TextStyle? titleStyle;
+  final Widget? child;
+
+  final EdgeInsets? paddingContent;
+  final EdgeInsets? marginWidget;
+
+  final bool shadow;
+  final Color? shadowColor;
+  final BoxShadow? shadowBox;
+
+  CustomColoredButtonStyle get style => AppStyle.style.coloredStyle;
 
   @override
   Widget build(BuildContext context) {
+    var decoration = BoxDecoration(
+      borderRadius: _box.borderRadius,
+      color: _box.fillColor,
+      border: _box.border,
+      boxShadow: !shadow
+          ? null
+          : [
+              shadowBox != null
+                  ? shadowBox!
+                  : shadowColor != null
+                      ? BoxShadow(
+                          color: shadowColor!, //.withOpacity(0.1),
+                          blurRadius: 10,
+                          spreadRadius: 3,
+                          offset: const Offset(0, 0),
+                        )
+                      : style.shadow,
+            ],
+    );
     return splashEffect
         ? Padding(
-            padding: margin ?? EdgeInsets.zero,
+            padding: marginWidget ?? style.marginWidget,
             child: Ink(
               height: height,
               width: width,
-              decoration: BoxDecoration(
-                borderRadius: borderRadius ??
-                    boxData?.radius ??
-                    BorderRadius.circular(15),
-                color: color ?? boxData?.fillColor,
-                border: border ?? boxData?.border,
-              ),
+              decoration: decoration,
               child: InkWell(
                 onTap: onTap,
-                hoverColor: splashColor.withAlpha(128),
-                focusColor: splashColor.withAlpha(128),
-                highlightColor: splashColor.withAlpha(128),
-                splashColor: splashColor.withAlpha(128),
-                borderRadius: borderRadius ?? BorderRadius.circular(15),
+                hoverColor: (splashColor ?? style.splashColor).withOpacity(splashOpacity ?? 0.5),
+                focusColor: (splashColor ?? style.splashColor).withOpacity(splashOpacity ?? 0.5),
+                splashColor: (splashColor ?? style.splashColor).withOpacity(splashOpacity ?? 0.5),
+                highlightColor: (splashColor ?? style.splashColor).withOpacity(splashOpacity ?? 0.5),
+                borderRadius: _box.borderRadius,
                 child: Padding(
-                  padding: padding ??
-                      const EdgeInsets.symmetric(horizontal: 30, vertical: 18),
+                  padding: paddingContent ?? style.paddingContent,
                   child: child ??
                       Text(
-                        textButton,
+                        title,
                         textAlign: TextAlign.center,
-                        style: textStyle ??
-                            AppStyle.style.text,
+                        style: titleStyle ?? style.titleStyle,
                       ),
                 ),
               ),
@@ -81,32 +95,14 @@ class ColoredButton extends StatelessWidget {
             child: Container(
               height: height,
               width: width,
-              margin: margin,
-              padding: padding ??
-                  const EdgeInsets.symmetric(horizontal: 30, vertical: 18),
-              decoration: BoxDecoration(
-                borderRadius: borderRadius ??
-                    boxData?.radius ??
-                    BorderRadius.circular(15),
-                color: color ?? boxData?.fillColor,
-                border: border ?? boxData?.border,
-                boxShadow: !useShadow
-                    ? null
-                    : [
-                        boxShadow ??
-                            BoxShadow(
-                              color: AppColors.black.withOpacity(0.1),
-                              blurRadius: 10,
-                              spreadRadius: 3,
-                              offset: const Offset(0, 0),
-                            ),
-                      ],
-              ),
+              margin: marginWidget ?? style.marginWidget,
+              padding: paddingContent ?? style.paddingContent,
+              decoration: decoration,
               child: child ??
                   Text(
-                    textButton,
+                    title,
                     textAlign: TextAlign.center,
-                    style: textStyle ?? AppStyle.style.text,
+                    style: titleStyle ?? style.titleStyle,
                   ),
             ),
           );

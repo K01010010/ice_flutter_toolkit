@@ -31,7 +31,7 @@ final int _animationDuration = _previewLongPressTimeout.inMilliseconds +
 // This value was eyeballed from the XCode simulator running iOS 16.0.
 const List<BoxShadow> _endBoxShadow = <BoxShadow>[
   BoxShadow(
-    color: AppColors.transparent,
+    color: AppColorsBase.transparent,
     blurRadius: 10.0,
     spreadRadius: 0.5,
   ),
@@ -1241,7 +1241,7 @@ class _ContextMenuRouteStaticState extends State<_ContextMenuRouteStatic>
       child: Container(
         padding: EdgeInsets.all(3),
         decoration: BoxDecoration(
-            color: AppColors.white, borderRadius: BorderRadius.circular(20)),
+            color: AppColorsBase.white, borderRadius: BorderRadius.circular(20)),
         child: AnimatedBuilder(
           animation: _moveController,
           builder: _buildChildAnimation,

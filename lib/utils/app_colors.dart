@@ -1,159 +1,327 @@
 part of '../ice_flutter_toolkit.dart';
 
-class AppColors {
-  static const ui.Color black = ui.Color(0xFF000000);
-  static const ui.Color white = ui.Color(0xFFFFFFFF);
-  static const ui.Color whiteA87_5 = ui.Color(0xE0FFFFFF);
-  static const ui.Color whiteA75 = ui.Color(0xC0FFFFFF);
-  static const ui.Color whiteA62_5 = ui.Color(0xA0FFFFFF);
-  static const ui.Color whiteA50 = ui.Color(0x80FFFFFF);
-  static const ui.Color whiteA37_5 = ui.Color(0x60FFFFFF);
-  static const ui.Color whiteA25 = ui.Color(0x40FFFFFF);
-  static const ui.Color whiteA12_5 = ui.Color(0x20FFFFFF);
-  static const ui.Color transparent = ui.Color(0x00000000);
+class AppColorsBase {
+  static const get = AppColorsBase();
+  const AppColorsBase();
+  final ui.Color black = const ui.Color(0xFF000000);
+  final ui.Color white = const ui.Color(0xFFFFFFFF);
+  final ui.Color whiteA87_5 = const ui.Color(0xE0FFFFFF);
+  final ui.Color whiteA75 = const ui.Color(0xC0FFFFFF);
+  final ui.Color whiteA62_5 = const ui.Color(0xA0FFFFFF);
+  final ui.Color whiteA50 = const ui.Color(0x80FFFFFF);
+  final ui.Color whiteA37_5 = const ui.Color(0x60FFFFFF);
+  final ui.Color whiteA25 = const ui.Color(0x40FFFFFF);
+  final ui.Color whiteA12_5 = const ui.Color(0x20FFFFFF);
+  final ui.Color transparent = const ui.Color(0x00000000);
 
-  static const ui.Color whiteF2 = ui.Color(0xFFF2F2F2);
-  static const ui.Color grayD9 = ui.Color(0xFFD9D9D9);
-  static const ui.Color grayF8 = ui.Color(0xFFF8F8F8);
-  static const ui.Color grayF4 = ui.Color(0xFFF4F4F4);
-  static const ui.Color grayF2 = ui.Color(0xFFF2F2F2);
-  static const ui.Color grayF1 = ui.Color(0xFFF1F1F1);
-  static const ui.Color grayEF = ui.Color(0xFFEFEFEF);
-  static const ui.Color grayE9 = ui.Color(0xFFE9E9E9);
-  static const ui.Color grayE1 = ui.Color(0xFFE1E1E1);
-  static const ui.Color grayDF = ui.Color(0xFFDFDFDF);
-  static const ui.Color grayDE = ui.Color(0xFFDEDEDE);
-  static const ui.Color grayCC = ui.Color(0xFFCCCCCC);
-  static const ui.Color grayB4 = ui.Color(0xFFB4B4B4);
-  static const ui.Color greyB3 = ui.Color(0xFFB3B3B3);
-  static const ui.Color greyAB = ui.Color(0xFFABABAB);
-  static const ui.Color greyA7 = ui.Color(0xFFA7A7A7);
-  static const ui.Color gray95 = ui.Color(0xFF959595);
-  static const ui.Color gray87 = ui.Color(0xFF878787);
-  static const ui.Color gray85 = ui.Color(0xFF858585);
-  static const ui.Color gray7C = ui.Color(0xFF7C7C7C);
-  static const ui.Color gray79 = ui.Color(0xFF797979);
-  static const ui.Color gray78 = ui.Color(0xFF787878);
-  static const ui.Color gray6A = ui.Color(0xFF6A6A6A);
-  static const ui.Color gray60 = ui.Color(0xFF606060);
-  static const ui.Color gray5E = ui.Color(0xFF5E5E5E);
-  static const ui.Color gray5C = ui.Color(0xFF5C5C5C);
-  static const ui.Color gray52 = ui.Color(0xFF525252);
-  static const ui.Color gray39 = ui.Color(0xFF393939);
-  static const ui.Color gray38 = ui.Color(0xFF383838);
-  static const ui.Color gray37 = ui.Color(0xFF373737);
-  static const ui.Color gray2F = ui.Color(0xFF2F2F2F);
-  static const ui.Color gray1C = ui.Color(0xFF1C1C1C);
-  static const ui.Color gray1A = ui.Color(0xFF1A1A1A);
-  static const ui.Color gray12 = ui.Color(0xFF121212);
+  final ui.Color whiteFF = const ui.Color(0xFFFFFFFF);
+  final ui.Color whiteFE = const ui.Color(0xFFFEFEFE);
+  final ui.Color whiteFD = const ui.Color(0xFFFDFDFD);
+  final ui.Color whiteFC = const ui.Color(0xFFFCFCFC);
+  final ui.Color whiteFB = const ui.Color(0xFFFBFBFB);
+  final ui.Color whiteFA = const ui.Color(0xFFFAFAFA);
+  final ui.Color whiteF9 = const ui.Color(0xFFF9F9F9);
+  final ui.Color whiteF8 = const ui.Color(0xFFF8F8F8);
+  final ui.Color whiteF7 = const ui.Color(0xFFF7F7F7);
+  final ui.Color whiteF6 = const ui.Color(0xFFF6F6F6);
+  final ui.Color whiteF5 = const ui.Color(0xFFF5F5F5);
+  final ui.Color whiteF4 = const ui.Color(0xFFF4F4F4);
+  final ui.Color whiteF3 = const ui.Color(0xFFF3F3F3);
+  final ui.Color whiteF2 = const ui.Color(0xFFF2F2F2);
+  final ui.Color whiteF1 = const ui.Color(0xFFF1F1F1);
+  final ui.Color whiteF0 = const ui.Color(0xFFF0F0F0);
 
-  static const ui.Color gray290D2750 = ui.Color(0x290D2750);
-  static const ui.Color grayE4E3E3 = ui.Color(0xFFE4E3E3);
-  static const ui.Color gray9EA2A7 = ui.Color(0xFF9EA2A7);
-  static const ui.Color gray817C7C = ui.Color(0xFF817C7C);
-  static const ui.Color gray737B86 = ui.Color(0xFF737B86);
-  static const ui.Color whiteF0F5FF = ui.Color(0xFFF0F5FF);
+  final ui.Color grayEF = const ui.Color(0xFFEFEFEF);
+  final ui.Color grayEE = const ui.Color(0xFFEEEEEE);
+  final ui.Color grayED = const ui.Color(0xFFEDEDED);
+  final ui.Color grayEC = const ui.Color(0xFFECECEC);
+  final ui.Color grayEB = const ui.Color(0xFFEBEBEB);
+  final ui.Color grayEA = const ui.Color(0xFFEAEAEA);
+  final ui.Color grayE9 = const ui.Color(0xFFE9E9E9);
+  final ui.Color grayE8 = const ui.Color(0xFFE8E8E8);
+  final ui.Color grayE7 = const ui.Color(0xFFE7E7E7);
+  final ui.Color grayE6 = const ui.Color(0xFFE6E6E6);
+  final ui.Color grayE5 = const ui.Color(0xFFE5E5E5);
+  final ui.Color grayE4 = const ui.Color(0xFFE4E4E4);
+  final ui.Color grayE3 = const ui.Color(0xFFE3E3E3);
+  final ui.Color grayE2 = const ui.Color(0xFFE2E2E2);
+  final ui.Color grayE1 = const ui.Color(0xFFE1E1E1);
+  final ui.Color grayE0 = const ui.Color(0xFFE0E0E0);
 
-  static const ui.Color blue1557D8 = ui.Color(0xFF1557D8);
-  static const ui.Color blue3173F1 = ui.Color(0xFF3173F1);
-  static const ui.Color blueE00057FF = ui.Color(0xE00057FF);
-  static const ui.Color blueAB15CCD8 = ui.Color(0xAB15CCD8);
+  final ui.Color grayDF = const ui.Color(0xFFDFDFDF);
+  final ui.Color grayDE = const ui.Color(0xFFDEDEDE);
+  final ui.Color grayDD = const ui.Color(0xFFDDDDDD);
+  final ui.Color grayDC = const ui.Color(0xFFDCDCDC);
+  final ui.Color grayDB = const ui.Color(0xFFDBDBDB);
+  final ui.Color grayDA = const ui.Color(0xFFDADADA);
+  final ui.Color grayD9 = const ui.Color(0xFFD9D9D9);
+  final ui.Color grayD8 = const ui.Color(0xFFD8D8D8);
+  final ui.Color grayD7 = const ui.Color(0xFFD7D7D7);
+  final ui.Color grayD6 = const ui.Color(0xFFD6D6D6);
+  final ui.Color grayD5 = const ui.Color(0xFFD5D5D5);
+  final ui.Color grayD4 = const ui.Color(0xFFD4D4D4);
+  final ui.Color grayD3 = const ui.Color(0xFFD3D3D3);
+  final ui.Color grayD2 = const ui.Color(0xFFD2D2D2);
+  final ui.Color grayD1 = const ui.Color(0xFFD1D1D1);
+  final ui.Color grayD0 = const ui.Color(0xFFD0D0D0);
 
-  static const ui.Color yellowABB66E02 = ui.Color(0xABB66E02);
-  static const ui.Color yellowFFA500 = ui.Color(0xFFFFA500);
-  static const ui.Color yellowFFC85C = ui.Color(0xFFFFC85C);
-  static const ui.Color yellowFFC736 = ui.Color(0xFFFFC736);
-  static const ui.Color yellowFFB800 = ui.Color(0xFFFFB800);
-  static const ui.Color yellowF1C44E = ui.Color(0xFFF1C44E);
+  final ui.Color grayCF = const ui.Color(0xFFCFCFCF);
+  final ui.Color grayCE = const ui.Color(0xFFCECECE);
+  final ui.Color grayCD = const ui.Color(0xFFCDCDCD);
+  final ui.Color grayCC = const ui.Color(0xFFCCCCCC);
+  final ui.Color grayCB = const ui.Color(0xFFCBCBCB);
+  final ui.Color grayCA = const ui.Color(0xFFCACACA);
+  final ui.Color grayC9 = const ui.Color(0xFFC9C9C9);
+  final ui.Color grayC8 = const ui.Color(0xFFC8C8C8);
+  final ui.Color grayC7 = const ui.Color(0xFFC7C7C7);
+  final ui.Color grayC6 = const ui.Color(0xFFC6C6C6);
+  final ui.Color grayC5 = const ui.Color(0xFFC5C5C5);
+  final ui.Color grayC4 = const ui.Color(0xFFC4C4C4);
+  final ui.Color grayC3 = const ui.Color(0xFFC3C3C3);
+  final ui.Color grayC2 = const ui.Color(0xFFC2C2C2);
+  final ui.Color grayC1 = const ui.Color(0xFFC1C1C1);
+  final ui.Color grayC0 = const ui.Color(0xFFC0C0C0);
 
-  static const ui.Color redFF3A44 = ui.Color(0xFFFF3A44);
-  static const ui.Color redFF003D = ui.Color(0xFFFF003D);
+  final ui.Color grayBF = const ui.Color(0xFFBFBFBF);
+  final ui.Color grayBE = const ui.Color(0xFFBEBEBE);
+  final ui.Color grayBD = const ui.Color(0xFFBDBDBD);
+  final ui.Color grayBC = const ui.Color(0xFFBCBCBC);
+  final ui.Color grayBB = const ui.Color(0xFFBBBBBB);
+  final ui.Color grayBA = const ui.Color(0xFFBABABA);
+  final ui.Color grayB9 = const ui.Color(0xFFB9B9B9);
+  final ui.Color grayB8 = const ui.Color(0xFFB8B8B8);
+  final ui.Color grayB7 = const ui.Color(0xFFB7B7B7);
+  final ui.Color grayB6 = const ui.Color(0xFFB6B6B6);
+  final ui.Color grayB5 = const ui.Color(0xFFB5B5B5);
+  final ui.Color grayB4 = const ui.Color(0xFFB4B4B4);
+  final ui.Color grayB3 = const ui.Color(0xFFB3B3B3);
+  final ui.Color grayB2 = const ui.Color(0xFFB2B2B2);
+  final ui.Color grayB1 = const ui.Color(0xFFB1B1B1);
+  final ui.Color grayB0 = const ui.Color(0xFFB0B0B0);
 
+  final ui.Color grayAF = const ui.Color(0xFFAFAFAF);
+  final ui.Color grayAE = const ui.Color(0xFFAEAEAE);
+  final ui.Color grayAD = const ui.Color(0xFFADADAD);
+  final ui.Color grayAC = const ui.Color(0xFFACACAC);
+  final ui.Color grayAB = const ui.Color(0xFFABABAB);
+  final ui.Color grayAA = const ui.Color(0xFFAAAAAA);
+  final ui.Color grayA9 = const ui.Color(0xFFA9A9A9);
+  final ui.Color grayA8 = const ui.Color(0xFFA8A8A8);
+  final ui.Color grayA7 = const ui.Color(0xFFA7A7A7);
+  final ui.Color grayA6 = const ui.Color(0xFFA6A6A6);
+  final ui.Color grayA5 = const ui.Color(0xFFA5A5A5);
+  final ui.Color grayA4 = const ui.Color(0xFFA4A4A4);
+  final ui.Color grayA3 = const ui.Color(0xFFA3A3A3);
+  final ui.Color grayA2 = const ui.Color(0xFFA2A2A2);
+  final ui.Color grayA1 = const ui.Color(0xFFA1A1A1);
+  final ui.Color grayA0 = const ui.Color(0xFFA0A0A0);
 
-  static const ui.Color pinkF30D6E = ui.Color(0xFFF30D6E);
-  static const ui.Color pinkEC289E = ui.Color(0xFFEC289E);
-  static const ui.Color pinkE31591 = ui.Color(0xFFE31591);
-  static const ui.Color pinkABE51F96 = ui.Color(0xABE51F96);
-  static const ui.Color pink1AE51F96 = ui.Color(0x1AE51F96);
-  static const ui.Color pinkE6FCE6F3 = ui.Color(0xE6FCE6F3);
+  final ui.Color gray9F = const ui.Color(0xFF9F9F9F);
+  final ui.Color gray9E = const ui.Color(0xFF9E9E9E);
+  final ui.Color gray9D = const ui.Color(0xFF9D9D9D);
+  final ui.Color gray9C = const ui.Color(0xFF9C9C9C);
+  final ui.Color gray9B = const ui.Color(0xFF9B9B9B);
+  final ui.Color gray9A = const ui.Color(0xFF9A9A9A);
+  final ui.Color gray99 = const ui.Color(0xFF999999);
+  final ui.Color gray98 = const ui.Color(0xFF989898);
+  final ui.Color gray97 = const ui.Color(0xFF979797);
+  final ui.Color gray96 = const ui.Color(0xFF969696);
+  final ui.Color gray95 = const ui.Color(0xFF959595);
+  final ui.Color gray94 = const ui.Color(0xFF949494);
+  final ui.Color gray93 = const ui.Color(0xFF939393);
+  final ui.Color gray92 = const ui.Color(0xFF929292);
+  final ui.Color gray91 = const ui.Color(0xFF919191);
+  final ui.Color gray90 = const ui.Color(0xFF909090);
 
-  static const ui.Color purpleCC4AFA = ui.Color(0xFFCC4AFA);
-  static const ui.Color purpleA517FE = ui.Color(0xFFA517FE);
-  static const ui.Color purpleDB00FF = ui.Color(0xFFDB00FF);
-  static const ui.Color purple460E2C = ui.Color(0xFF460E2C);
+  final ui.Color gray8F = const ui.Color(0xFF8F8F8F);
+  final ui.Color gray8E = const ui.Color(0xFF8E8E8E);
+  final ui.Color gray8D = const ui.Color(0xFF8D8D8D);
+  final ui.Color gray8C = const ui.Color(0xFF8C8C8C);
+  final ui.Color gray8B = const ui.Color(0xFF8B8B8B);
+  final ui.Color gray8A = const ui.Color(0xFF8A8A8A);
+  final ui.Color gray89 = const ui.Color(0xFF898989);
+  final ui.Color gray88 = const ui.Color(0xFF888888);
+  final ui.Color gray87 = const ui.Color(0xFF878787);
+  final ui.Color gray86 = const ui.Color(0xFF868686);
+  final ui.Color gray85 = const ui.Color(0xFF858585);
+  final ui.Color gray84 = const ui.Color(0xFF848484);
+  final ui.Color gray83 = const ui.Color(0xFF838383);
+  final ui.Color gray82 = const ui.Color(0xFF828282);
+  final ui.Color gray81 = const ui.Color(0xFF818181);
+  final ui.Color gray80 = const ui.Color(0xFF808080);
 
-  static final List<ui.Color> splashGradient = [
-    const ui.Color(0xFFA517FE),
-    const ui.Color(0xFFFFA500)
-  ];
-  static final List<ui.Color> greetingGradient = [
-    const ui.Color(0xFFA517FE),
-    const ui.Color(0xFFF08346),
-    const ui.Color(0xFFE9E350)
-  ];
-  static final List<ui.Color> afficheGradient = [
-    const ui.Color(0xFF1E93D4),
-    const ui.Color(0xFF5BE0E9),
-    const ui.Color(0xFF07FF88)
-  ];
-  static final List<ui.Color> purchaseGradient = [
-    const ui.Color(0xFF317EED),
-    const ui.Color(0xFF31F1C3)
-  ];
-  static final List<ui.Color> eventTypeGradient = purchaseGradient;
+  final ui.Color gray7F = const ui.Color(0xFF7F7F7F);
+  final ui.Color gray7E = const ui.Color(0xFF7E7E7E);
+  final ui.Color gray7D = const ui.Color(0xFF7D7D7D);
+  final ui.Color gray7C = const ui.Color(0xFF7C7C7C);
+  final ui.Color gray7B = const ui.Color(0xFF7B7B7B);
+  final ui.Color gray7A = const ui.Color(0xFF7A7A7A);
+  final ui.Color gray79 = const ui.Color(0xFF797979);
+  final ui.Color gray78 = const ui.Color(0xFF787878);
+  final ui.Color gray77 = const ui.Color(0xFF777777);
+  final ui.Color gray76 = const ui.Color(0xFF767676);
+  final ui.Color gray75 = const ui.Color(0xFF757575);
+  final ui.Color gray74 = const ui.Color(0xFF747474);
+  final ui.Color gray73 = const ui.Color(0xFF737373);
+  final ui.Color gray72 = const ui.Color(0xFF727272);
+  final ui.Color gray71 = const ui.Color(0xFF717171);
+  final ui.Color gray70 = const ui.Color(0xFF707070);
 
-  static final List<ui.Color> jobGradient = [
-    const ui.Color(0xFFFF5C38),
-    const ui.Color(0xFFFFA500),
-    const ui.Color(0xFFFFE947)
-  ];
+  final ui.Color gray6F = const ui.Color(0xFF6F6F6F);
+  final ui.Color gray6E = const ui.Color(0xFF6E6E6E);
+  final ui.Color gray6D = const ui.Color(0xFF6D6D6D);
+  final ui.Color gray6C = const ui.Color(0xFF6C6C6C);
+  final ui.Color gray6B = const ui.Color(0xFF6B6B6B);
+  final ui.Color gray6A = const ui.Color(0xFF6A6A6A);
+  final ui.Color gray69 = const ui.Color(0xFF696969);
+  final ui.Color gray68 = const ui.Color(0xFF686868);
+  final ui.Color gray67 = const ui.Color(0xFF676767);
+  final ui.Color gray66 = const ui.Color(0xFF666666);
+  final ui.Color gray65 = const ui.Color(0xFF656565);
+  final ui.Color gray64 = const ui.Color(0xFF646464);
+  final ui.Color gray63 = const ui.Color(0xFF636363);
+  final ui.Color gray62 = const ui.Color(0xFF626262);
+  final ui.Color gray61 = const ui.Color(0xFF616161);
+  final ui.Color gray60 = const ui.Color(0xFF606060);
 
-  static final List<ui.Color> jobTypeGradient = [
-    const ui.Color(0xFFFA1111),
-    const ui.Color(0xFFFD912D)
-  ];
-  static final List<ui.Color> connectionsGradient = [
-    const ui.Color(0xFFB115D8),
-    const ui.Color(0xFFE51F96)
-  ];
-  static final List<ui.Color> postGradient = [
-    const ui.Color(0xFFFFFFFF),
-    const ui.Color(0xC2BC2AEF)
-  ];
-  static final List<ui.Color> primaryGradient = [
-    const ui.Color(0xFF0051FF),
-    const ui.Color(0xFF8A88ED)
-  ];
-  static final List<ui.Color> chatGradient = [
-    const ui.Color(0xFF6395FF),
-    const ui.Color(0xFF437FFF)
-  ];
-  static final List<ui.Color> profileGradient = [
-    const ui.Color(0xFF2589FF),
-    const ui.Color(0xFFDB00FF)
-  ];
+  final ui.Color gray5F = const ui.Color(0xFF5F5F5F);
+  final ui.Color gray5E = const ui.Color(0xFF5E5E5E);
+  final ui.Color gray5D = const ui.Color(0xFF5D5D5D);
+  final ui.Color gray5C = const ui.Color(0xFF5C5C5C);
+  final ui.Color gray5B = const ui.Color(0xFF5B5B5B);
+  final ui.Color gray5A = const ui.Color(0xFF5A5A5A);
+  final ui.Color gray59 = const ui.Color(0xFF595959);
+  final ui.Color gray58 = const ui.Color(0xFF585858);
+  final ui.Color gray57 = const ui.Color(0xFF575757);
+  final ui.Color gray56 = const ui.Color(0xFF565656);
+  final ui.Color gray55 = const ui.Color(0xFF555555);
+  final ui.Color gray54 = const ui.Color(0xFF545454);
+  final ui.Color gray53 = const ui.Color(0xFF535353);
+  final ui.Color gray52 = const ui.Color(0xFF525252);
+  final ui.Color gray51 = const ui.Color(0xFF515151);
+  final ui.Color gray50 = const ui.Color(0xFF505050);
 
-  //TODO: delete old ui.Colors
-  static const ui.Color primary437 = ui.Color(0xFF437FFF);
-  static const ui.Color blueCFDFFF = ui.Color(0xFFCFDFFF);
-  static const ui.Color blueC6D8FF = ui.Color(0xFFC6D8FF);
-  static const ui.Color blueB7BDE7 = ui.Color(0xFFB7BDE7);
-  static const ui.Color blueB6CDFF = ui.Color(0xFFB6CDFF);
-  static const ui.Color blue7CA2F2 = ui.Color(0xFF7CA2F2);
-  static const ui.Color blue6F9CFA = ui.Color(0xFF6F9CFA);
-  static const ui.Color blue648BDE = ui.Color(0xFF648BDE);
-  static const ui.Color blue585E8B = ui.Color(0xFF585E8B);
-  static const ui.Color blue33247CFF = ui.Color(0x33247CFF);
-  static const ui.Color blue1C274C = ui.Color(0xFF1C274C);
-  static const ui.Color activeGreen = ui.Color(0xFF0ABF32);
-  static const ui.Color inactiveRed = ui.Color(0xFFFF3B30);
-  static const ui.Color errorText = ui.Color(0xFFFF7070);
-  static const ui.Color reportText = ui.Color(0xFFFF3B30);
+  final ui.Color gray4F = const ui.Color(0xFF4F4F4F);
+  final ui.Color gray4E = const ui.Color(0xFF4E4E4E);
+  final ui.Color gray4D = const ui.Color(0xFF4D4D4D);
+  final ui.Color gray4C = const ui.Color(0xFF4C4C4C);
+  final ui.Color gray4B = const ui.Color(0xFF4B4B4B);
+  final ui.Color gray4A = const ui.Color(0xFF4A4A4A);
+  final ui.Color gray49 = const ui.Color(0xFF494949);
+  final ui.Color gray48 = const ui.Color(0xFF484848);
+  final ui.Color gray47 = const ui.Color(0xFF474747);
+  final ui.Color gray46 = const ui.Color(0xFF464646);
+  final ui.Color gray45 = const ui.Color(0xFF454545);
+  final ui.Color gray44 = const ui.Color(0xFF444444);
+  final ui.Color gray43 = const ui.Color(0xFF434343);
+  final ui.Color gray42 = const ui.Color(0xFF424242);
+  final ui.Color gray41 = const ui.Color(0xFF414141);
+  final ui.Color gray40 = const ui.Color(0xFF404040);
 
-  //static const ui.Color bottomBarInactive = ui.Color(0xFF878787);
-  //static const ui.Color bottomBarActive = ui.Color(0xFF7FA4F1);
-  static const ui.Color bottomBarInactive = ui.Color(0xFF000000);
-  static const ui.Color bottomBarActive = ui.Color(0xFF0045D9);
+  final ui.Color gray3F = const ui.Color(0xFF3F3F3F);
+  final ui.Color gray3E = const ui.Color(0xFF3E3E3E);
+  final ui.Color gray3D = const ui.Color(0xFF3D3D3D);
+  final ui.Color gray3C = const ui.Color(0xFF3C3C3C);
+  final ui.Color gray3B = const ui.Color(0xFF3B3B3B);
+  final ui.Color gray3A = const ui.Color(0xFF3A3A3A);
+  final ui.Color gray39 = const ui.Color(0xFF393939);
+  final ui.Color gray38 = const ui.Color(0xFF383838);
+  final ui.Color gray37 = const ui.Color(0xFF373737);
+  final ui.Color gray36 = const ui.Color(0xFF363636);
+  final ui.Color gray35 = const ui.Color(0xFF353535);
+  final ui.Color gray34 = const ui.Color(0xFF343434);
+  final ui.Color gray33 = const ui.Color(0xFF333333);
+  final ui.Color gray32 = const ui.Color(0xFF323232);
+  final ui.Color gray31 = const ui.Color(0xFF313131);
+  final ui.Color gray30 = const ui.Color(0xFF303030);
+
+  final ui.Color gray2F = const ui.Color(0xFF2F2F2F);
+  final ui.Color gray2E = const ui.Color(0xFF2E2E2E);
+  final ui.Color gray2D = const ui.Color(0xFF2D2D2D);
+  final ui.Color gray2C = const ui.Color(0xFF2C2C2C);
+  final ui.Color gray2B = const ui.Color(0xFF2B2B2B);
+  final ui.Color gray2A = const ui.Color(0xFF2A2A2A);
+  final ui.Color gray29 = const ui.Color(0xFF292929);
+  final ui.Color gray28 = const ui.Color(0xFF282828);
+  final ui.Color gray27 = const ui.Color(0xFF272727);
+  final ui.Color gray26 = const ui.Color(0xFF262626);
+  final ui.Color gray25 = const ui.Color(0xFF252525);
+  final ui.Color gray24 = const ui.Color(0xFF242424);
+  final ui.Color gray23 = const ui.Color(0xFF232323);
+  final ui.Color gray22 = const ui.Color(0xFF222222);
+  final ui.Color gray21 = const ui.Color(0xFF212121);
+  final ui.Color gray20 = const ui.Color(0xFF202020);
+
+  final ui.Color gray1F = const ui.Color(0xFF1F1F1F);
+  final ui.Color gray1E = const ui.Color(0xFF1E1E1E);
+  final ui.Color gray1D = const ui.Color(0xFF1D1D1D);
+  final ui.Color gray1C = const ui.Color(0xFF1C1C1C);
+  final ui.Color gray1B = const ui.Color(0xFF1B1B1B);
+  final ui.Color gray1A = const ui.Color(0xFF1A1A1A);
+  final ui.Color gray19 = const ui.Color(0xFF191919);
+  final ui.Color gray18 = const ui.Color(0xFF181818);
+  final ui.Color gray17 = const ui.Color(0xFF171717);
+  final ui.Color gray16 = const ui.Color(0xFF161616);
+  final ui.Color gray15 = const ui.Color(0xFF151515);
+  final ui.Color gray14 = const ui.Color(0xFF141414);
+  final ui.Color gray13 = const ui.Color(0xFF131313);
+  final ui.Color gray12 = const ui.Color(0xFF121212);
+  final ui.Color gray11 = const ui.Color(0xFF111111);
+  final ui.Color gray10 = const ui.Color(0xFF101010);
+
+  final ui.Color black0F = const ui.Color(0xFF0F0F0F);
+  final ui.Color black0E = const ui.Color(0xFF0E0E0E);
+  final ui.Color black0D = const ui.Color(0xFF0D0D0D);
+  final ui.Color black0C = const ui.Color(0xFF0C0C0C);
+  final ui.Color black0B = const ui.Color(0xFF0B0B0B);
+  final ui.Color black0A = const ui.Color(0xFF0A0A0A);
+  final ui.Color black09 = const ui.Color(0xFF090909);
+  final ui.Color black08 = const ui.Color(0xFF080808);
+  final ui.Color black07 = const ui.Color(0xFF070707);
+  final ui.Color black06 = const ui.Color(0xFF060606);
+  final ui.Color black05 = const ui.Color(0xFF050505);
+  final ui.Color black04 = const ui.Color(0xFF040404);
+  final ui.Color black03 = const ui.Color(0xFF030303);
+  final ui.Color black02 = const ui.Color(0xFF020202);
+  final ui.Color black01 = const ui.Color(0xFF010101);
+  final ui.Color black00 = const ui.Color(0xFF000000);
+
+  // final ui.Color whiteF0F5FF = const ui.Color(0xFFF0F5FF);
+  //
+  // final ui.Color blue1557D8 = const ui.Color(0xFF1557D8);
+  // final ui.Color blue3173F1 = const ui.Color(0xFF3173F1);
+  // final ui.Color blueE00057FF = const ui.Color(0xE00057FF);
+  // final ui.Color blueAB15CCD8 = const ui.Color(0xAB15CCD8);
+  //
+  // final ui.Color yellowABB66E02 = const ui.Color(0xABB66E02);
+  // final ui.Color yellowFFA500 = const ui.Color(0xFFFFA500);
+  // final ui.Color yellowFFC85C = const ui.Color(0xFFFFC85C);
+  // final ui.Color yellowFFC736 = const ui.Color(0xFFFFC736);
+  // final ui.Color yellowFFB800 = const ui.Color(0xFFFFB800);
+  // final ui.Color yellowF1C44E = const ui.Color(0xFFF1C44E);
+  //
+  // final ui.Color redFF3A44 = const ui.Color(0xFFFF3A44);
+  // final ui.Color redFF003D = const ui.Color(0xFFFF003D);
+  //
+  // final ui.Color pinkF30D6E = const ui.Color(0xFFF30D6E);
+  // final ui.Color pinkEC289E = const ui.Color(0xFFEC289E);
+  // final ui.Color pinkE31591 = const ui.Color(0xFFE31591);
+  // final ui.Color pinkABE51F96 = const ui.Color(0xABE51F96);
+  // final ui.Color pink1AE51F96 = const ui.Color(0x1AE51F96);
+  // final ui.Color pinkE6FCE6F3 = const ui.Color(0xE6FCE6F3);
+  //
+  // final ui.Color purpleCC4AFA = const ui.Color(0xFFCC4AFA);
+  // final ui.Color purpleA517FE = const ui.Color(0xFFA517FE);
+  // final ui.Color purpleDB00FF = const ui.Color(0xFFDB00FF);
+  // final ui.Color purple460E2C = const ui.Color(0xFF460E2C);
+
+  //TODO : OLD COLOR
+  final ui.Color activeGreen = const ui.Color(0xFF0ABF32);
+  final ui.Color inactiveRed = const ui.Color(0xFFFF3B30);
+  final ui.Color errorText = const ui.Color(0xFFFF7070);
+  final ui.Color reportText = const ui.Color(0xFFFF3B30);
+  final ui.Color bottomBarInactive = const ui.Color(0xFF000000);
+  final ui.Color bottomBarActive = const ui.Color(0xFF0045D9);
 }
 
 extension FilterExtension on ui.Color {

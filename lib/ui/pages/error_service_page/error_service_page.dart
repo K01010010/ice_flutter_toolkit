@@ -31,7 +31,7 @@ class ErrorServicePageState extends State<ErrorServiceWidget> {
         if (service.errorMessage != null) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              backgroundColor: AppColors.primary437,
+              backgroundColor: AppColorsBase.primary437,
               duration: service.showingDuration ?? const Duration(milliseconds: 3000),
               content: Text(
                 service.errorMessage ?? "Произошла ошибка",
@@ -39,7 +39,7 @@ class ErrorServicePageState extends State<ErrorServiceWidget> {
                   fontFamily: 'Golos',
                   fontSize: 15,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.white,
+                  color: AppColorsBase.white,
                 ),
               ),
             ),

@@ -1,74 +1,78 @@
 part of '../../ice_flutter_toolkit.dart';
 
 class ArrowTextBar extends StatelessWidget {
-  final String title;
-  final double titleFontSize;
-  final Color titleColor;
-  final TextStyle? titleStyle;
-  final bool shadow;
-  final double? bottom;
-  final Widget? suffix;
-  final Color backgroundColor;
 
-  const ArrowTextBar(this.title,
-      {super.key,
-      this.shadow = false,
-      this.bottom,
-      this.titleFontSize = 26,
-      this.titleColor = AppColors.purpleA517FE,
-      this.titleStyle,
-      this.suffix,
-      this.backgroundColor = AppColors.white});
+  final String title;
+  final Color? titleColor;
+  final TextStyle? titleStyle;
+
+  final EdgeInsets? titlePadding;
+  final EdgeInsets? paddingArrow;
+  final EdgeInsets? marginArrow;
+
+  final bool shadow;
+  final Color? shadowColor;
+  final BoxShadow? shadowBox;
+  final Widget? suffix;
+  final Color? backgroundColor;
+
+  const ArrowTextBar(
+    this.title, {
+    super.key,
+    this.titleColor,
+    this.titleStyle,
+    this.titlePadding,
+    this.paddingArrow,
+    this.marginArrow,
+    this.shadow = false,
+    this.shadowColor,
+    this.shadowBox,
+    this.suffix,
+    this.backgroundColor,
+  });
+
+  CustomAppBarStyle get style => AppStyle.style.appBarStyle;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: backgroundColor,
+        color: backgroundColor ?? style.arrowBarBackgroundColor,
         boxShadow: !shadow
             ? null
             : [
-                BoxShadow(
-                  color: backgroundColor,
-                  blurRadius: 10,
-                  spreadRadius: 25,
-                  offset: const Offset(0, 1),
-                ),
+                shadowBox != null
+                    ? shadowBox!
+                    : shadowColor != null
+                        ? BoxShadow(
+                            color: shadowColor!,
+                            blurRadius: 10,
+                            spreadRadius: 25,
+                            offset: const Offset(0, 1),
+                          )
+                        : style.arrowBarShadow,
               ],
       ),
-      padding: EdgeInsets.only(
-        top: 20,
-        left: 18,
-        right: 18,
-        bottom: bottom ?? 0,
-      ),
+      padding: paddingArrow ?? style.paddingArrow,
+      margin: marginArrow ?? style.marginArrow,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         GestureDetector(
           onTap: () => AutoRouter.of(context).pop(),
-          child: Container(
-            color: backgroundColor,
-            width: 32,
-            height: 32,
-            child: Center(
-              child: Icon(
-                Icons.arrow_back,
-                color: titleColor,
-                size: 32,
-              ),
-            ),
+          child: AppStyle.style.getBackButton(
+            backgroundColor ?? style.arrowBarBackgroundColor,
+            titleColor ?? style.titleColor,
           ),
         ),
         Expanded(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
+            padding: titlePadding ?? style.titlePadding,
             child: FittedBox(
               fit: BoxFit.scaleDown,
               alignment: Alignment.center,
               child: Text(
                 title,
                 textAlign: TextAlign.center,
-                style: titleStyle ??
-                    AppStyle.style.text,
+                style: titleStyle ?? style.titleStyle,
               ),
             ),
           ),
@@ -84,43 +88,49 @@ class ArrowTextBar extends StatelessWidget {
 }
 
 class ShadowArrowTextBarWrapper extends StatelessWidget {
-  const ShadowArrowTextBarWrapper(
-      {super.key,
-      required this.arrowTextBar,
-      required this.child,
-      this.paddingContentUnderBar = true,
-      this.leftSafe = true,
-      this.topSafe = true,
-      this.rightSafe = true,
-      this.bottomSafe = true,
-      this.backgroundColor = AppColors.white});
+  const ShadowArrowTextBarWrapper({
+    super.key,
+    required this.arrowTextBar,
+    required this.child,
+    this.backgroundColor,
+    this.leftSafe,
+    this.topSafe,
+    this.rightSafe,
+    this.bottomSafe,
+    this.offsetContentUnderBar,
+  });
 
-  final bool leftSafe;
-  final bool topSafe;
-  final bool rightSafe;
-  final bool bottomSafe;
+  final bool? leftSafe;
+  final bool? topSafe;
+  final bool? rightSafe;
+  final bool? bottomSafe;
+
   final ArrowTextBar arrowTextBar;
   final Widget child;
-  final bool paddingContentUnderBar;
-  final Color backgroundColor;
+  final Color? backgroundColor;
+
+  final double? offsetContentUnderBar;
+
+  CustomAppBarStyle get style => AppStyle.style.appBarStyle;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: backgroundColor ?? style.arrowBarBackgroundColor,
       body: Stack(children: [
         SafeArea(
-          left: leftSafe,
-          top: topSafe,
-          right: rightSafe,
-          bottom: bottomSafe,
+          left: leftSafe ?? style.leftSafe,
+          top: topSafe ?? style.topSafe,
+          right: rightSafe ?? style.rightSafe,
+          bottom: bottomSafe ?? style.bottomSafe,
           child: Padding(
-            padding: EdgeInsets.only(top: paddingContentUnderBar ? 70 : 0),
+            padding: EdgeInsets.only(
+                top: offsetContentUnderBar ?? style.offsetContentUnderBar),
             child: child,
           ),
         ),
         ColoredBox(
-          color: backgroundColor,
+          color: backgroundColor ?? style.arrowBarBackgroundColor,
           child: SafeArea(child: arrowTextBar),
         ),
       ]),

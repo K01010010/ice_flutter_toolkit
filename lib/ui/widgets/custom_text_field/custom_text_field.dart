@@ -38,7 +38,7 @@ class CustomTextField extends StatelessWidget {
               Text(
                 textTitle!,
                 style: titleStyle ?? const TextStyle(
-                      color: AppColors.gray52,
+                      color: AppColorsBase.gray52,
                       fontWeight: FontWeight.w400,
                       fontSize: 16,
                     ),
@@ -59,7 +59,7 @@ class CustomTextField extends StatelessWidget {
             obscureText: controller.obscure,
             style: const TextStyle(
               fontFamily: 'Golos',
-              color: AppColors.gray1A,
+              color: AppColorsBase.gray1A,
               fontWeight: FontWeight.w400,
               fontSize: 16,
             ),
@@ -69,22 +69,22 @@ class CustomTextField extends StatelessWidget {
               errorText: controller.errorMessage,
               border: UnderlineInputBorder(
                   borderRadius: BorderRadius.circular(1),
-                  borderSide: const BorderSide(color: AppColors.grayEF)),
+                  borderSide: const BorderSide(color: AppColorsBase.grayEF)),
               focusedBorder: UnderlineInputBorder(
                   borderRadius: BorderRadius.circular(1),
-                  borderSide: const BorderSide(color: AppColors.grayEF)),
+                  borderSide: const BorderSide(color: AppColorsBase.grayEF)),
               disabledBorder: UnderlineInputBorder(
                   borderRadius: BorderRadius.circular(1),
-                  borderSide: const BorderSide(color: AppColors.grayEF)),
+                  borderSide: const BorderSide(color: AppColorsBase.grayEF)),
               enabledBorder: UnderlineInputBorder(
                   borderRadius: BorderRadius.circular(1),
-                  borderSide: const BorderSide(color: AppColors.grayEF)),
+                  borderSide: const BorderSide(color: AppColorsBase.grayEF)),
               filled: true,
-              fillColor: AppColors.white,
+              fillColor: AppColorsBase.white,
               hintText: hintKey,
               hintStyle: const TextStyle(
                 fontFamily: 'Golos',
-                color: AppColors.gray7C,
+                color: AppColorsBase.gray7C,
                 fontWeight: FontWeight.w400,
                 fontSize: 16,
               ),
@@ -103,7 +103,7 @@ class CustomTextField extends StatelessWidget {
                             controller.obscure
                                 ? Icons.visibility_outlined
                                 : Icons.visibility_off_outlined,
-                            color: AppColors.gray7C,
+                            color: AppColorsBase.gray7C,
                           ),
                         ),
                       ),
@@ -119,7 +119,7 @@ class CustomTextField extends StatelessWidget {
               underlineText!,
               style: const TextStyle(
                 fontFamily: 'Golos',
-                color: AppColors.primary437,
+                color: AppColorsBase.primary437,
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
               ),

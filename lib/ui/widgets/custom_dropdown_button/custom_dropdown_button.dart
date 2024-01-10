@@ -3,55 +3,72 @@ part of '../../../ice_flutter_toolkit.dart';
 class CustomDropdownButton extends StatelessWidget {
   CustomDropdownButton({
     super.key,
-    this.titleOffset = 12,
-    this.title,
-    this.titles = const [],
-    this.text,
-    this.error,
-    required this.hint,
     required this.controller,
     this.onTapAfterChangeController,
-    this.itemHeight,
-    this.contentPadding,
-    this.widgetMargin,
+    this.onTap,
+    this.text,
+    this.titleOffset,
+    List<TextData>? titles,
+    String? title,
+    TextStyle? titleStyle,
+    required String hintText,
+    TextStyle? hintStyle,
     BoxData? box,
     BoxData? errorBox,
-  })  : _box = box ?? BoxData.r15All(),
-        _errorBox = errorBox ?? BoxData.r15All();
+    this.error,
+    this.errorPadding,
+    this.contentPadding,
+    this.widgetMargin,
+    this.itemHeight,
+    this.dropdownColor,
+  })  : _box = box ?? AppStyle.style.fieldStyle.box,
+        _errorBox = errorBox ?? AppStyle.style.fieldStyle.errorBox,
+        _titles = titles ??
+            [
+              if (title != null)
+                TextData(title, titleStyle ?? AppStyle.style.fieldStyle.title)
+            ],
+        _hintData =
+            TextData(hintText, hintStyle ?? AppStyle.style.fieldStyle.hint);
 
   final CustomDropdownController controller;
+
   final Function(int)? onTapAfterChangeController;
+  final void Function()? onTap;
 
-  final double titleOffset;
-  final TextData? title;
-  final List<TextData> titles;
-  final TextData? text;
-  final TextData hint;
-  final TextData? error;
+  final List<TextData> _titles;
+  final double? titleOffset;
 
-  final BoxData _box;
-  final BoxData _errorBox;
+  final TextData _hintData;
+  final TextStyle? text;
+  final TextStyle? error;
 
-  final double? itemHeight;
+  final BoxData _box; // ?? style.box
+  final BoxData _errorBox; // ?? style.errorBox
+
+  final EdgeInsets? errorPadding;
   final EdgeInsets? contentPadding;
   final EdgeInsets? widgetMargin;
+
+  final double? itemHeight;
+  final Color? dropdownColor;
+
+  CustomFieldStyle get style => AppStyle.style.fieldStyle;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: widgetMargin ?? EdgeInsets.zero,
+      padding: widgetMargin ?? style.widgetMargin,
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        if (title != null)
+        if (_titles.length == 1)
           Text(
-            title!.text,
-            textScaleFactor : 1.0,
-            style: title!.style,
+            _titles.first.text,
+            style: _titles.first.style,
           ),
-        if (titles.isNotEmpty)
+        if (_titles.isNotEmpty)
           RichText(
-            textScaleFactor : 1.0,
             text: TextSpan(
-              children: titles
+              children: _titles
                   .map(
                     (titleElem) => TextSpan(
                       text: titleElem.text,
@@ -61,29 +78,43 @@ class CustomDropdownButton extends StatelessWidget {
                   .toList(),
             ),
           ),
-        if (titles.isNotEmpty) SizedBox(height: titleOffset),
-        if (title != null) SizedBox(height: titleOffset),
+        if (_titles.isNotEmpty)
+          SizedBox(height: titleOffset ?? style.titleOffset),
         Observer(builder: (context) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DropdownButton(
-                hint: selected(hint.text,
-                    style: hint.style, isError: controller.errorMessage != null),
+                hint: selected(
+                  _hintData,
+                  isError: controller.errorMessage != null,
+                ),
                 elevation: 0,
-                dropdownColor: AppColors.transparent,
+                dropdownColor: dropdownColor ?? AppColorsBase.transparent,
                 isExpanded: true,
                 value: controller.indexContent,
                 itemHeight: itemHeight ?? kMinInteractiveDimension,
                 // menuMaxHeight: (itemHeight ?? kMinInteractiveDimension) * 5,
                 selectedItemBuilder: (ctx) => controller.variants
-                    .map((e) =>
-                        selected(e, isError: controller.errorMessage != null))
+                    .map((variant) => selected(
+                        TextData(
+                          variant,
+                          text ?? style.text,
+                        ),
+                        isError: controller.errorMessage != null))
                     .toList(),
                 items: [
-                  for (int index = 0; index < controller.variants.length; index++)
-                    selectableMenuItem(index, controller.variants[index],
-                        index == controller.variants.length - 1)
+                  for (int index = 0;
+                      index < controller.variants.length;
+                      index++)
+                    selectableMenuItem(
+                      index,
+                      TextData(
+                        controller.variants[index],
+                        text ?? style.text,
+                      ),
+                      index == controller.variants.length - 1,
+                    )
                 ],
                 onChanged: (index) {
                   controller.errorMessage = null;
@@ -93,22 +124,15 @@ class CustomDropdownButton extends StatelessWidget {
                   }
                 },
                 icon: const SizedBox(),
-                underline: Container(color: AppColors.transparent),
+                underline: Container(color: AppColorsBase.transparent),
               ),
               if (controller.errorMessage != null)
                 Padding(
-                  padding: const EdgeInsets.only(left: 8.0, top: 2),
+                  padding:
+                      errorPadding ?? const EdgeInsets.only(left: 8.0, top: 2),
                   child: Text(
                     controller.errorMessage!,
-                    // textScaler: ,
-                    textScaleFactor : 1.0,
-                    style: error?.style ??
-                        const TextStyle(
-
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                          color: AppColors.errorText,
-                        ),
+                    style: error ?? style.error,
                   ),
                 ),
             ],
@@ -118,87 +142,84 @@ class CustomDropdownButton extends StatelessWidget {
     );
   }
 
-  Widget selected(String title, {TextStyle? style, bool isError = false}) {
+  Widget selected(TextData textData, {bool isError = false}) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: isError ? _errorBox.radius : _box.radius,
-        border: _box.border,
+        color: (isError ? _errorBox : _box).fillColor ?? AppColorsBase.white,
+        borderRadius: (isError ? _errorBox : _box).borderRadius,
+        border: (isError ? _errorBox : _box).border,
       ),
-      padding: contentPadding ?? const EdgeInsets.symmetric(horizontal: 0, vertical: 13),
+      padding: contentPadding ?? style.contentPadding,
       child: Row(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Flexible(
-            // width: MediaQuery.of(context).size.width - 80,
             child: Text(
-              title,
-              textScaleFactor : 1.0,
-              style: style ??
-                  AppStyle.style.text,
+              textData.text,
+              style: textData.style,
             ),
           ),
-          const Align(
+          Align(
             alignment: Alignment.topRight,
-            child:
-                Icon(Icons.arrow_drop_down, color: AppColors.gray85, size: 24),
+            child: Icon(
+              Icons.arrow_drop_down,
+              color: style.suffixWidgetColor,
+              size: 24,
+            ),
           ),
         ],
       ),
     );
   }
 
-  DropdownMenuItem selectableMenuItem(int index, String title, bool last,
-      {TextStyle? style}) {
+  DropdownMenuItem selectableMenuItem(
+    int index,
+    TextData textData,
+    bool last,
+  ) {
+    var first = index == 0;
+
     return DropdownMenuItem(
       value: index,
       child: Material(
         elevation: 5,
         // boxShadow: const [
         //   BoxShadow(
+        //     color: AppColors.black.withOpacity(0.5),
         //     color: AppColors.shadow15,
         //     blurRadius: 7,
         //     spreadRadius: 0,
         //     offset: Offset(0, 2),
         //   ),
         // ],
-        borderRadius: index == 0 || last
+        borderRadius: first || last
             ? BorderRadius.only(
-                topLeft: Radius.circular(index == 0 ? 12 : 0),
-                topRight: Radius.circular(index == 0 ? 12 : 0),
-                bottomLeft: Radius.circular(last ? 12 : 0),
-                bottomRight: Radius.circular(last ? 12 : 0),
+                topLeft: first ? _box.radius : Radius.zero,
+                topRight: first ? _box.radius : Radius.zero,
+                bottomLeft: last ? _box.radius : Radius.zero,
+                bottomRight: last ? _box.radius : Radius.zero,
               )
             : null,
         child: Container(
           height: itemHeight ?? kMinInteractiveDimension,
           width: double.maxFinite,
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+          padding: contentPadding ?? style.contentPadding,
           decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: index == 0 || last
+            color: _box.fillColor,
+            borderRadius: first || last
                 ? BorderRadius.only(
-                    topLeft: Radius.circular(index == 0 ? 12 : 0),
-                    topRight: Radius.circular(index == 0 ? 12 : 0),
-                    bottomLeft: Radius.circular(last ? 12 : 0),
-                    bottomRight: Radius.circular(last ? 12 : 0),
+                    topLeft: first ? _box.radius : Radius.zero,
+                    topRight: first ? _box.radius : Radius.zero,
+                    bottomLeft: last ? _box.radius : Radius.zero,
+                    bottomRight: last ? _box.radius : Radius.zero,
                   )
                 : null,
-            // boxShadow: [
-            //   BoxShadow(
-            //     color: AppColors.black.withOpacity(0.5),
-            //     blurRadius: 7,
-            //     spreadRadius: 2,
-            //     offset: Offset(0, 0),
-            //   ),
-            // ],
           ),
           child: Text(
-            title,
+            textData.text,
             overflow: TextOverflow.ellipsis,
-            textScaleFactor : 1.0,
-            style: style ?? AppStyle.style.text,
+            style: textData.style,
           ),
         ),
       ),

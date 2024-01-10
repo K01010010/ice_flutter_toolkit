@@ -39,7 +39,7 @@ class _CustomSlideSwitchWidgetState extends State<CustomSlideSwitchWidget>
         alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: AppColors.transparent,
+            color: AppColorsBase.transparent,
         ),
         child: Stack(
           children: [
@@ -50,7 +50,7 @@ class _CustomSlideSwitchWidgetState extends State<CustomSlideSwitchWidget>
                   widget.firstWord,
                   style: const TextStyle(
                     fontFamily: 'Golos',
-                    color: AppColors.gray817C7C,
+                    color: AppColorsBase.gray817C7C,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                   ),
@@ -60,7 +60,7 @@ class _CustomSlideSwitchWidgetState extends State<CustomSlideSwitchWidget>
                   widget.secondWord,
                   style: const TextStyle(
                     fontFamily: 'Golos',
-                    color: AppColors.gray817C7C,
+                    color: AppColorsBase.gray817C7C,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                   ),
@@ -91,7 +91,7 @@ class _CustomSlideSwitchWidgetState extends State<CustomSlideSwitchWidget>
                               : widget.secondWord,
                           style: const TextStyle(
                             fontFamily: 'Roboto',
-                              color: AppColors.gray2F,
+                              color: AppColorsBase.gray2F,
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
                           ),

@@ -60,7 +60,7 @@ class _SwiperWidgetState extends State<SwiperWidget>
       // height: 200,
       // width: 300,
       child: ColoredBox(
-        color: AppColors.transparent,
+        color: AppColorsBase.transparent,
         child: Observer(builder: (context) {
           if(widget.swiperController.scroller.length < 1) { return const SizedBox(); }
           if(widget.swiperController.scroller.length == 1) { return itemBuilder(0, context, show: true); }

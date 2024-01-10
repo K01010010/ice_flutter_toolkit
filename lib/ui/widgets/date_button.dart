@@ -16,6 +16,8 @@ class DateButton extends StatefulWidget {
 }
 
 class _DateButtonState extends State<DateButton> {
+  CustomDateButtonStyle get style => AppStyle.style.dateButtonStyle;
+
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (context) {
@@ -24,23 +26,46 @@ class _DateButtonState extends State<DateButton> {
         child: Container(
           width: double.maxFinite,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              border: Border.all(
-                  color: widget.dateError.value != null
-                      ? AppColors.errorText
-                      : AppColors.grayE4E3E3,
-                  width: 2)),
-          // margin: padding,
-          padding:
-              const EdgeInsets.only(left: 20, right: 25, top: 18, bottom: 18),
+            borderRadius: style.radius,
+            border: Border.all(
+              color: widget.dateError.value != null
+                  ? style.errorBorderColor
+                  : style.borderColor,
+              width: style.borderWidth,
+            ),
+          ),
+          margin: style.margin,
+          padding: style.padding,
           child: Text(
-            widget.date.value != null ?
-            widget.date.value!.describe(JustDateType.onlyDate)
+            widget.date.value != null
+                ? widget.date.value!.describe(JustDateType.onlyDate)
                 : "дд.мм.гг",
-            style: AppStyle.style.text,
+            style: style.dateStyle,
           ),
         ),
       );
     });
   }
+}
+
+class CustomDateButtonStyle {
+  final BorderRadius radius; //BorderRadius.circular(15)
+  final double borderWidth;
+  final BorderStyle borderStyle;
+  final Color borderColor; //AppColorsBase.get.grayE4
+  final Color errorBorderColor;
+  final EdgeInsets margin;
+  final EdgeInsets padding;
+  final TextStyle dateStyle;
+
+  CustomDateButtonStyle({
+    required this.radius,
+    required this.borderWidth,
+    required this.borderStyle,
+    required this.borderColor,
+    required this.errorBorderColor,
+    this.margin = EdgeInsets.zero,
+    this.padding = const EdgeInsets.only(left: 20, right: 25, top: 18, bottom: 18),
+    required this.dateStyle,
+  }); // AppStyle.style.text,
 }

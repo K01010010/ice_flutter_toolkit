@@ -14,6 +14,7 @@ class BoxData {
   final Radius radius;
   final BoxBorder? border;
   final BorderSide side;
+
   //
   // factory BoxData.r15All(
   //         {double width = 2,
@@ -35,6 +36,7 @@ class BoxData {
     double width = 2,
     Color? borderColor,
     Color? fillColor,
+    double strokeAlign = BorderSide.strokeAlignInside,
   }) =>
       BoxData._box(
         fillColor: fillColor,
@@ -43,6 +45,9 @@ class BoxData {
         side: borderColor == null
             ? BorderSide.none
             : BorderSide(color: borderColor, width: width),
-        border: borderColor == null ? Border.all() : null,
+        border: borderColor == null
+            ? null
+            : Border.all(
+                color: borderColor, width: width, strokeAlign: strokeAlign),
       );
 }

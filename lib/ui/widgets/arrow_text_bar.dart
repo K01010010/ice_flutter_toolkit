@@ -1,7 +1,6 @@
 part of '../../ice_flutter_toolkit.dart';
 
 class ArrowTextBar extends StatelessWidget {
-
   final String title;
   final Color? titleColor;
   final TextStyle? titleStyle;
@@ -56,11 +55,17 @@ class ArrowTextBar extends StatelessWidget {
       padding: paddingArrow ?? style.paddingArrow,
       margin: marginArrow ?? style.marginArrow,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        GestureDetector(
-          onTap: () => AutoRouter.of(context).pop(),
-          child: AppStyle.style.getBackButton(
-            backgroundColor ?? style.arrowBarBackgroundColor,
-            titleColor ?? style.titleColor,
+        SizedBox(
+          width: 50,
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: GestureDetector(
+              onTap: () => AutoRouter.of(context).back(),
+              child: AppStyle.style.getBackButton(
+                backgroundColor ?? style.arrowBarBackgroundColor,
+                titleColor ?? style.titleColor,
+              ),
+            ),
           ),
         ),
         Expanded(
@@ -78,7 +83,7 @@ class ArrowTextBar extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 32,
+          width: 50,
           height: 32,
           child: suffix ?? const SizedBox(),
         ),

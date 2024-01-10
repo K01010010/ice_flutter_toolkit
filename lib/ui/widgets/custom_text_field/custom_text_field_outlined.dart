@@ -96,96 +96,95 @@ class CustomTextFieldOutlined extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (_titles.length == 1)
-            Text(
-              _titles.first.text,
-              style: _titles.first.style,
-            ),
           if (_titles.isNotEmpty)
-            RichText(
-              text: TextSpan(
-                children: _titles
-                    .map(
-                      (titleElem) => TextSpan(
-                        text: titleElem.text,
-                        style: titleElem.style,
-                      ),
-                    )
-                    .toList(),
-              ),
-            ),
+            _titles.length == 1
+                ? Text(
+                    _titles.first.text,
+                    style: _titles.first.style,
+                  )
+                : RichText(
+                    text: TextSpan(
+                      children: _titles
+                          .map(
+                            (titleElem) => TextSpan(
+                              text: titleElem.text,
+                              style: titleElem.style,
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ),
           if (_titles.isNotEmpty)
             SizedBox(height: titleOffset ?? style.titleOffset),
-          Observer(
-            builder: (context) {
-              return TextField(
-                key: key,
-                onTap: onTap,
-                onChanged: (text) {
-                  controller.updateText(text);
-                  if (onChanged != null) onChanged!(text);
-                },
-                controller: controller.textEditingController,
-                obscureText: controller.obscure,
-                style: text ?? style.text,
-                decoration: InputDecoration(
-                  contentPadding: contentPadding ?? style.contentPadding,
-                  errorText: controller.errorMessage,
-                  errorStyle: error ?? style.error,
-                  border: OutlineInputBorder(
-                      borderRadius: _box.borderRadius, borderSide: _box.side),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: _box.borderRadius, borderSide: _box.side),
-                  disabledBorder: OutlineInputBorder(
-                      borderRadius: _box.borderRadius, borderSide: _box.side),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: _box.borderRadius, borderSide: _box.side),
-                  errorBorder: OutlineInputBorder(
-                      borderRadius: _errorBox.borderRadius, borderSide: _errorBox.side),
-                  filled: true,
-                  fillColor: _box.fillColor,
-                  hintText: _hintData.text,
-                  hintStyle: _hintData.style,
-                  suffix: !showObscureButton &&
-                          (controller.errorMessage?.isEmpty ?? true)
-                      ? suffixTitleWidget
-                      : SizedBox(
-                          child: GestureDetector(
-                            onTap: controller.switchObscure,
-                            child: Padding(
-                              padding: const EdgeInsets.all(1),
-                              child: !showObscureButton
-                                  ? (useWarningSvg
-                                      ? SvgPicture.asset(
-                                          'assets/svg/warning.svg',
-                                          colorFilter:
-                                              _errorBox.side.color.filter,
-                                        )
-                                      : Icon(
-                                          Icons.warning_amber_rounded,
-                                          color: _errorBox.side.color,
-                                        ))
-                                  : Icon(
-                                      controller.obscure
-                                          ? Icons.visibility_outlined
-                                          : Icons.visibility_off_outlined,
-                                      color: (controller.errorMessage?.isEmpty ??
-                                              true)
-                                          ? style.suffixWidgetColor
-                                          : _errorBox.side.color,
-                                    ),
-                            ),
+          Observer(builder: (context) {
+            return TextField(
+              key: key,
+              onTap: onTap,
+              onChanged: (text) {
+                controller.updateText(text);
+                if (onChanged != null) onChanged!(text);
+              },
+              controller: controller.textEditingController,
+              obscureText: controller.obscure,
+              style: text ?? style.text,
+              decoration: InputDecoration(
+                contentPadding: contentPadding ?? style.contentPadding,
+                errorText: controller.errorMessage,
+                errorStyle: error ?? style.error,
+                border: OutlineInputBorder(
+                    borderRadius: _box.borderRadius, borderSide: _box.side),
+                focusedBorder: OutlineInputBorder(
+                    borderRadius: _box.borderRadius, borderSide: _box.side),
+                disabledBorder: OutlineInputBorder(
+                    borderRadius: _box.borderRadius, borderSide: _box.side),
+                enabledBorder: OutlineInputBorder(
+                    borderRadius: _box.borderRadius, borderSide: _box.side),
+                errorBorder: OutlineInputBorder(
+                    borderRadius: _errorBox.borderRadius,
+                    borderSide: _errorBox.side),
+                filled: true,
+                fillColor: _box.fillColor,
+                hintText: _hintData.text,
+                hintStyle: _hintData.style,
+                suffix: !showObscureButton &&
+                        (controller.errorMessage?.isEmpty ?? true)
+                    ? suffixTitleWidget
+                    : SizedBox(
+                        child: GestureDetector(
+                          onTap: controller.switchObscure,
+                          child: Padding(
+                            padding: const EdgeInsets.all(1),
+                            child: !showObscureButton
+                                ? (useWarningSvg
+                                    ? SvgPicture.asset(
+                                        'assets/svg/warning.svg',
+                                        colorFilter:
+                                            _errorBox.side.color.filter,
+                                      )
+                                    : Icon(
+                                        Icons.warning_amber_rounded,
+                                        color: _errorBox.side.color,
+                                      ))
+                                : Icon(
+                                    controller.obscure
+                                        ? Icons.visibility_outlined
+                                        : Icons.visibility_off_outlined,
+                                    color: (controller.errorMessage?.isEmpty ??
+                                            true)
+                                        ? style.suffixWidgetColor
+                                        : _errorBox.side.color,
+                                  ),
                           ),
                         ),
-                  isDense: isDense,
-                ),
-                keyboardType: keyboardType,
-                inputFormatters: inputFormatters,
-                minLines: minLines,
-                maxLines: maxLines,
-              );
-            }
-          ),
+                      ),
+                isDense: isDense,
+              ),
+              keyboardType: keyboardType,
+              inputFormatters: inputFormatters,
+              minLines: minLines,
+              maxLines: maxLines,
+            );
+          }),
         ],
       ),
     );

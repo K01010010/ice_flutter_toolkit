@@ -90,7 +90,7 @@ class CustomDropdownButton extends StatelessWidget {
                   isError: controller.errorMessage != null,
                 ),
                 elevation: 0,
-                dropdownColor: dropdownColor ?? AppColorsBase.transparent,
+                dropdownColor: dropdownColor ?? GrayColors.transparent,
                 isExpanded: true,
                 value: controller.indexContent,
                 itemHeight: itemHeight ?? kMinInteractiveDimension,
@@ -124,7 +124,7 @@ class CustomDropdownButton extends StatelessWidget {
                   }
                 },
                 icon: const SizedBox(),
-                underline: Container(color: AppColorsBase.transparent),
+                underline: Container(color: GrayColors.transparent),
               ),
               if (controller.errorMessage != null)
                 Padding(
@@ -145,7 +145,7 @@ class CustomDropdownButton extends StatelessWidget {
   Widget selected(TextData textData, {bool isError = false}) {
     return Container(
       decoration: BoxDecoration(
-        color: (isError ? _errorBox : _box).fillColor ?? AppColorsBase.white,
+        color: (isError ? _errorBox : _box).fillColor ?? GrayColors.white,
         borderRadius: (isError ? _errorBox : _box).borderRadius,
         border: (isError ? _errorBox : _box).border,
       ),

@@ -27,8 +27,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
       elevation: 0.0,
       automaticallyImplyLeading: false,
       centerTitle: true,
-      backgroundColor: widget.backgroundColor ?? AppColorsBase.get.white,
-      shadowColor: widget.shadowColor ?? AppColorsBase.get.transparent,
+      backgroundColor: widget.backgroundColor ?? GrayColors.white,
+      shadowColor: widget.shadowColor ?? GrayColors.transparent,
       toolbarHeight: widget.toolbarHeight,
       flexibleSpace: widget.child,
     );

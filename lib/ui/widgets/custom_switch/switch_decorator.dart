@@ -21,11 +21,11 @@ class SwitchDecorator {
 
   factory SwitchDecorator.fromAppSwitchDecorator(Color themeColor) =>
       SwitchDecorator(
-        activeStyle: AppStyle.style.text.copyWith(color: AppColorsBase.white),
-        inactiveStyle: AppStyle.style.text.copyWith(color: AppColorsBase.gray12),
+        activeStyle: AppStyle.style.text.copyWith(color: GrayColors.white),
+        inactiveStyle: AppStyle.style.text.copyWith(color: GrayColors.gray12),
         inactiveBoxDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: AppColorsBase.white,
+            color: GrayColors.white,
             border: Border.all(color: themeColor, width: 2)),
         activeBoxDecoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),

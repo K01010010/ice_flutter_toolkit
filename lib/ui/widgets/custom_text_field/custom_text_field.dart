@@ -2,7 +2,7 @@ part of '../../../ice_flutter_toolkit.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
-    Key? key,
+    super.key,
     this.textTitle,
     this.titleStyle,
     required this.hintKey,
@@ -13,7 +13,7 @@ class CustomTextField extends StatelessWidget {
     this.suffixTitleWidget,
     this.underlineText,
     this.underlineTap,
-  }) : super(key: key);
+  });
 
   final CustomTextFieldController controller;
 
@@ -38,7 +38,7 @@ class CustomTextField extends StatelessWidget {
               Text(
                 textTitle!,
                 style: titleStyle ?? const TextStyle(
-                      color: AppColorsBase.gray52,
+                      color: GrayColors.gray52,
                       fontWeight: FontWeight.w400,
                       fontSize: 16,
                     ),
@@ -59,7 +59,7 @@ class CustomTextField extends StatelessWidget {
             obscureText: controller.obscure,
             style: const TextStyle(
               fontFamily: 'Golos',
-              color: AppColorsBase.gray1A,
+              color: GrayColors.gray1A,
               fontWeight: FontWeight.w400,
               fontSize: 16,
             ),
@@ -69,22 +69,22 @@ class CustomTextField extends StatelessWidget {
               errorText: controller.errorMessage,
               border: UnderlineInputBorder(
                   borderRadius: BorderRadius.circular(1),
-                  borderSide: const BorderSide(color: AppColorsBase.grayEF)),
+                  borderSide: const BorderSide(color: GrayColors.grayEF)),
               focusedBorder: UnderlineInputBorder(
                   borderRadius: BorderRadius.circular(1),
-                  borderSide: const BorderSide(color: AppColorsBase.grayEF)),
+                  borderSide: const BorderSide(color: GrayColors.grayEF)),
               disabledBorder: UnderlineInputBorder(
                   borderRadius: BorderRadius.circular(1),
-                  borderSide: const BorderSide(color: AppColorsBase.grayEF)),
+                  borderSide: const BorderSide(color: GrayColors.grayEF)),
               enabledBorder: UnderlineInputBorder(
                   borderRadius: BorderRadius.circular(1),
-                  borderSide: const BorderSide(color: AppColorsBase.grayEF)),
+                  borderSide: const BorderSide(color: GrayColors.grayEF)),
               filled: true,
-              fillColor: AppColorsBase.white,
+              fillColor: GrayColors.white,
               hintText: hintKey,
               hintStyle: const TextStyle(
                 fontFamily: 'Golos',
-                color: AppColorsBase.gray7C,
+                color: GrayColors.gray7C,
                 fontWeight: FontWeight.w400,
                 fontSize: 16,
               ),
@@ -95,7 +95,6 @@ class CustomTextField extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () {
                           controller.obscure = !controller.obscure;
-
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(1),
@@ -103,7 +102,7 @@ class CustomTextField extends StatelessWidget {
                             controller.obscure
                                 ? Icons.visibility_outlined
                                 : Icons.visibility_off_outlined,
-                            color: AppColorsBase.gray7C,
+                            color: GrayColors.gray7C,
                           ),
                         ),
                       ),
@@ -119,7 +118,7 @@ class CustomTextField extends StatelessWidget {
               underlineText!,
               style: const TextStyle(
                 fontFamily: 'Golos',
-                color: AppColorsBase.primary437,
+                color: GrayColors.gray50,
                 fontWeight: FontWeight.w400,
                 fontSize: 14,
               ),

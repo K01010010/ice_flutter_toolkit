@@ -21,7 +21,7 @@ class DatePickerBar extends StatefulWidget {
       return await showModalBottomSheet(
           isScrollControlled: true,
           context: context,
-          backgroundColor: AppColorsBase.transparent,
+          backgroundColor: GrayColors.transparent,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.only(
             topLeft: Radius.circular(15),
@@ -59,7 +59,7 @@ class _DatePickerBarState extends State<DatePickerBar> {
                   height: double.maxFinite,
                   width: double.maxFinite,
                   child: ColoredBox(
-                    color: AppColorsBase.transparent,
+                    color: GrayColors.transparent,
                   ),
                 )),
           ),
@@ -68,7 +68,7 @@ class _DatePickerBarState extends State<DatePickerBar> {
             width: size.width,
             // padding: const EdgeInsets.symmetric(horizontal: 16),
             decoration: const BoxDecoration(
-              color: AppColorsBase.white,
+              color: GrayColors.white,
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(15), topLeft: Radius.circular(15)),
             ),

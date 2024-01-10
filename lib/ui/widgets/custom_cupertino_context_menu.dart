@@ -31,7 +31,7 @@ final int _animationDuration = _previewLongPressTimeout.inMilliseconds +
 // This value was eyeballed from the XCode simulator running iOS 16.0.
 const List<BoxShadow> _endBoxShadow = <BoxShadow>[
   BoxShadow(
-    color: AppColorsBase.transparent,
+    color: GrayColors.transparent,
     blurRadius: 10.0,
     spreadRadius: 0.5,
   ),
@@ -516,13 +516,13 @@ class _CustomCupertinoContextMenuState extends State<CustomCupertinoContextMenu>
     _route!.animation!.removeStatusListener(_routeAnimationStatusListener);
     _route = null;
   }
-
-  void _onTap() {
-    _openController.removeListener(_listenerCallback);
-    if (_openController.isAnimating && _openController.value < _midpoint) {
-      _openController.reverse();
-    }
-  }
+  //
+  // void _onTap() {
+  //   _openController.removeListener(_listenerCallback);
+  //   if (_openController.isAnimating && _openController.value < _midpoint) {
+  //     _openController.reverse();
+  //   }
+  // }
 
   void _onTapCancel() {
     _openController.removeListener(_listenerCallback);
@@ -566,8 +566,8 @@ class _CustomCupertinoContextMenuState extends State<CustomCupertinoContextMenu>
           controller: _openController,
           endRect: _decoyChildEndRect,
           builder: widget.builder,
-          child: widget.child,
           menuPadding: widget.menuPadding,
+          child: widget.child,
         );
       },
     );
@@ -1017,8 +1017,8 @@ class _ContextMenuRoute<T> extends PopupRoute<T> {
           onDismiss: _onDismiss,
           orientation: orientation,
           sheetGlobalKey: _sheetGlobalKey,
-          child: _builder!(context, animation),
           menuPadding: menuPadding,
+          child: _builder!(context, animation),
         );
       },
     );
@@ -1215,7 +1215,9 @@ class _ContextMenuRouteStaticState extends State<_ContextMenuRouteStatic>
   List<Widget> _getChildren(
       Orientation orientation, _ContextMenuLocation contextMenuLocation,
       {Offset? position, Offset? screenSize}) {
-    print("position : $position, screenSize : $screenSize");
+    if (kDebugMode) {
+      print("position : $position, screenSize : $screenSize");
+    }
 
     const SizedBox spacer = SizedBox(
       width: 7,
@@ -1239,9 +1241,9 @@ class _ContextMenuRouteStaticState extends State<_ContextMenuRouteStatic>
         widget.contextMenuLocation,
       ),
       child: Container(
-        padding: EdgeInsets.all(3),
+        padding: const EdgeInsets.all(3),
         decoration: BoxDecoration(
-            color: AppColorsBase.white, borderRadius: BorderRadius.circular(20)),
+            color: GrayColors.white, borderRadius: BorderRadius.circular(20)),
         child: AnimatedBuilder(
           animation: _moveController,
           builder: _buildChildAnimation,
@@ -1259,9 +1261,10 @@ class _ContextMenuRouteStaticState extends State<_ContextMenuRouteStatic>
       var sb = SizedBox(height: position.dy);
       var sbDown = SizedBox(height: screenSize.dy - position.dy - 30);
 
-      if (position.dy < screenSize.dy / 2)
+      if (position.dy < screenSize.dy / 2) {
         return [sb, simpleChild, spacer, simpleSheet];
-      return [Spacer(), simpleSheet, spacer, simpleChild, sbDown];
+      }
+      return [const Spacer(), simpleSheet, spacer, simpleChild, sbDown];
     }
 
     switch (contextMenuLocation) {

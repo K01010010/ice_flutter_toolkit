@@ -6,11 +6,10 @@ class CustomSlideSwitchWidget extends StatefulWidget {
   final CustomIndexationController switchController;
 
   const CustomSlideSwitchWidget(
-      {Key? key,
+      {super.key,
       required this.firstWord,
       required this.secondWord,
-      required this.switchController})
-      : super(key: key);
+      required this.switchController});
 
   @override
   State<CustomSlideSwitchWidget> createState() => _CustomSlideSwitchWidgetState();
@@ -39,7 +38,7 @@ class _CustomSlideSwitchWidgetState extends State<CustomSlideSwitchWidget>
         alignment: Alignment.center,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: AppColorsBase.transparent,
+            color: GrayColors.transparent,
         ),
         child: Stack(
           children: [
@@ -50,7 +49,7 @@ class _CustomSlideSwitchWidgetState extends State<CustomSlideSwitchWidget>
                   widget.firstWord,
                   style: const TextStyle(
                     fontFamily: 'Golos',
-                    color: AppColorsBase.gray817C7C,
+                    color: GrayColors.gray81,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                   ),
@@ -60,7 +59,7 @@ class _CustomSlideSwitchWidgetState extends State<CustomSlideSwitchWidget>
                   widget.secondWord,
                   style: const TextStyle(
                     fontFamily: 'Golos',
-                    color: AppColorsBase.gray817C7C,
+                    color: GrayColors.gray81,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                   ),
@@ -91,7 +90,7 @@ class _CustomSlideSwitchWidgetState extends State<CustomSlideSwitchWidget>
                               : widget.secondWord,
                           style: const TextStyle(
                             fontFamily: 'Roboto',
-                              color: AppColorsBase.gray2F,
+                              color: GrayColors.gray2F,
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
                           ),

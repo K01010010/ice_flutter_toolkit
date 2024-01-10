@@ -6,20 +6,20 @@ class AppStyleBase extends AppStyle {
   }
 
   @override
-  TextStyle get errorText => TextStyle(
+  TextStyle get errorText => const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w500,
-        color: AppColorsBase.get.errorText,
+        color: GrayColors.errorText,
       );
 
   @override
-  TextStyle get text => TextStyle(
+  TextStyle get text => const TextStyle(
         fontSize: 18,
         fontWeight: FontWeight.w500,
-        color: AppColorsBase.get.black,
+        color: GrayColors.black,
       );
 
-  AppColorsBase colors = const AppColorsBase();
+  // AppColorsBase colors = const AppColorsBase();
 
   @override
   getBackButton(Color backgroundColor, Color titleColor) => Container(
@@ -36,8 +36,16 @@ class AppStyleBase extends AppStyle {
       );
 
   @override
-  CustomFieldStyle get fieldStyle =>
-      throw UnimplementedError("Style should be define");
+  CustomFieldStyle get fieldStyle => throw UnimplementedError("Style should be define");
+
+  @override
+  CustomAppBarStyle get appBarStyle => throw UnimplementedError("Style should be define");
+
+  @override
+  CustomColoredButtonStyle get coloredStyle => throw UnimplementedError("Style should be define");
+
+  @override
+  CustomDateButtonStyle get dateButtonStyle => throw UnimplementedError("Style should be define");
 }
 
 abstract class AppStyle {

@@ -55,12 +55,12 @@ class ArrowTextBar extends StatelessWidget {
       padding: paddingArrow ?? style.paddingArrow,
       margin: marginArrow ?? style.marginArrow,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        SizedBox(
-          width: 50,
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: GestureDetector(
-              onTap: () => AutoRouter.of(context).back(),
+        GestureDetector(
+          onTap: () => AutoRouter.of(context).back(),
+          child: SizedBox(
+            width: 50,
+            child: Align(
+              alignment: Alignment.centerRight,
               child: AppStyle.style.getBackButton(
                 backgroundColor ?? style.arrowBarBackgroundColor,
                 titleColor ?? style.titleColor,
@@ -110,7 +110,7 @@ class ShadowArrowTextBarWrapper extends StatelessWidget {
   final bool? rightSafe;
   final bool? bottomSafe;
 
-  final ArrowTextBar arrowTextBar;
+  final Widget arrowTextBar;
   final Widget child;
   final Color? backgroundColor;
 

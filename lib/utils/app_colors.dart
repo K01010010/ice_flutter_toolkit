@@ -322,6 +322,3 @@ class GrayColors {
   static const ui.Color bottomBarActive = ui.Color(0xFF0045D9);
 }
 
-extension FilterExtension on ui.Color {
-  ui.ColorFilter get filter => ui.ColorFilter.mode(this, BlendMode.srcIn);
-}

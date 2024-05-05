@@ -1,6 +1,6 @@
 part of '../../ice_flutter_toolkit.dart';
 
-class ArrowTextBar extends StatelessWidget {
+class TitleCustomBar extends StatelessWidget {
   final String title;
   final Color? titleColor;
   final TextStyle? titleStyle;
@@ -9,13 +9,14 @@ class ArrowTextBar extends StatelessWidget {
   final EdgeInsets? paddingArrow;
   final EdgeInsets? marginArrow;
 
+  final double heightSize;
   final bool shadow;
   final Color? shadowColor;
   final BoxShadow? shadowBox;
   final Widget? suffix;
   final Color? backgroundColor;
 
-  const ArrowTextBar(
+  const TitleCustomBar(
     this.title, {
     super.key,
     this.titleColor,
@@ -28,6 +29,7 @@ class ArrowTextBar extends StatelessWidget {
     this.shadowBox,
     this.suffix,
     this.backgroundColor,
+    this.heightSize = 50,
   });
 
   CustomAppBarStyle get style => AppStyle.style.appBarStyle;
@@ -35,6 +37,7 @@ class ArrowTextBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: heightSize,
       decoration: BoxDecoration(
         color: backgroundColor ?? style.arrowBarBackgroundColor,
         boxShadow: !shadow
@@ -44,7 +47,8 @@ class ArrowTextBar extends StatelessWidget {
                     ? shadowBox!
                     : shadowColor != null
                         ? BoxShadow(
-                            color: shadowColor!,
+                            color: backgroundColor ??
+                                style.arrowBarBackgroundColor,
                             blurRadius: 10,
                             spreadRadius: 25,
                             offset: const Offset(0, 1),
@@ -56,9 +60,23 @@ class ArrowTextBar extends StatelessWidget {
       margin: marginArrow ?? style.marginArrow,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         GestureDetector(
-          onTap: () => AutoRouter.of(context).back(),
-          child: SizedBox(
-            width: 50,
+          onTap: () => AutoRouter.of(context).maybePop(),
+          child: Container(
+            color: backgroundColor,
+            height: heightSize,
+            // child: Center(
+            //   child: !meetBackButton
+            //       ? Icon(
+            //     Icons.arrow_back,
+            //     color: titleColor,
+            //     size: 32,
+            //   )
+            //       : SvgPicture.asset(
+            //     "assets/svg/back.svg",
+            //     colorFilter: (titleColor ?? style.titleColor).filter,
+            //   ),
+            // ),
+
             child: Align(
               alignment: Alignment.centerRight,
               child: AppStyle.style.getBackButton(
@@ -83,8 +101,7 @@ class ArrowTextBar extends StatelessWidget {
           ),
         ),
         SizedBox(
-          width: 50,
-          height: 32,
+          width: heightSize,
           child: suffix ?? const SizedBox(),
         ),
       ]),
@@ -92,8 +109,8 @@ class ArrowTextBar extends StatelessWidget {
   }
 }
 
-class ShadowArrowTextBarWrapper extends StatelessWidget {
-  const ShadowArrowTextBarWrapper({
+class ShadowTitleCustomBarWrapper extends StatelessWidget {
+  const ShadowTitleCustomBarWrapper({
     super.key,
     required this.arrowTextBar,
     required this.child,

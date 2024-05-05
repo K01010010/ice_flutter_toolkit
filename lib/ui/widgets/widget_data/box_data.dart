@@ -15,28 +15,33 @@ class BoxData {
   final BoxBorder? border;
   final BorderSide side;
 
-  //
-  // factory BoxData.r15All(
-  //         {double width = 2,
-  //         Color borderColor = const Color(0xFF858585),
-  //         Color? fillColor}) =>
-  //     BoxData.box(
-  //       fillColor: fillColor,
-  //       borderRadius: BorderRadius.circular(15),
-  //       radius: const Radius.circular(15),
-  //       side: BorderSide(color: borderColor, width: width),
-  //       border: Border.all(
-  //         width: width,
-  //         color: borderColor,
-  //       ),
-  //     );
+  factory BoxData.r15All(
+          {double width = 2,
+          Color? borderColor,
+          Color? fillColor}) =>
+      BoxData.radiusAll(
+        15,
+        width: width,
+        borderColor: borderColor,
+        fillColor: fillColor,
+      );
 
-  factory BoxData.radiusAll({
-    double radius = 20,
+  factory BoxData.r20All(
+          {double width = 2,
+            Color? borderColor,
+          Color? fillColor}) =>
+      BoxData.radiusAll(
+        20,
+        width: width,
+        borderColor: borderColor,
+        fillColor: fillColor,
+      );
+
+  factory BoxData.radiusAll(
+    double radius, {
     double width = 2,
     Color? borderColor,
     Color? fillColor,
-    double strokeAlign = BorderSide.strokeAlignInside,
   }) =>
       BoxData._box(
         fillColor: fillColor,
@@ -47,7 +52,6 @@ class BoxData {
             : BorderSide(color: borderColor, width: width),
         border: borderColor == null
             ? null
-            : Border.all(
-                color: borderColor, width: width, strokeAlign: strokeAlign),
+            : Border.all(color: borderColor, width: width),
       );
 }

@@ -4,10 +4,23 @@ class HorizontalDragController = HorizontalDragControllerBase
     with _$HorizontalDragController;
 
 abstract class HorizontalDragControllerBase extends RouteController with Store {
-  HorizontalDragControllerBase(this.indexer, {StackRouter? router})
-      : super(router: router);
+  HorizontalDragControllerBase(this.indexer);
 
   final CustomIndexationController indexer;
+
+
+  @override
+  Future<void> disposeController() {
+    // TODO: implement disposeController
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<void> initController() {
+    // TODO: implement initController
+    throw UnimplementedError();
+  }
+
 
   @action
   void useAnimationControllerOf(
@@ -141,4 +154,5 @@ abstract class HorizontalDragControllerBase extends RouteController with Store {
 
     //print('onHorizontalDragEnd >>>> index = ${indexer.index}, start $_starterIndex');
   }
+
 }

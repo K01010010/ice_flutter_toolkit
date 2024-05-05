@@ -5,11 +5,12 @@ class DateButton extends StatefulWidget {
   final Observable<String?> dateError;
   final Observable<DateTime?> date;
 
-  const DateButton(
-      {super.key,
-      required this.pickDateDelegate,
-      required this.dateError,
-      required this.date});
+  const DateButton({
+    super.key,
+    required this.pickDateDelegate,
+    required this.dateError,
+    required this.date,
+  });
 
   @override
   State<DateButton> createState() => _DateButtonState();
@@ -65,7 +66,8 @@ class CustomDateButtonStyle {
     required this.borderColor,
     required this.errorBorderColor,
     this.margin = EdgeInsets.zero,
-    this.padding = const EdgeInsets.only(left: 20, right: 25, top: 18, bottom: 18),
+    this.padding =
+        const EdgeInsets.only(left: 20, right: 25, top: 18, bottom: 18),
     required this.dateStyle,
   }); // AppStyle.style.text,
 }

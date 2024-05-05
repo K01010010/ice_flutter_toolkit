@@ -7,32 +7,46 @@ class ColoredButton extends StatelessWidget {
     this.width,
     this.splashEffect = true,
     this.splashColor,
+    this.color,
+    this.gradientColor = const [],
+    this.begin = Alignment.centerLeft,
+    this.end = Alignment.centerRight,
     this.onTap,
+    this.borderRadius,
+    this.border,
     BoxData? box,
-
-    required this.title,
+    this.maxLines,
     this.titleStyle,
+    required this.title,
     this.child,
     this.paddingContent,
     this.marginWidget,
     required this.shadow,
     this.shadowColor,
-    this.shadowBox, this.splashOpacity,
+    this.shadowBox,
+    this.splashOpacity,
   }) : _box = box ?? AppStyle.style.coloredStyle.box;
 
   final Color? splashColor;
   final double? splashOpacity;
   final bool splashEffect;
+  final Color? color;
+  final List<Color> gradientColor;
+  final AlignmentGeometry begin;
+  final AlignmentGeometry end;
 
   final double? height;
   final double? width;
   final void Function()? onTap;
 
   final BoxData _box;
+  final BorderRadius? borderRadius;
+  final BoxBorder? border;
 
   final String title;
   final TextStyle? titleStyle;
   final Widget? child;
+  final int? maxLines;
 
   final EdgeInsets? paddingContent;
   final EdgeInsets? marginWidget;
@@ -46,9 +60,16 @@ class ColoredButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var decoration = BoxDecoration(
-      borderRadius: _box.borderRadius,
-      color: _box.fillColor,
-      border: _box.border,
+      borderRadius: borderRadius ?? _box.borderRadius,
+      color: color ?? _box.fillColor,
+      border: border ?? _box.border,
+      gradient: gradientColor.isEmpty
+          ? null
+          : LinearGradient(
+              begin: begin,
+              end: end,
+              colors: gradientColor,
+            ),
       boxShadow: !shadow
           ? null
           : [
@@ -64,6 +85,7 @@ class ColoredButton extends StatelessWidget {
                       : style.shadow,
             ],
     );
+
     return splashEffect
         ? Padding(
             padding: marginWidget ?? style.marginWidget,
@@ -73,17 +95,22 @@ class ColoredButton extends StatelessWidget {
               decoration: decoration,
               child: InkWell(
                 onTap: onTap,
-                hoverColor: (splashColor ?? style.splashColor).withOpacity(splashOpacity ?? 0.5),
-                focusColor: (splashColor ?? style.splashColor).withOpacity(splashOpacity ?? 0.5),
-                splashColor: (splashColor ?? style.splashColor).withOpacity(splashOpacity ?? 0.5),
-                highlightColor: (splashColor ?? style.splashColor).withOpacity(splashOpacity ?? 0.5),
-                borderRadius: _box.borderRadius,
+                hoverColor: (splashColor ?? style.splashColor)
+                    .withOpacity(splashOpacity ?? 0.5),
+                focusColor: (splashColor ?? style.splashColor)
+                    .withOpacity(splashOpacity ?? 0.5),
+                splashColor: (splashColor ?? style.splashColor)
+                    .withOpacity(splashOpacity ?? 0.5),
+                highlightColor: (splashColor ?? style.splashColor)
+                    .withOpacity(splashOpacity ?? 0.5),
+                borderRadius: borderRadius ?? _box.borderRadius,
                 child: Padding(
                   padding: paddingContent ?? style.paddingContent,
                   child: child ??
                       Text(
                         title,
                         textAlign: TextAlign.center,
+                        maxLines: maxLines,
                         style: titleStyle ?? style.titleStyle,
                       ),
                 ),
@@ -102,6 +129,7 @@ class ColoredButton extends StatelessWidget {
                   Text(
                     title,
                     textAlign: TextAlign.center,
+                    maxLines: maxLines,
                     style: titleStyle ?? style.titleStyle,
                   ),
             ),

@@ -1,7 +1,7 @@
 part of '../../ice_flutter_toolkit.dart';
 
-class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
-  const CustomAppBar({
+class IceCustomAppBar extends StatefulWidget implements PreferredSizeWidget {
+  const IceCustomAppBar({
     super.key,
     required this.child,
     required this.toolbarHeight,
@@ -17,10 +17,10 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Size preferredSize;
 
   @override
-  _CustomAppBarState createState() => _CustomAppBarState();
+  IceCustomAppBarState createState() => IceCustomAppBarState();
 }
 
-class _CustomAppBarState extends State<CustomAppBar> {
+class IceCustomAppBarState extends State<IceCustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(

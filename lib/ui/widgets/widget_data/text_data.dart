@@ -1,151 +1,120 @@
 part of '../../../ice_flutter_toolkit.dart';
 
 class TextData {
-  const TextData(
-    this.text, this.style);
-  // , {
-    // this.textStyle,
-    // required this.size,
-    // this.weight = FontWeight.w400,
-    // this.color = AppColors.gray12,
-  // });
+  const TextData(this.text, this.style);
 
   final String text;
-
   final TextStyle style;
-  // final double size;
-  // final FontWeight weight;
-  // final Color color;
 
-  //
-  // TextStyle get style =>
-  //     textStyle ??
-  //     AppStyle.style.getTextStyle(
-  //       size: size,
-  //       weight: weight,
-  //       color: color,
-  //     );
+  factory TextData.w9(String text,
+          {TextStyle? textStyle, double size = 18, Color? color}) =>
+      TextData(
+        text,
+        textStyle ??
+            TextStyle(
+              fontWeight: FontWeight.w900,
+              fontSize: size,
+              color: color,
+            ),
+      );
 
-  // TextStyle getStyleWith(String fontFamily) => AppStyle.style.getTextStyle(
-  //     size: size, weight: weight, color: color, fontFamily: fontFamily);
-  //
-  // factory TextData.w9(
-  //   String text, {
-  //   double size = 18,
-  //   Color color = AppColors.gray12,
-  // }) =>
-  //     TextData(
-  //       text,
-  //       size: size,
-  //       weight: FontWeight.w900,
-  //       color: color,
-  //     );
-  //
-  // factory TextData.w8(
-  //   String text, {
-  //   double size = 18,
-  //   Color color = AppColors.gray12,
-  // }) =>
-  //     TextData(
-  //       text,
-  //       size: size,
-  //       weight: FontWeight.w800,
-  //       color: color,
-  //     );
-  //
-  // factory TextData.w7(
-  //   String text, {
-  //   double size = 18,
-  //   Color color = AppColors.gray12,
-  // }) =>
-  //     TextData(
-  //       text,
-  //       size: size,
-  //       weight: FontWeight.w700,
-  //       color: color,
-  //     );
-  //
-  // factory TextData.w6(
-  //   String text, {
-  //   double size = 18,
-  //   Color color = AppColors.gray12,
-  // }) =>
-  //     TextData(
-  //       text,
-  //       size: size,
-  //       weight: FontWeight.w600,
-  //       color: color,
-  //     );
-  //
-  // factory TextData.w5(
-  //   String text, {
-  //   double size = 18,
-  //   Color color = AppColors.gray12,
-  // }) =>
-  //     TextData(
-  //       text,
-  //       size: size,
-  //       weight: FontWeight.w500,
-  //       color: color,
-  //     );
-  //
-  // factory TextData.w4(
-  //   String text, {
-  //   double size = 18,
-  //   Color color = AppColors.gray12,
-  // }) =>
-  //     TextData(
-  //       text,
-  //       size: size,
-  //       weight: FontWeight.w400,
-  //       color: color,
-  //     );
-  //
-  // factory TextData.w3(
-  //   String text, {
-  //   double size = 18,
-  //   Color color = AppColors.gray12,
-  // }) =>
-  //     TextData(
-  //       text,
-  //       size: size,
-  //       weight: FontWeight.w300,
-  //       color: color,
-  //     );
-  //
-  // factory TextData.w2(
-  //   String text, {
-  //   double size = 18,
-  //   Color color = AppColors.gray12,
-  // }) =>
-  //     TextData(
-  //       text,
-  //       size: size,
-  //       weight: FontWeight.w200,
-  //       color: color,
-  //     );
-  //
-  // factory TextData.w1(
-  //   String text, {
-  //   double size = 18,
-  //   Color color = AppColors.gray12,
-  // }) =>
-  //     TextData(
-  //       text,
-  //       size: size,
-  //       weight: FontWeight.w100,
-  //       color: color,
-  //     );
+  factory TextData.w8(String text,
+          {TextStyle? textStyle, double size = 18, Color? color}) =>
+      TextData(
+        text,
+        textStyle ??
+            TextStyle(
+              fontWeight: FontWeight.w800,
+              fontSize: size,
+              color: color,
+            ),
+      );
+
+  factory TextData.w7(String text,
+          {TextStyle? textStyle, double size = 18, Color? color}) =>
+      TextData(
+        text,
+        textStyle ??
+            TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: size,
+              color: color,
+            ),
+      );
+
+  factory TextData.w6(String text,
+          {TextStyle? textStyle, double size = 18, Color? color}) =>
+      TextData(
+        text,
+        textStyle ??
+            TextStyle(
+              fontWeight: FontWeight.w600,
+              fontSize: size,
+              color: color,
+            ),
+      );
+
+  factory TextData.w5(String text,
+          {TextStyle? textStyle, double size = 18, Color? color}) =>
+      TextData(
+        text,
+        textStyle ??
+            TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: size,
+              color: color,
+            ),
+      );
+
+  factory TextData.w4(String text,
+          {TextStyle? textStyle, double size = 18, Color? color}) =>
+      TextData(
+        text,
+        textStyle ??
+            TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: size,
+              color: color,
+            ),
+      );
+
+  factory TextData.w3(String text,
+          {TextStyle? textStyle, double size = 18, Color? color}) =>
+      TextData(
+        text,
+        textStyle ??
+            TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: size,
+              color: color,
+            ),
+      );
+
+  factory TextData.w2(String text,
+          {TextStyle? textStyle, double size = 18, Color? color}) =>
+      TextData(
+        text,
+        textStyle ??
+            TextStyle(
+              fontWeight: FontWeight.w200,
+              fontSize: size,
+              color: color,
+            ),
+      );
+
+  factory TextData.w1(String text,
+          {TextStyle? textStyle, double size = 18, Color? color}) =>
+      TextData(
+        text,
+        textStyle ??
+            TextStyle(
+              fontWeight: FontWeight.w100,
+              fontSize: size,
+              color: color,
+            ),
+      );
 }
-extension TextStyleExtension on TextStyle {
-  //
-  //
-  // TextStyle getTextStyle({
-  //   required double size,
-  //   required FontWeight weight,
-  //   required Color color,
-  //   String? fontFamily,
-  // });
 
-  TextData wrap(String text) => TextData(text,this);
+extension TextStyleExtension on TextStyle {
+  TextData wrap(String text) => TextData(text, this);
 }

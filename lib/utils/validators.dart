@@ -1,7 +1,10 @@
 part of '../ice_flutter_toolkit.dart';
 
 enum ValidatorType {
+  url,
   email,
+  emailOrPhone,
+  phone,
   empty,
   integer,
   code,
@@ -30,9 +33,55 @@ class Validators {
     return null;
   }
 
-  static String? emptyValidation(String? text) {
+  static String? emailOrPhoneValidation(String? text, {String? startWith}) {
+    if (emptyValidation(text) != null) return 'Поле не может быть пустым';
+    if (emailValidation(text) == null) return null;
+    if (phoneValidation(text) == null) return null;
+    return 'Укажите корректный номер телефона или Email';
+  }
+
+  static String? phoneValidation(String? text, {String? startWith}) {
     if (text == null || text.replaceAll(' ', '') == '') {
       return 'Поле не может быть пустым';
+    }
+
+    if (startWith != null && !text.startsWith(startWith)) {
+      return 'Должно начинаться на $startWith';
+    }
+
+    text = text.replaceAll(' ', '');
+    text = text.replaceAll('(', '');
+    text = text.replaceAll(')', '');
+    try {
+      final phone = PhoneNumber.parse(text);
+
+      if (!phone.isValid(type: PhoneNumberType.mobile)) {
+        return 'Укажите корректный номер телефона';
+      }
+    } catch (e) {
+      return 'Укажите корректный номер телефона';
+    }
+
+    return null;
+  }
+
+  static String? urlValidation(String? text) {
+    if (text?.replaceAll(' ', '').isEmpty ?? true) {
+      return 'Поле не может быть пустым';
+    }
+
+    var uri = Uri.tryParse(text!);
+    "uri.isAbsolute = ${uri?.isAbsolute}".log();
+    if (uri?.isAbsolute ?? false) return null;
+    return "Текст не является ссылкой";
+  }
+
+  static String? emptyValidation(String? text, [int? maxLength]) {
+    if (text == null || text.replaceAll(' ', '') == '') {
+      return 'Поле не может быть пустым';
+    }
+    if (maxLength != null && text.length > maxLength) {
+      return 'Поле больше $maxLength длины';
     }
     return null;
   }
@@ -77,7 +126,7 @@ class Validators {
     }
 
     RegExp regExp =
-    RegExp(r"^[\w\W]{1,32}$", caseSensitive: false, multiLine: false);
+        RegExp(r"^[\w\W]{1,32}$", caseSensitive: false, multiLine: false);
     if (!regExp.hasMatch(name)) {
       return 'Недопустимый формат';
     }
@@ -86,12 +135,17 @@ class Validators {
   }
 
   static PasswordValidationResult passwordValidation(
-      String? password, int minLength) {
+    String? password, {
+    int? minLength,
+    int? maxLength,
+    // String? startWith,
+  }) {
     if (password == null || password.replaceAll(' ', '') == '') {
       return PasswordValidationResult(true, false, false, false);
     }
 
-    var eightSymbols = password.length >= minLength;
+    var numberSymbols = minLength == null ? true : password.length >= minLength;
+    numberSymbols &= maxLength == null ? true : password.length <= maxLength;
 
     RegExp regExp = RegExp(
         r"^(?=\D*\d)(?=.*[A-Z])(?=.*[a-z])[ A-Za-z0-9!%&?]*$"); //, caseSensitive: true, multiLine: false);
@@ -99,29 +153,33 @@ class Validators {
 
     var specialSymbols = password.contains("%") ||
         password.contains("&") ||
+        password.contains(".") ||
+        password.contains(",") ||
+        password.contains("#") ||
+        password.contains("*") ||
         password.contains("!") ||
         password.contains("?");
 
     return PasswordValidationResult(
-        false, eightSymbols, capitalLettersNumbers, specialSymbols);
+        false, numberSymbols, capitalLettersNumbers, specialSymbols);
   }
 }
 
 class PasswordValidationResult {
   PasswordValidationResult(
-      this.empty,
-      this.eightSymbols,
-      this.capitalLettersNumbers,
-      this.specialSymbols,
-      );
+    this.empty,
+    this.numberSymbols,
+    this.capitalLettersNumbers,
+    this.specialSymbols,
+  );
 
   final bool empty;
-  final bool eightSymbols;
+  final bool numberSymbols;
   final bool capitalLettersNumbers;
   final bool specialSymbols;
 
   bool get passwordValidated =>
-      specialSymbols && eightSymbols && capitalLettersNumbers;
+      specialSymbols && numberSymbols && capitalLettersNumbers;
 
   String? get errorMessage {
     if (empty) return 'Поле не может быть пустым';

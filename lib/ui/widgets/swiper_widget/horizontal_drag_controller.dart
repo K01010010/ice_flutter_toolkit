@@ -3,24 +3,10 @@ part of '../../../ice_flutter_toolkit.dart';
 class HorizontalDragController = HorizontalDragControllerBase
     with _$HorizontalDragController;
 
-abstract class HorizontalDragControllerBase extends RouteController with Store {
+abstract class HorizontalDragControllerBase with Store {
   HorizontalDragControllerBase(this.indexer);
 
   final CustomIndexationController indexer;
-
-
-  @override
-  Future<void> disposeController() {
-    // TODO: implement disposeController
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> initController() {
-    // TODO: implement initController
-    throw UnimplementedError();
-  }
-
 
   @action
   void useAnimationControllerOf(

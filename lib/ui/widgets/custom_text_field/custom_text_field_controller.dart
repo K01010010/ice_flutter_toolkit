@@ -47,10 +47,17 @@ abstract class CustomTextFieldControllerBase with Store {
 
   Future<bool> validate(ValidatorType validator,
           {String? text, int? minLength}) async =>
-      await validateWithIndex(text ?? this.text, validator.index, minLength: minLength);
+      await validateWithIndex(text ?? this.text, validator.index,
+          minLength: minLength);
 
   @action
-  Future<bool> validateWithIndex(String? text, int validator, {int? minLength}) async {
+  Future<bool> validateWithIndex(
+    String? text,
+    int validator, {
+    int? minLength,
+    int? maxLength,
+    String? startWith,
+  }) async {
     ValidatorType type = ValidatorType
         .values[validator.clamp(0, ValidatorType.values.length - 1)];
 
@@ -62,7 +69,10 @@ abstract class CustomTextFieldControllerBase with Store {
         errorMessage = Validators.emailValidation(text);
         break;
       case ValidatorType.empty:
-        errorMessage = Validators.emptyValidation(text);
+        errorMessage = Validators.emptyValidation(text, maxLength);
+        break;
+      case ValidatorType.url:
+        errorMessage = Validators.urlValidation(text);
         break;
       case ValidatorType.integer:
         errorMessage = Validators.intValidation(text);
@@ -74,13 +84,21 @@ abstract class CustomTextFieldControllerBase with Store {
         errorMessage = Validators.nameValidation(text, minLength ?? 4);
         break;
       case ValidatorType.password:
-        result = Validators.passwordValidation(text, minLength ?? 8);
-        break;
+        Validators.passwordValidation(
+          text,
+          minLength: minLength,
+          maxLength: maxLength,
+        );
+        return false;
+      case ValidatorType.emailOrPhone:
+        errorMessage =
+            Validators.emailOrPhoneValidation(text, startWith: startWith);
+      case ValidatorType.phone:
+        errorMessage = Validators.phoneValidation(text, startWith: startWith);
     }
-
     if (type == ValidatorType.password) {
       errorMessage = result.errorMessage;
-      eightSymbols = result.eightSymbols;
+      eightSymbols = result.numberSymbols;
       capitalLettersNumbers = result.capitalLettersNumbers;
       specialSymbols = result.specialSymbols;
     }

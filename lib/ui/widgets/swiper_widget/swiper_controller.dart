@@ -6,7 +6,7 @@ class SwiperController extends SwiperControllerBase with _$SwiperController {
 
 abstract class SwiperControllerBase with Store {
   SwiperControllerBase(this.scroller)
-      : horizontalDragController = HorizontalDragController(scroller) {print("INITIALIZATION");}
+      : horizontalDragController = HorizontalDragController(scroller);
 
   final CustomIndexationController scroller;
   final HorizontalDragController horizontalDragController;

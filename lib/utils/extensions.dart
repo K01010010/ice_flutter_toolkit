@@ -236,7 +236,7 @@ extension PrintString on String {
       // ignore: avoid_print
       kDebugMode
           ? printFull(debugTag: debugTag ?? "DEBUG_TAG")
-          : CrashlyticsService.log(this,debugTag);
+          : CrashlyticsService.log(this, debugTag);
 
   // ignore: avoid_print
   void logConsole() => print(this);
@@ -316,6 +316,38 @@ extension ExtendingDio on Dio {
       options.headers.remove('Authorization');
     } else {
       options.headers['Authorization'] = 'Bearer $token';
+    }
+  }
+}
+
+extension ResponseExtension on Response {
+  String get describe => "\n"
+      "  REQUEST was on ${requestOptions.path}\n"
+      "  REQUEST TYPE ${requestOptions.method}\n"
+      "  DATA of Response : ${jsonEncode(data ?? "")}\n";
+}
+
+extension RequestOptionsExtension on RequestOptions {
+  String get describeOnError => "\n"
+      "  REQUEST was on $path\n"
+      "  REQUEST TYPE $method\n"
+      "  DATA of Request : ${jsonEncode(data ?? "")}\n";
+}
+
+extension DioExceptionExtension on DioException {
+  String get describe => "\n"
+      "  REQUEST was on ${requestOptions.path}\n"
+      "  REQUEST TYPE ${requestOptions.method}\n"
+      "  DATA of Error : ${jsonEncode(requestOptions.data ?? "")}\n"
+      "  ERROR of Error : $errorMessage\n"
+      "  TYPE of Error  : $type\n"
+      "  RESPONSE of Error : $response\n";
+
+  String? get errorMessage {
+    try {
+      return response?.data["msg"];
+    } catch (e) {
+      return null;
     }
   }
 }

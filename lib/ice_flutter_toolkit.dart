@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:bind3/bind3.dart';
 import 'package:dio/dio.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:ice_flutter_toolkit/api/crashlytics_service.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:connection_notifier/connection_notifier.dart';
@@ -16,18 +15,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:phone_numbers_parser/phone_numbers_parser.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:math' as math;
 import 'dart:ui' as ui;
 
-
-
 import 'package:flutter/foundation.dart';
-// import 'package:flutter/gestures.dart' show kMinFlingVelocity;
-// import 'package:flutter/scheduler.dart';
-// import 'package:flutter/services.dart' show HapticFeedback;
-
-part 'foundation/routes/app_router/app_router_base.dart';
-part 'foundation/services_repository/connection_repository.dart';
+part 'logic/connection_repository.dart';
+part 'logic/custom_interceptor.dart';
+part 'logic/crashlytics_service.dart';
 part 'ui/pages/error_service_page/error_service.dart';
 part 'ui/pages/error_service_page/error_service_page.dart';
 

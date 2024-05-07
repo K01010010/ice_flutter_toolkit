@@ -1,8 +1,4 @@
-import 'dart:convert';
-
-import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:ice_flutter_toolkit/ice_flutter_toolkit.dart';
+part of '../ice_flutter_toolkit.dart';
 
 class CustomInterceptor extends InterceptorsWrapper {
   static ErrorService errorService = ErrorService.get();
@@ -56,27 +52,4 @@ class CustomInterceptor extends InterceptorsWrapper {
     response.describe.log("_RESPONSE_");
     handler.next(response);
   }
-}
-
-extension ResponseExtension on Response {
-  String get describe =>
-      "  REQUEST WAS ON ${requestOptions.path} with TYPE ${requestOptions.method}\n"
-      "  DATA of Response : ${jsonEncode(data ?? "")}\n";
-}
-
-extension RequestOptionsExtension on RequestOptions {
-  String get describeOnError => "  REQUEST WAS ON $path with TYPE $method\n"
-      "  DATA of Request : ${jsonEncode(data ?? "")}\n";
-}
-
-extension DioExceptionExtension on DioException {
-  String get describe =>
-      "  REQUEST WAS ON ${requestOptions.path} with TYPE ${requestOptions.method}\n"
-      "  DATA of Error : ${jsonEncode(requestOptions.data ?? "")}\n"
-      "  ERROR of Error : $errorMessage\n"
-      "  TYPE of Error  : $type\n"
-      "  RESPONSE of Error : $response\n"
-      "  MESSAGE of Error : ${response?.data["msg"]}\n";
-
-  String? get errorMessage => response?.data["msg"];
 }

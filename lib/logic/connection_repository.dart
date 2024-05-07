@@ -1,4 +1,4 @@
-part of '../../ice_flutter_toolkit.dart';
+part of '../ice_flutter_toolkit.dart';
 
 class ConnectionRepository = ConnectionRepositoryBase with _$ConnectionRepository;
 

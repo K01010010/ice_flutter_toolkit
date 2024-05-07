@@ -162,7 +162,7 @@ class CustomTextFieldOutlined extends StatelessWidget {
                                             _errorBox.side.color.filter,
                                       )
                                     : Icon(
-                                        Icons.warning_amber_rounded,
+                                        Icons.error_outline_rounded,
                                         color: _errorBox.side.color,
                                       ))
                                 : Icon(

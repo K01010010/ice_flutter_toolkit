@@ -12,6 +12,7 @@ class CustomInterceptor extends InterceptorsWrapper {
     err.describe.log("NETWORK_ERROR");
 
     handler?.next(err);
+    // super.onError(err, handler);
   }
 
   @override
@@ -29,7 +30,8 @@ class CustomInterceptor extends InterceptorsWrapper {
       lastRequest.describeOnError.log();
     }
 
-    super.onRequest(options, handler);
+    handler.next(options);
+    // super.onRequest(options, handler);
   }
 
   @override
@@ -51,5 +53,6 @@ class CustomInterceptor extends InterceptorsWrapper {
     }
     response.describe.log("_RESPONSE_");
     handler.next(response);
+    // super.onResponse(response, handler);
   }
 }

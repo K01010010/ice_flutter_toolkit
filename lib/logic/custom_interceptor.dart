@@ -36,21 +36,21 @@ class CustomInterceptor extends InterceptorsWrapper {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    if (!(response.data["success"] as bool)) {
-      // if ((response.data["msg"] as String?)?.contains('Ошибка авторизации') ??
-      //     false) {
-      //   print("TOKEN IN DIO ${ApiConfig.dio.options.headers["Authorization"]}");
-      //   ApiConfig.authError = true;
-      // }
-
-      onError(DioException(
-        requestOptions: response.requestOptions,
-        response: response,
-        error: response,
-        type: DioExceptionType.unknown,
-        message: response.data["msg"],
-      ));
-    }
+    // if (!(response.data["success"] as bool)) {
+    //   // if ((response.data["msg"] as String?)?.contains('Ошибка авторизации') ??
+    //   //     false) {
+    //   //   print("TOKEN IN DIO ${ApiConfig.dio.options.headers["Authorization"]}");
+    //   //   ApiConfig.authError = true;
+    //   // }
+    //
+    //   onError(DioException(
+    //     requestOptions: response.requestOptions,
+    //     response: response,
+    //     error: response,
+    //     type: DioExceptionType.unknown,
+    //     message: response.data["msg"],
+    //   ));
+    // }
     response.describe.log("_RESPONSE_");
     handler.next(response);
     // super.onResponse(response, handler);

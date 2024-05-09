@@ -120,6 +120,7 @@ class CustomTextFieldOutlined extends StatelessWidget {
             return TextField(
               key: key,
               onTap: onTap,
+              readOnly: controller.readOnly,
               onChanged: (text) {
                 controller.updateText(text);
                 if (onChanged != null) onChanged!(text);

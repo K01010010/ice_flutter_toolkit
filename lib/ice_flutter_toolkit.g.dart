@@ -563,6 +563,22 @@ mixin _$CustomTextFieldController on CustomTextFieldControllerBase, Store {
     });
   }
 
+  late final _$readOnlyAtom =
+      Atom(name: 'CustomTextFieldControllerBase.readOnly', context: context);
+
+  @override
+  bool get readOnly {
+    _$readOnlyAtom.reportRead();
+    return super.readOnly;
+  }
+
+  @override
+  set readOnly(bool value) {
+    _$readOnlyAtom.reportWrite(value, super.readOnly, () {
+      super.readOnly = value;
+    });
+  }
+
   late final _$eightSymbolsAtom = Atom(
       name: 'CustomTextFieldControllerBase.eightSymbols', context: context);
 
@@ -662,6 +678,17 @@ mixin _$CustomTextFieldController on CustomTextFieldControllerBase, Store {
   }
 
   @override
+  void switchReadOnly({bool? val}) {
+    final _$actionInfo = _$CustomTextFieldControllerBaseActionController
+        .startAction(name: 'CustomTextFieldControllerBase.switchReadOnly');
+    try {
+      return super.switchReadOnly(val: val);
+    } finally {
+      _$CustomTextFieldControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 state: ${state},
@@ -669,6 +696,7 @@ errorMessage: ${errorMessage},
 oldText: ${oldText},
 text: ${text},
 obscure: ${obscure},
+readOnly: ${readOnly},
 eightSymbols: ${eightSymbols},
 capitalLettersNumbers: ${capitalLettersNumbers},
 specialSymbols: ${specialSymbols},

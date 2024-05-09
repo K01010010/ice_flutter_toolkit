@@ -18,6 +18,8 @@ abstract class CustomTextFieldControllerBase with Store {
   String text = "";
   @observable
   bool obscure;
+  @observable
+  bool readOnly = false;
 
   TextEditingController textEditingController = TextEditingController();
 
@@ -44,6 +46,10 @@ abstract class CustomTextFieldControllerBase with Store {
   @action
   void switchObscure() {
     obscure = !obscure;
+  }
+  @action
+  void switchReadOnly({bool? val}) {
+    readOnly = val ?? !readOnly;
   }
 
   Future<bool> validate(ValidatorType validator,

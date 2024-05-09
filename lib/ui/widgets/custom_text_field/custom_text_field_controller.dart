@@ -29,6 +29,7 @@ abstract class CustomTextFieldControllerBase with Store {
 
   @action
   void updateText(String str) {
+    textEditingController.text = str;
     errorMessage = null;
     oldText = text;
     text = str;

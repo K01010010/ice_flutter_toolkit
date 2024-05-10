@@ -310,12 +310,12 @@ extension ExtendingDio on Dio {
 
   set dioToken(String? val) => _dioToken = val;
 
-  void setToken(String? token) {
+  void setToken(String? token, {String prefix = "Bearer "}) {
     dioToken = token;
     if (token == null) {
       options.headers.remove('Authorization');
     } else {
-      options.headers['Authorization'] = 'Bearer $token';
+      options.headers['Authorization'] = '$prefix$token';
     }
   }
 }

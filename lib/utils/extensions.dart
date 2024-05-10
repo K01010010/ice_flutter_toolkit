@@ -259,37 +259,37 @@ extension MapExtension on Map {
   String get encode => jsonEncode(this);
 }
 
-extension TextStyleGet on TextStyle {
-  static TextStyle get(
-          {required double size,
-          required FontWeight weight,
-          required Color color}) =>
-      TextStyle(
-        overflow: TextOverflow.ellipsis,
-        fontSize: size,
-        fontFamily: 'font',
-        height: 1,
-        fontVariations: [
-          ui.FontVariation('wght', weight.index * 100 + 100),
-        ],
-        color: color,
-      );
-
-  static TextStyle getSemiBold(
-          {required double size,
-          required FontWeight weight,
-          required Color color}) =>
-      TextStyle(
-        overflow: TextOverflow.ellipsis,
-        fontSize: size,
-        fontFamily: 'fontSemiBold',
-        height: 1,
-        fontVariations: [
-          ui.FontVariation('wght', weight.index * 100 + 100),
-        ],
-        color: color,
-      );
-}
+// extension TextStyleGet on TextStyle {
+  // static TextStyle get(
+  //         {required double size,
+  //         required FontWeight weight,
+  //         required Color color}) =>
+  //     TextStyle(
+  //       overflow: TextOverflow.ellipsis,
+  //       fontSize: size,
+  //       fontFamily: 'font',
+  //       height: 1,
+  //       fontVariations: [
+  //         ui.FontVariation('wght', weight.index * 100 + 100),
+  //       ],
+  //       color: color,
+  //     );
+  //
+  // static TextStyle getSemiBold(
+  //         {required double size,
+  //         required FontWeight weight,
+  //         required Color color}) =>
+  //     TextStyle(
+  //       overflow: TextOverflow.ellipsis,
+  //       fontSize: size,
+  //       fontFamily: 'fontSemiBold',
+  //       height: 1,
+  //       fontVariations: [
+  //         ui.FontVariation('wght', weight.index * 100 + 100),
+  //       ],
+  //       color: color,
+  //     );
+// }
 
 extension ColorToStringExtension on Color {
   String get hashString => "0x${value.toRadixString(16).padLeft(8, '0')}";

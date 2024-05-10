@@ -24,7 +24,8 @@ dependencies:
   auto_mappr_annotation: ^2.1.0           #для сопоставления моделей к dto
 
   #Native Packages
-  #  permission_handler: ^10.4.3             #для запроса разрешений
+  image_picker: ^1.1.1
+  permission_handler: ^11.1.0             #для запроса разрешений
   #  photo_manager_image_provider: ^2.1.0   #не работает под новый flutter
   #  photo_manager: ^2.7.1                  #не работает под новый flutter
   #  camera: ^0.10.5+5                      #это базовая бибилотека камеры

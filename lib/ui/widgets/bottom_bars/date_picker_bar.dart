@@ -1,12 +1,15 @@
 part of '../../../ice_flutter_toolkit.dart';
 
 class DatePickerBar extends StatefulWidget {
-  const DatePickerBar(
-      {super.key,
-      required this.maxYear,
-      required this.minYear,
-      this.mode = CupertinoDatePickerMode.date});
+  const DatePickerBar({
+    super.key,
+    required this.maxYear,
+    required this.minYear,
+    this.initialDate,
+    this.mode = CupertinoDatePickerMode.date,
+  });
 
+  final DateTime? initialDate;
   final int maxYear;
   final int minYear;
   final CupertinoDatePickerMode mode;
@@ -15,6 +18,7 @@ class DatePickerBar extends StatefulWidget {
     BuildContext context,
     int maxYear,
     int minYear, {
+    DateTime? initialDate,
     CupertinoDatePickerMode mode = CupertinoDatePickerMode.date,
   }) async {
     if (context.mounted) {
@@ -29,6 +33,7 @@ class DatePickerBar extends StatefulWidget {
           )),
           builder: (context) {
             return DatePickerBar(
+              initialDate: initialDate,
               maxYear: maxYear,
               minYear: minYear,
               mode: mode,
@@ -74,6 +79,7 @@ class _DatePickerBarState extends State<DatePickerBar> {
             ),
             child: SafeArea(
               child: CupertinoDatePicker(
+                initialDateTime: widget.initialDate,
                 minimumYear: widget.minYear,
                 maximumYear: widget.maxYear,
                 mode: widget.mode,

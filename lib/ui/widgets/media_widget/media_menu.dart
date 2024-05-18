@@ -1,17 +1,10 @@
-import 'dart:io';
-
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
-import 'package:ice_flutter_toolkit/ice_flutter_toolkit.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
+part of '../../../ice_flutter_toolkit.dart';
 
 class MediaMenuBar extends StatefulWidget {
   const MediaMenuBar({
     super.key,
     this.pickCamera = true,
     this.pickGallery = true,
-
     required this.basicStyle,
     required this.textColor,
     required this.deleteColor,
@@ -36,12 +29,11 @@ class MediaMenuBar extends StatefulWidget {
   final String? deleteMiddleWord;
 
   Future<File?> pickPhoto(
-    BuildContext context,
-    Function(int index)? deleteHandler,
+    BuildContext ctx,
   ) =>
       showModalBottomSheet<File?>(
         isScrollControlled: true,
-        context: context,
+        context: ctx,
         backgroundColor: GrayColors.transparent,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -124,13 +116,13 @@ class _MediaMenuBarState extends State<MediaMenuBar> {
                                   //     " перезапустите приложение",
                                   //     showingTimer: const Duration(
                                   //         seconds: 3, milliseconds: 500));
-                                  if (//Platform.isAndroid &&
-                                      widget.showSettingAlert!=null) {
+                                  if ( //Platform.isAndroid &&
+                                      widget.showSettingAlert != null) {
                                     await Future.delayed(
                                         const Duration(seconds: 4));
 
-
-                                      widget.showSettingAlert!(ImageSource.gallery);
+                                    widget
+                                        .showSettingAlert!(ImageSource.gallery);
                                   }
                                   return;
                                 }
@@ -166,13 +158,14 @@ class _MediaMenuBarState extends State<MediaMenuBar> {
                                   //     " перезапустите приложение",
                                   //     showingTimer: const Duration(
                                   //         seconds: 3, milliseconds: 500));
-                                  if (//Platform.isAndroid &&
-                                      widget.showSettingAlert!=null) {
+                                  if ( //Platform.isAndroid &&
+                                      widget.showSettingAlert != null) {
                                     await Future.delayed(
                                         const Duration(seconds: 4));
 
-                                    if(widget.showSettingAlert!=null) {
-                                      widget.showSettingAlert!(ImageSource.camera);
+                                    if (widget.showSettingAlert != null) {
+                                      widget.showSettingAlert!(
+                                          ImageSource.camera);
                                     }
                                   }
 
@@ -186,7 +179,8 @@ class _MediaMenuBarState extends State<MediaMenuBar> {
                               }
                             }),
                           if (widget.showPhotos != null)
-                            _MediaButtonData('Show Photo', widget.textColor, () {
+                            _MediaButtonData('Show Photo', widget.textColor,
+                                () {
                               widget.showPhotos!(context);
                               AutoRouter.of(context).maybePop();
                             }),
@@ -240,28 +234,28 @@ class _MediaMenuBarState extends State<MediaMenuBar> {
       ),
     );
   }
-  //
-  // void showSettingAlert(String accessSubject) => DialogShower(
-  //       title:
-  //           "Если вы желаете получить доступ к $accessSubject, чтобы загрузить фото, то перейдите пожалуйста в настройки",
-  //       themeColor: AppColors.purpleA517FE,
-  //       gradientButton: AlertGradientButton(
-  //         gradient: AppColors.meetsGradient,
-  //         text: "Перейти в настройки",
-  //         onTap: () {
-  //           openAppSettings();
-  //         },
-  //       ),
-  //       buttons: [
-  //         AlertButton(
-  //           text: "Отмена",
-  //           outlined: false,
-  //           onTap: () {
-  //             Navigator.of(context, rootNavigator: true).pop();
-  //           },
-  //         )
-  //       ],
-  //     ).show(context);
+//
+// void showSettingAlert(String accessSubject) => DialogShower(
+//       title:
+//           "Если вы желаете получить доступ к $accessSubject, чтобы загрузить фото, то перейдите пожалуйста в настройки",
+//       themeColor: AppColors.purpleA517FE,
+//       gradientButton: AlertGradientButton(
+//         gradient: AppColors.meetsGradient,
+//         text: "Перейти в настройки",
+//         onTap: () {
+//           openAppSettings();
+//         },
+//       ),
+//       buttons: [
+//         AlertButton(
+//           text: "Отмена",
+//           outlined: false,
+//           onTap: () {
+//             Navigator.of(context, rootNavigator: true).pop();
+//           },
+//         )
+//       ],
+//     ).show(context);
 }
 
 class _MediaButtonData {

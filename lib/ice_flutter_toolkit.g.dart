@@ -461,6 +461,139 @@ errorMessage: ${errorMessage}
   }
 }
 
+mixin _$CustomSearchTextFieldController
+    on CustomSearchTextFieldControllerBase, Store {
+  Computed<bool>? _$validatedComputed;
+
+  @override
+  bool get validated =>
+      (_$validatedComputed ??= Computed<bool>(() => super.validated,
+              name: 'CustomSearchTextFieldControllerBase.validated'))
+          .value;
+  Computed<bool>? _$isEmptyComputed;
+
+  @override
+  bool get isEmpty => (_$isEmptyComputed ??= Computed<bool>(() => super.isEmpty,
+          name: 'CustomSearchTextFieldControllerBase.isEmpty'))
+      .value;
+
+  late final _$errorMessageAtom = Atom(
+      name: 'CustomSearchTextFieldControllerBase.errorMessage',
+      context: context);
+
+  @override
+  String? get errorMessage {
+    _$errorMessageAtom.reportRead();
+    return super.errorMessage;
+  }
+
+  @override
+  set errorMessage(String? value) {
+    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
+      super.errorMessage = value;
+    });
+  }
+
+  late final _$timerAtom =
+      Atom(name: 'CustomSearchTextFieldControllerBase.timer', context: context);
+
+  @override
+  Timer? get timer {
+    _$timerAtom.reportRead();
+    return super.timer;
+  }
+
+  @override
+  set timer(Timer? value) {
+    _$timerAtom.reportWrite(value, super.timer, () {
+      super.timer = value;
+    });
+  }
+
+  late final _$selectedVariantAtom = Atom(
+      name: 'CustomSearchTextFieldControllerBase.selectedVariant',
+      context: context);
+
+  @override
+  SearchVariantResponse<dynamic>? get selectedVariant {
+    _$selectedVariantAtom.reportRead();
+    return super.selectedVariant;
+  }
+
+  @override
+  set selectedVariant(SearchVariantResponse<dynamic>? value) {
+    _$selectedVariantAtom.reportWrite(value, super.selectedVariant, () {
+      super.selectedVariant = value;
+    });
+  }
+
+  late final _$CustomSearchTextFieldControllerBaseActionController =
+      ActionController(
+          name: 'CustomSearchTextFieldControllerBase', context: context);
+
+  @override
+  void clear() {
+    final _$actionInfo = _$CustomSearchTextFieldControllerBaseActionController
+        .startAction(name: 'CustomSearchTextFieldControllerBase.clear');
+    try {
+      return super.clear();
+    } finally {
+      _$CustomSearchTextFieldControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updateText(String str) {
+    final _$actionInfo = _$CustomSearchTextFieldControllerBaseActionController
+        .startAction(name: 'CustomSearchTextFieldControllerBase.updateText');
+    try {
+      return super.updateText(str);
+    } finally {
+      _$CustomSearchTextFieldControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool validateWithIndex(String? text, int validator,
+      {int? minLength, int? maxLength, String? startWith}) {
+    final _$actionInfo =
+        _$CustomSearchTextFieldControllerBaseActionController.startAction(
+            name: 'CustomSearchTextFieldControllerBase.validateWithIndex');
+    try {
+      return super.validateWithIndex(text, validator,
+          minLength: minLength, maxLength: maxLength, startWith: startWith);
+    } finally {
+      _$CustomSearchTextFieldControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void pickVariant(int index) {
+    final _$actionInfo = _$CustomSearchTextFieldControllerBaseActionController
+        .startAction(name: 'CustomSearchTextFieldControllerBase.pickVariant');
+    try {
+      return super.pickVariant(index);
+    } finally {
+      _$CustomSearchTextFieldControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String toString() {
+    return '''
+errorMessage: ${errorMessage},
+timer: ${timer},
+selectedVariant: ${selectedVariant},
+validated: ${validated},
+isEmpty: ${isEmpty}
+    ''';
+  }
+}
+
 mixin _$CustomTextFieldController on CustomTextFieldControllerBase, Store {
   Computed<bool>? _$validatedComputed;
 
@@ -547,51 +680,19 @@ mixin _$CustomTextFieldController on CustomTextFieldControllerBase, Store {
     });
   }
 
-  late final _$obscureAtom =
-      Atom(name: 'CustomTextFieldControllerBase.obscure', context: context);
+  late final _$numberSymbolsAtom = Atom(
+      name: 'CustomTextFieldControllerBase.numberSymbols', context: context);
 
   @override
-  bool get obscure {
-    _$obscureAtom.reportRead();
-    return super.obscure;
+  bool get numberSymbols {
+    _$numberSymbolsAtom.reportRead();
+    return super.numberSymbols;
   }
 
   @override
-  set obscure(bool value) {
-    _$obscureAtom.reportWrite(value, super.obscure, () {
-      super.obscure = value;
-    });
-  }
-
-  late final _$readOnlyAtom =
-      Atom(name: 'CustomTextFieldControllerBase.readOnly', context: context);
-
-  @override
-  bool get readOnly {
-    _$readOnlyAtom.reportRead();
-    return super.readOnly;
-  }
-
-  @override
-  set readOnly(bool value) {
-    _$readOnlyAtom.reportWrite(value, super.readOnly, () {
-      super.readOnly = value;
-    });
-  }
-
-  late final _$eightSymbolsAtom = Atom(
-      name: 'CustomTextFieldControllerBase.eightSymbols', context: context);
-
-  @override
-  bool get eightSymbols {
-    _$eightSymbolsAtom.reportRead();
-    return super.eightSymbols;
-  }
-
-  @override
-  set eightSymbols(bool value) {
-    _$eightSymbolsAtom.reportWrite(value, super.eightSymbols, () {
-      super.eightSymbols = value;
+  set numberSymbols(bool value) {
+    _$numberSymbolsAtom.reportWrite(value, super.numberSymbols, () {
+      super.numberSymbols = value;
     });
   }
 
@@ -629,16 +730,36 @@ mixin _$CustomTextFieldController on CustomTextFieldControllerBase, Store {
     });
   }
 
-  late final _$validateWithIndexAsyncAction = AsyncAction(
-      'CustomTextFieldControllerBase.validateWithIndex',
-      context: context);
+  late final _$obscureAtom =
+      Atom(name: 'CustomTextFieldControllerBase.obscure', context: context);
 
   @override
-  Future<bool> validateWithIndex(String? text, int validator,
-      {int? minLength, int? maxLength, String? startWith}) {
-    return _$validateWithIndexAsyncAction.run(() => super.validateWithIndex(
-        text, validator,
-        minLength: minLength, maxLength: maxLength, startWith: startWith));
+  bool get obscure {
+    _$obscureAtom.reportRead();
+    return super.obscure;
+  }
+
+  @override
+  set obscure(bool value) {
+    _$obscureAtom.reportWrite(value, super.obscure, () {
+      super.obscure = value;
+    });
+  }
+
+  late final _$readOnlyAtom =
+      Atom(name: 'CustomTextFieldControllerBase.readOnly', context: context);
+
+  @override
+  bool get readOnly {
+    _$readOnlyAtom.reportRead();
+    return super.readOnly;
+  }
+
+  @override
+  set readOnly(bool value) {
+    _$readOnlyAtom.reportWrite(value, super.readOnly, () {
+      super.readOnly = value;
+    });
   }
 
   late final _$CustomTextFieldControllerBaseActionController =
@@ -661,6 +782,35 @@ mixin _$CustomTextFieldController on CustomTextFieldControllerBase, Store {
         .startAction(name: 'CustomTextFieldControllerBase.clear');
     try {
       return super.clear();
+    } finally {
+      _$CustomTextFieldControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool validate(ValidatorType validator,
+      {String? text, int? minLength, int? maxLength, String? startWith}) {
+    final _$actionInfo = _$CustomTextFieldControllerBaseActionController
+        .startAction(name: 'CustomTextFieldControllerBase.validate');
+    try {
+      return super.validate(validator,
+          text: text,
+          minLength: minLength,
+          maxLength: maxLength,
+          startWith: startWith);
+    } finally {
+      _$CustomTextFieldControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  bool validateWithIndex(String? text, int validator,
+      {int? minLength, int? maxLength, String? startWith}) {
+    final _$actionInfo = _$CustomTextFieldControllerBaseActionController
+        .startAction(name: 'CustomTextFieldControllerBase.validateWithIndex');
+    try {
+      return super.validateWithIndex(text, validator,
+          minLength: minLength, maxLength: maxLength, startWith: startWith);
     } finally {
       _$CustomTextFieldControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -695,11 +845,11 @@ state: ${state},
 errorMessage: ${errorMessage},
 oldText: ${oldText},
 text: ${text},
-obscure: ${obscure},
-readOnly: ${readOnly},
-eightSymbols: ${eightSymbols},
+numberSymbols: ${numberSymbols},
 capitalLettersNumbers: ${capitalLettersNumbers},
 specialSymbols: ${specialSymbols},
+obscure: ${obscure},
+readOnly: ${readOnly},
 validated: ${validated},
 isEmpty: ${isEmpty},
 passwordValidated: ${passwordValidated}

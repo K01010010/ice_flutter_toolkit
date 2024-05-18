@@ -1,10 +1,4 @@
-import 'dart:convert';
-import 'dart:io';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:ice_flutter_toolkit/ice_flutter_toolkit.dart';
-import 'package:flutter/services.dart' as for_network_loading;
+part of '../../../ice_flutter_toolkit.dart';
 
 class MediaItem extends _MediaItemBase {
   // ignore: library_private_types_in_public_api

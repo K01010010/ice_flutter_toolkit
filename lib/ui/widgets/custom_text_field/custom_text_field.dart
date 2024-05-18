@@ -1,260 +1,295 @@
 part of '../../../ice_flutter_toolkit.dart';
-//
-// class CustomTextField extends StatelessWidget {
-//   const CustomTextField({
-//     super.key,
-//     // this.textTitle,
-//     // this.titleStyle,
-//     required this.hintKey,
-//     this.hintStyle,
-//     this.onChanged,
-//     required this.controller,
-//     this.showObscureButton = false,
-//     this.suffixTitleWidget,
-//     this.underlineText,
-//     this.underlineTap,
-//   });
-//
-//   final CustomTextFieldController controller;
-//
-//   final void Function(String)? onChanged;
-//   // final String? textTitle;
-//   // final TextStyle? titleStyle;
-//   final String hintKey;
-//   final TextStyle? hintStyle;
-//   final bool showObscureButton;
-//   final Widget? suffixTitleWidget;
-//   final String? underlineText;
-//   final void Function()? underlineTap;
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Observer(builder: (context) {
-//       return TextField(
-//         key: key,
-//         onTap: onTap,
-//         onChanged: (text) {
-//           controller.updateText(text);
-//           if (onChanged != null) onChanged!(text);
-//         },
-//         controller: controller.textEditingController,
-//         obscureText: controller.obscure,
-//         style: text ?? style.text,
-//         decoration: InputDecoration(
-//           contentPadding: contentPadding ?? style.contentPadding,
-//           errorText: controller.errorMessage,
-//           errorStyle: error ?? style.error,
-//           border: OutlineInputBorder(
-//               borderRadius: _box.borderRadius, borderSide: _box.side),
-//           focusedBorder: OutlineInputBorder(
-//               borderRadius: _box.borderRadius, borderSide: _box.side),
-//           disabledBorder: OutlineInputBorder(
-//               borderRadius: _box.borderRadius, borderSide: _box.side),
-//           enabledBorder: OutlineInputBorder(
-//               borderRadius: _box.borderRadius, borderSide: _box.side),
-//           errorBorder: OutlineInputBorder(
-//               borderRadius: _errorBox.borderRadius,
-//               borderSide: _errorBox.side),
-//           filled: true,
-//           fillColor: _box.fillColor,
-//           hintText: _hintData.text,
-//           hintStyle: _hintData.style,
-//           suffix: !showObscureButton &&
-//               (controller.errorMessage?.isEmpty ?? true)
-//               ? suffixTitleWidget
-//               : SizedBox(
-//             child: GestureDetector(
-//               onTap: controller.switchObscure,
-//               child: Padding(
-//                 padding: const EdgeInsets.all(1),
-//                 child: !showObscureButton
-//                     ? (useWarningSvg
-//                     ? SvgPicture.asset(
-//                   'assets/svg/warning.svg',
-//                   colorFilter:
-//                   _errorBox.side.color.filter,
-//                 )
-//                     : Icon(
-//                   Icons.warning_amber_rounded,
-//                   color: _errorBox.side.color,
-//                 ))
-//                     : Icon(
-//                   controller.obscure
-//                       ? Icons.visibility_outlined
-//                       : Icons.visibility_off_outlined,
-//                   color: (controller.errorMessage?.isEmpty ??
-//                       true)
-//                       ? style.suffixWidgetColor
-//                       : _errorBox.side.color,
-//                 ),
-//               ),
-//             ),
-//           ),
-//           isDense: isDense,
-//         ),
-//         keyboardType: keyboardType,
-//         inputFormatters: inputFormatters,
-//         minLines: minLines,
-//         maxLines: maxLines,
-//       );
-//       return TextField(
-//         key: key,
-//         onChanged: (text) {
-//           controller.updateText(text);
-//           if (onChanged != null) onChanged!(text);
-//         },
-//         controller: controller.textEditingController,
-//         obscureText: controller.obscure,
-//         style: const TextStyle(
-//           fontFamily: 'Golos',
-//           color: GrayColors.gray1A,
-//           fontWeight: FontWeight.w400,
-//           fontSize: 16,
-//         ),
-//         decoration: InputDecoration(
-//           contentPadding:
-//           const EdgeInsets.symmetric(vertical: 1, horizontal: 1),
-//           errorText: controller.errorMessage,
-//           border: UnderlineInputBorder(
-//               borderRadius: BorderRadius.circular(1),
-//               borderSide: const BorderSide(color: GrayColors.grayEF)),
-//           focusedBorder: UnderlineInputBorder(
-//               borderRadius: BorderRadius.circular(1),
-//               borderSide: const BorderSide(color: GrayColors.grayEF)),
-//           disabledBorder: UnderlineInputBorder(
-//               borderRadius: BorderRadius.circular(1),
-//               borderSide: const BorderSide(color: GrayColors.grayEF)),
-//           enabledBorder: UnderlineInputBorder(
-//               borderRadius: BorderRadius.circular(1),
-//               borderSide: const BorderSide(color: GrayColors.grayEF)),
-//           filled: true,
-//           fillColor: GrayColors.white,
-//           hintText: hintKey,
-//           hintStyle: const TextStyle(
-//             fontFamily: 'Golos',
-//             color: GrayColors.gray7C,
-//             fontWeight: FontWeight.w400,
-//             fontSize: 16,
-//           ),
-//           suffix: !showObscureButton
-//               ? null
-//               : SizedBox(
-//             //alignment: Alignment.centerRight,
-//             child: GestureDetector(
-//               onTap: () {
-//                 controller.obscure = !controller.obscure;
-//               },
-//               child: Padding(
-//                 padding: const EdgeInsets.all(1),
-//                 child: Icon(
-//                   controller.obscure
-//                       ? Icons.visibility_outlined
-//                       : Icons.visibility_off_outlined,
-//                   color: GrayColors.gray7C,
-//                 ),
-//               ),
-//             ),
-//           ),
-//         ),
-//       );
-//     });
-//
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       children: [
-//         // if (textTitle != null)
-//         //   Row(
-//         //     children: [
-//         //       Text(
-//         //         textTitle!,
-//         //         style: titleStyle ?? const TextStyle(
-//         //               color: GrayColors.gray52,
-//         //               fontWeight: FontWeight.w400,
-//         //               fontSize: 16,
-//         //             ),
-//         //       ),
-//         //       if (suffixTitleWidget != null) const Spacer(),
-//         //       if (suffixTitleWidget != null) suffixTitleWidget!,
-//         //     ],
-//         //   ),
-//         // const SizedBox(height: 8),
-//         Observer(builder: (context) {
-//           return TextField(
-//             key: key,
-//             onChanged: (text) {
-//               controller.updateText(text);
-//               if (onChanged != null) onChanged!(text);
-//             },
-//             controller: controller.textEditingController,
-//             obscureText: controller.obscure,
-//             style: const TextStyle(
-//               fontFamily: 'Golos',
-//               color: GrayColors.gray1A,
-//               fontWeight: FontWeight.w400,
-//               fontSize: 16,
-//             ),
-//             decoration: InputDecoration(
-//               contentPadding:
-//                   const EdgeInsets.symmetric(vertical: 1, horizontal: 1),
-//               errorText: controller.errorMessage,
-//               border: UnderlineInputBorder(
-//                   borderRadius: BorderRadius.circular(1),
-//                   borderSide: const BorderSide(color: GrayColors.grayEF)),
-//               focusedBorder: UnderlineInputBorder(
-//                   borderRadius: BorderRadius.circular(1),
-//                   borderSide: const BorderSide(color: GrayColors.grayEF)),
-//               disabledBorder: UnderlineInputBorder(
-//                   borderRadius: BorderRadius.circular(1),
-//                   borderSide: const BorderSide(color: GrayColors.grayEF)),
-//               enabledBorder: UnderlineInputBorder(
-//                   borderRadius: BorderRadius.circular(1),
-//                   borderSide: const BorderSide(color: GrayColors.grayEF)),
-//               filled: true,
-//               fillColor: GrayColors.white,
-//               hintText: hintKey,
-//               hintStyle: const TextStyle(
-//                 fontFamily: 'Golos',
-//                 color: GrayColors.gray7C,
-//                 fontWeight: FontWeight.w400,
-//                 fontSize: 16,
-//               ),
-//               suffix: !showObscureButton
-//                   ? null
-//                   : SizedBox(
-//                       //alignment: Alignment.centerRight,
-//                       child: GestureDetector(
-//                         onTap: () {
-//                           controller.obscure = !controller.obscure;
-//                         },
-//                         child: Padding(
-//                           padding: const EdgeInsets.all(1),
-//                           child: Icon(
-//                             controller.obscure
-//                                 ? Icons.visibility_outlined
-//                                 : Icons.visibility_off_outlined,
-//                             color: GrayColors.gray7C,
-//                           ),
-//                         ),
-//                       ),
-//                     ),
-//             ),
-//           );
-//         }),
-//         if (underlineText != null) const SizedBox(height: 2),
-//         if (underlineText != null)
-//           GestureDetector(
-//             onTap: underlineTap,
-//             child: Text(
-//               underlineText!,
-//               style: const TextStyle(
-//                 fontFamily: 'Golos',
-//                 color: GrayColors.gray50,
-//                 fontWeight: FontWeight.w400,
-//                 fontSize: 14,
-//               ),
-//             ),
-//           ),
-//       ],
-//     );
-//   }
-// }
+
+class TextFieldStack extends StatelessWidget {
+  const TextFieldStack({
+    super.key,
+    this.stackSuffixWidget,
+    required this.child,
+  });
+
+  final Widget? stackSuffixWidget;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(children: [
+      child,
+      if (stackSuffixWidget != null)
+        Positioned.fill(
+          child: Align(
+            alignment: Alignment.topRight,
+            child: stackSuffixWidget!,
+          ),
+        ),
+    ]);
+  }
+}
+
+class CustomTextField extends StatelessWidget {
+  CustomTextField(
+      {super.key,
+      this.text,
+      this.error,
+      this.onChanged,
+      this.onTap,
+      required this.controller,
+      this.useWarningSvg = false,
+      this.showObscureButton = false,
+      this.suffixTitleWidget,
+      this.titleOffset,
+      List<TextData>? titles,
+      String? title,
+      TextStyle? titleStyle,
+      required String hintText,
+      TextStyle? hintStyle,
+      BoxData? box,
+      BoxData? errorBox,
+      this.contentPadding,
+      this.widgetMargin,
+      this.keyboardType,
+      this.inputFormatters,
+      this.isDense = false,
+      this.minLines = 1,
+      this.maxLines = 1,
+      required this.borderType,
+      String? underlineText,
+      TextStyle? underlineStyle,
+      this.underlineTap})
+      : _box = box ?? AppStyle.style.fieldStyle.box,
+        _errorBox = errorBox ?? AppStyle.style.fieldStyle.errorBox,
+        _titles = titles ??
+            [
+              if (title != null)
+                TextData(title, titleStyle ?? AppStyle.style.fieldStyle.title)
+            ],
+        _hintData =
+            TextData(hintText, hintStyle ?? AppStyle.style.fieldStyle.hint),
+        _underlineData = underlineText == null
+            ? null
+            : TextData(underlineText,
+                underlineStyle ?? AppStyle.style.fieldStyle.title);
+
+  final List<TextData> _titles;
+  final double? titleOffset;
+
+  final TextData _hintData;
+  final TextStyle? text;
+  final TextStyle? error;
+
+  final CustomTextFieldController controller;
+  final void Function()? onTap;
+  final void Function(String)? onChanged;
+
+  final BoxData _box;
+  final BoxData _errorBox;
+
+  final EdgeInsets? contentPadding;
+  final EdgeInsets? widgetMargin;
+
+  final bool showObscureButton;
+  final bool useWarningSvg;
+  final Widget? suffixTitleWidget;
+  final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool isDense;
+  final int minLines;
+  final int maxLines;
+  final InputBorderType borderType;
+
+  final TextData? _underlineData;
+  final void Function()? underlineTap;
+
+  CustomFieldStyle get style => AppStyle.style.fieldStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Observer(builder: (context) {
+      return Padding(
+        padding: widgetMargin ?? style.widgetMargin,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (_titles.isNotEmpty)
+              _titles.length == 1
+                  ? Text(
+                      _titles.first.text,
+                      style: _titles.first.style,
+                    )
+                  : RichText(
+                      text: TextSpan(
+                        children: _titles
+                            .map(
+                              (titleElem) => TextSpan(
+                                text: titleElem.text,
+                                style: titleElem.style,
+                              ),
+                            )
+                            .toList(),
+                      ),
+                    ),
+            if (_titles.isNotEmpty)
+              SizedBox(height: titleOffset ?? style.titleOffset),
+            _SubTextFieldOutlined(
+              text: text,
+              error: error,
+              onChanged: onChanged,
+              onTap: onTap,
+              controller: controller,
+              useWarningSvg: useWarningSvg,
+              showObscureButton: showObscureButton,
+              suffixTitleWidget: suffixTitleWidget,
+              hintData: _hintData,
+              box: _box,
+              errorBox: _errorBox,
+              contentPadding: contentPadding,
+              widgetMargin: widgetMargin,
+              keyboardType: keyboardType,
+              inputFormatters: inputFormatters,
+              isDense: isDense,
+              minLines: minLines,
+              maxLines: maxLines,
+              borderType: borderType,
+            ),
+            if (_underlineData != null) const SizedBox(height: 2),
+            if (_underlineData != null)
+              GestureDetector(
+                onTap: underlineTap,
+                child: Text(
+                  _underlineData.text,
+                  style: _underlineData.style,
+                ),
+              ),
+          ],
+        ),
+      );
+    });
+  }
+}
+
+class _SubTextFieldOutlined extends StatelessWidget {
+  _SubTextFieldOutlined({
+    this.text,
+    this.error,
+    this.onChanged,
+    this.onTap,
+    required this.controller,
+    this.useWarningSvg = false,
+    this.showObscureButton = false,
+    this.suffixTitleWidget,
+    required this.hintData,
+    required this.box,
+    required this.errorBox,
+    this.contentPadding,
+    this.widgetMargin,
+    this.keyboardType,
+    this.inputFormatters,
+    this.isDense = false,
+    this.minLines = 1,
+    this.maxLines = 1,
+    required InputBorderType borderType,
+  })  : border = switch (borderType) {
+          InputBorderType.none => InputBorder.none,
+          InputBorderType.underline => UnderlineInputBorder(
+              borderRadius: box.borderRadius, borderSide: box.side),
+          InputBorderType.outline => OutlineInputBorder(
+              borderRadius: box.borderRadius, borderSide: box.side),
+        },
+        errorBorder = switch (borderType) {
+          InputBorderType.none => InputBorder.none,
+          InputBorderType.underline => UnderlineInputBorder(
+              borderRadius: box.borderRadius, borderSide: box.side),
+          InputBorderType.outline => OutlineInputBorder(
+              borderRadius: box.borderRadius, borderSide: box.side),
+        };
+
+  final InputBorder border;
+  final InputBorder errorBorder;
+
+  final TextData hintData;
+  final TextStyle? text;
+  final TextStyle? error;
+
+  final CustomTextFieldController controller;
+  final void Function()? onTap;
+  final void Function(String)? onChanged;
+
+  final BoxData box;
+  final BoxData errorBox;
+
+  final EdgeInsets? contentPadding;
+  final EdgeInsets? widgetMargin;
+
+  final bool showObscureButton;
+  final bool useWarningSvg;
+  final Widget? suffixTitleWidget;
+  final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool isDense;
+  final int minLines;
+  final int maxLines;
+
+  CustomFieldStyle get style => AppStyle.style.fieldStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      key: key,
+      onTap: onTap,
+      readOnly: controller.readOnly,
+      onChanged: (text) {
+        controller.updateText(text);
+        if (onChanged != null) onChanged!(text);
+      },
+      controller: controller.textEditingController,
+      obscureText: controller.obscure,
+      style: text ?? style.text,
+      decoration: InputDecoration(
+        contentPadding: contentPadding ?? style.contentPadding,
+        errorText: controller.errorMessage,
+        errorStyle: error ?? style.error,
+        border: border,
+        focusedBorder: border,
+        disabledBorder: border,
+        enabledBorder: border,
+        errorBorder: errorBorder,
+        filled: true,
+        fillColor: box.fillColor,
+        hintText: hintData.text,
+        hintStyle: hintData.style,
+        suffix: !showObscureButton && (controller.errorMessage?.isEmpty ?? true)
+            ? suffixTitleWidget
+            : SizedBox(
+                child: GestureDetector(
+                  onTap: controller.switchObscure,
+                  child: Padding(
+                    padding: const EdgeInsets.all(1),
+                    child: !showObscureButton
+                        ? (useWarningSvg
+                            ? SvgPicture.asset(
+                                'assets/svg/warning.svg',
+                                colorFilter: errorBox.side.color.filter,
+                              )
+                            : Icon(
+                                Icons.error_outline_rounded,
+                                color: errorBox.side.color,
+                              ))
+                        : Icon(
+                            controller.obscure
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined,
+                            color: (controller.errorMessage?.isEmpty ?? true)
+                                ? style.suffixWidgetColor
+                                : errorBox.side.color,
+                          ),
+                  ),
+                ),
+              ),
+        isDense: isDense,
+      ),
+      keyboardType: keyboardType,
+      inputFormatters: inputFormatters,
+      minLines: minLines,
+      maxLines: maxLines,
+    );
+  }
+}

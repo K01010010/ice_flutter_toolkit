@@ -240,9 +240,15 @@ class _SubTextFieldOutlined extends StatelessWidget {
         controller.updateText(text);
         if (onChanged != null) onChanged!(text);
       },
+      onSubmitted: (text) {
+        controller.updateText(text);
+        if (onChanged != null) onChanged!(text);
+        controller.changeFocus(false);
+      },
       controller: controller.textEditingController,
       obscureText: controller.obscure,
       style: text ?? style.text,
+      focusNode: controller._focusNode,
       decoration: InputDecoration(
         contentPadding: contentPadding ?? style.contentPadding,
         errorText: controller.errorMessage,

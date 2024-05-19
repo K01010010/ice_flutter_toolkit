@@ -20,8 +20,20 @@ part of '../../../ice_flutter_toolkit.dart';
 
 
 abstract class AbstractTextFieldController {
-  AbstractTextFieldController(this.enableObscure);
 
+
+  AbstractTextFieldController(this.enableObscure, [this._focusNode]) {
+    initFocusNode();
+  }
+
+  void initFocusNode({FocusNode? node}) {
+    if(node!=null) { _focusNode = node; }
+    _focusNode?.addListener(changeFocus);
+  }
+
+  void disposeFocusNode() {
+    _focusNode?.dispose();
+  }
 
   // final bool enableObscure;
   // TextFieldState state = TextFieldState.clean;
@@ -78,21 +90,36 @@ abstract class AbstractTextFieldController {
   }
 
 
+  FocusNode? _focusNode;
+  bool get focused;
+  set focused(bool val);
+  void changeFocus([bool? val]) => focused = val ?? _focusNode?.hasFocus ?? !focused;
 
   final bool enableObscure;
   bool get obscure;
   set obscure(bool val);
 
   @action
-  void switchObscure() {
+  void switchObscure([bool? val]) {
     if (!enableObscure) return;
-    obscure = !obscure;
+    obscure = val ?? !obscure;
   }
 
   bool get readOnly;
   set readOnly(bool val);
-  void switchReadOnly({bool? val}) => readOnly = val ?? !readOnly;
+  void switchReadOnly([bool? val]) => readOnly = val ?? !readOnly;
 }
 enum InputBorderType {
   none, underline, outline
 }
+
+// class BoolController = BoolControllerBase with _$BoolController;
+//
+// abstract class BoolControllerBase with Store {
+//   BoolControllerBase(this.value);
+//
+//   @observable
+//   bool value;
+//   @action
+//   void change({bool? val}) => value = val ?? !value;
+// }

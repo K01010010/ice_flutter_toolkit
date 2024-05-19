@@ -99,15 +99,17 @@ abstract class CustomTextFieldControllerBase extends AbstractTextFieldController
   @override @observable
   bool obscure = false;
   @override @action
-  void switchObscure() {
-    if (!enableObscure) return;
-    obscure = !obscure;
-  }
+  void switchObscure([bool? val]) => super.switchObscure(val);
 
   @override @observable
   bool readOnly = false;
   @override @action
-  void switchReadOnly({bool? val}) => readOnly = val ?? !readOnly;
+  void switchReadOnly([bool? val]) => super.switchReadOnly(val);
+
+  @override @observable
+  bool focused = false;
+  @override  @action
+  void changeFocus([bool? val]) => super.changeFocus(val);
 }
 
 enum TextFieldState {

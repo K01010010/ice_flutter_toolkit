@@ -29,7 +29,9 @@ abstract class CustomSearchTextFieldControllerBase
 
   @override
   @computed
-  bool get isEmpty => selectedVariant == null;
+  bool get isEmpty => lastSearch?.isEmpty ?? true;
+  @computed
+  bool get selected => selectedVariant != null;
 
   @override
   @action
@@ -92,24 +94,23 @@ abstract class CustomSearchTextFieldControllerBase
     variants.clear();
   }
 
-  @override
-  @observable
+
+  @override @observable
+  bool focused = false;
+  @override @action
+  void changeFocus([bool? val]) => super.changeFocus(val);
+
+  @override @observable
   bool obscure = false;
 
-  @override
-  @action
-  void switchObscure() {
-    if (!enableObscure) return;
-    obscure = !obscure;
-  }
+  @override @action
+  void switchObscure([bool? val]) => super.switchObscure(val);
 
-  @override
-  @observable
+  @override @observable
   bool readOnly = false;
 
-  @override
-  @action
-  void switchReadOnly({bool? val}) => readOnly = val ?? !readOnly;
+  @override @action
+  void switchReadOnly([bool? val]) => super.switchReadOnly(val);
 }
 
 abstract class SearchResponseWrapper {

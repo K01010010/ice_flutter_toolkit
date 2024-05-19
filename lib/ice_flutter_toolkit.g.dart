@@ -476,6 +476,13 @@ mixin _$CustomSearchTextFieldController
   bool get isEmpty => (_$isEmptyComputed ??= Computed<bool>(() => super.isEmpty,
           name: 'CustomSearchTextFieldControllerBase.isEmpty'))
       .value;
+  Computed<bool>? _$selectedComputed;
+
+  @override
+  bool get selected =>
+      (_$selectedComputed ??= Computed<bool>(() => super.selected,
+              name: 'CustomSearchTextFieldControllerBase.selected'))
+          .value;
 
   late final _$errorMessageAtom = Atom(
       name: 'CustomSearchTextFieldControllerBase.errorMessage',
@@ -524,6 +531,22 @@ mixin _$CustomSearchTextFieldController
   set selectedVariant(SearchVariantResponse<dynamic>? value) {
     _$selectedVariantAtom.reportWrite(value, super.selectedVariant, () {
       super.selectedVariant = value;
+    });
+  }
+
+  late final _$focusedAtom = Atom(
+      name: 'CustomSearchTextFieldControllerBase.focused', context: context);
+
+  @override
+  bool get focused {
+    _$focusedAtom.reportRead();
+    return super.focused;
+  }
+
+  @override
+  set focused(bool value) {
+    _$focusedAtom.reportWrite(value, super.focused, () {
+      super.focused = value;
     });
   }
 
@@ -615,11 +638,11 @@ mixin _$CustomSearchTextFieldController
   }
 
   @override
-  void switchObscure() {
+  void changeFocus([bool? val]) {
     final _$actionInfo = _$CustomSearchTextFieldControllerBaseActionController
-        .startAction(name: 'CustomSearchTextFieldControllerBase.switchObscure');
+        .startAction(name: 'CustomSearchTextFieldControllerBase.changeFocus');
     try {
-      return super.switchObscure();
+      return super.changeFocus(val);
     } finally {
       _$CustomSearchTextFieldControllerBaseActionController
           .endAction(_$actionInfo);
@@ -627,12 +650,24 @@ mixin _$CustomSearchTextFieldController
   }
 
   @override
-  void switchReadOnly({bool? val}) {
+  void switchObscure([bool? val]) {
+    final _$actionInfo = _$CustomSearchTextFieldControllerBaseActionController
+        .startAction(name: 'CustomSearchTextFieldControllerBase.switchObscure');
+    try {
+      return super.switchObscure(val);
+    } finally {
+      _$CustomSearchTextFieldControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void switchReadOnly([bool? val]) {
     final _$actionInfo =
         _$CustomSearchTextFieldControllerBaseActionController.startAction(
             name: 'CustomSearchTextFieldControllerBase.switchReadOnly');
     try {
-      return super.switchReadOnly(val: val);
+      return super.switchReadOnly(val);
     } finally {
       _$CustomSearchTextFieldControllerBaseActionController
           .endAction(_$actionInfo);
@@ -645,10 +680,12 @@ mixin _$CustomSearchTextFieldController
 errorMessage: ${errorMessage},
 timer: ${timer},
 selectedVariant: ${selectedVariant},
+focused: ${focused},
 obscure: ${obscure},
 readOnly: ${readOnly},
 validated: ${validated},
-isEmpty: ${isEmpty}
+isEmpty: ${isEmpty},
+selected: ${selected}
     ''';
   }
 }
@@ -821,6 +858,22 @@ mixin _$CustomTextFieldController on CustomTextFieldControllerBase, Store {
     });
   }
 
+  late final _$focusedAtom =
+      Atom(name: 'CustomTextFieldControllerBase.focused', context: context);
+
+  @override
+  bool get focused {
+    _$focusedAtom.reportRead();
+    return super.focused;
+  }
+
+  @override
+  set focused(bool value) {
+    _$focusedAtom.reportWrite(value, super.focused, () {
+      super.focused = value;
+    });
+  }
+
   late final _$CustomTextFieldControllerBaseActionController =
       ActionController(name: 'CustomTextFieldControllerBase', context: context);
 
@@ -876,22 +929,33 @@ mixin _$CustomTextFieldController on CustomTextFieldControllerBase, Store {
   }
 
   @override
-  void switchObscure() {
+  void switchObscure([bool? val]) {
     final _$actionInfo = _$CustomTextFieldControllerBaseActionController
         .startAction(name: 'CustomTextFieldControllerBase.switchObscure');
     try {
-      return super.switchObscure();
+      return super.switchObscure(val);
     } finally {
       _$CustomTextFieldControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void switchReadOnly({bool? val}) {
+  void switchReadOnly([bool? val]) {
     final _$actionInfo = _$CustomTextFieldControllerBaseActionController
         .startAction(name: 'CustomTextFieldControllerBase.switchReadOnly');
     try {
-      return super.switchReadOnly(val: val);
+      return super.switchReadOnly(val);
+    } finally {
+      _$CustomTextFieldControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeFocus([bool? val]) {
+    final _$actionInfo = _$CustomTextFieldControllerBaseActionController
+        .startAction(name: 'CustomTextFieldControllerBase.changeFocus');
+    try {
+      return super.changeFocus(val);
     } finally {
       _$CustomTextFieldControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -909,6 +973,7 @@ capitalLettersNumbers: ${capitalLettersNumbers},
 specialSymbols: ${specialSymbols},
 obscure: ${obscure},
 readOnly: ${readOnly},
+focused: ${focused},
 validated: ${validated},
 isEmpty: ${isEmpty},
 passwordValidated: ${passwordValidated}

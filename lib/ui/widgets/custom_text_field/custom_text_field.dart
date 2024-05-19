@@ -76,7 +76,7 @@ class CustomTextField extends StatelessWidget {
   final TextStyle? text;
   final TextStyle? error;
 
-  final CustomTextFieldController controller;
+  final AbstractTextFieldController controller;
   final void Function()? onTap;
   final void Function(String)? onChanged;
 
@@ -209,7 +209,7 @@ class _SubTextFieldOutlined extends StatelessWidget {
   final TextStyle? text;
   final TextStyle? error;
 
-  final CustomTextFieldController controller;
+  final AbstractTextFieldController controller;
   final void Function()? onTap;
   final void Function(String)? onChanged;
 

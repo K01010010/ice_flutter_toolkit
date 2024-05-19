@@ -527,6 +527,38 @@ mixin _$CustomSearchTextFieldController
     });
   }
 
+  late final _$obscureAtom = Atom(
+      name: 'CustomSearchTextFieldControllerBase.obscure', context: context);
+
+  @override
+  bool get obscure {
+    _$obscureAtom.reportRead();
+    return super.obscure;
+  }
+
+  @override
+  set obscure(bool value) {
+    _$obscureAtom.reportWrite(value, super.obscure, () {
+      super.obscure = value;
+    });
+  }
+
+  late final _$readOnlyAtom = Atom(
+      name: 'CustomSearchTextFieldControllerBase.readOnly', context: context);
+
+  @override
+  bool get readOnly {
+    _$readOnlyAtom.reportRead();
+    return super.readOnly;
+  }
+
+  @override
+  set readOnly(bool value) {
+    _$readOnlyAtom.reportWrite(value, super.readOnly, () {
+      super.readOnly = value;
+    });
+  }
+
   late final _$CustomSearchTextFieldControllerBaseActionController =
       ActionController(
           name: 'CustomSearchTextFieldControllerBase', context: context);
@@ -583,11 +615,38 @@ mixin _$CustomSearchTextFieldController
   }
 
   @override
+  void switchObscure() {
+    final _$actionInfo = _$CustomSearchTextFieldControllerBaseActionController
+        .startAction(name: 'CustomSearchTextFieldControllerBase.switchObscure');
+    try {
+      return super.switchObscure();
+    } finally {
+      _$CustomSearchTextFieldControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void switchReadOnly({bool? val}) {
+    final _$actionInfo =
+        _$CustomSearchTextFieldControllerBaseActionController.startAction(
+            name: 'CustomSearchTextFieldControllerBase.switchReadOnly');
+    try {
+      return super.switchReadOnly(val: val);
+    } finally {
+      _$CustomSearchTextFieldControllerBaseActionController
+          .endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 errorMessage: ${errorMessage},
 timer: ${timer},
 selectedVariant: ${selectedVariant},
+obscure: ${obscure},
+readOnly: ${readOnly},
 validated: ${validated},
 isEmpty: ${isEmpty}
     ''';

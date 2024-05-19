@@ -1,19 +1,16 @@
 part of '../../../ice_flutter_toolkit.dart';
 
-class CustomSearchTextFieldController
-    extends CustomSearchTextFieldControllerBase
-    with _$CustomSearchTextFieldController {
-  CustomSearchTextFieldController(super.type, super.variants,
-      [super.duration = const Duration(milliseconds: 500)]);
-}
+class CustomSearchTextFieldController = CustomSearchTextFieldControllerBase
+    with _$CustomSearchTextFieldController;
 
-abstract class CustomSearchTextFieldControllerBase extends AbstractTextFieldController
-    with Store {
+abstract class CustomSearchTextFieldControllerBase
+    extends AbstractTextFieldController with Store {
   CustomSearchTextFieldControllerBase(
     this.searchRequest,
-    this.variants,
-    this.duration,
-  );
+    this.variants, [
+    this.duration = const Duration(milliseconds: 500),
+    super.enableObscure = false,
+  ]);
 
   final Future<SearchResponseWrapper> Function(String) searchRequest;
   final Duration duration;
@@ -29,12 +26,6 @@ abstract class CustomSearchTextFieldControllerBase extends AbstractTextFieldCont
   @override
   @computed
   bool get validated => errorMessage?.isEmpty ?? true;
-
-  @override
-  bool get obscure => false;
-
-  @override
-  set obscure(bool val) {}
 
   @override
   @computed
@@ -100,15 +91,37 @@ abstract class CustomSearchTextFieldControllerBase extends AbstractTextFieldCont
     textEditingController.text = selectedVariant!.text ?? "";
     variants.clear();
   }
+
+  @override
+  @observable
+  bool obscure = false;
+
+  @override
+  @action
+  void switchObscure() {
+    if (!enableObscure) return;
+    obscure = !obscure;
+  }
+
+  @override
+  @observable
+  bool readOnly = false;
+
+  @override
+  @action
+  void switchReadOnly({bool? val}) => readOnly = val ?? !readOnly;
 }
 
 abstract class SearchResponseWrapper {
   SearchResponseWrapper(this.success, [this.data = const []]);
+
   final bool success;
   final List<SearchVariantResponse> data;
 }
+
 abstract class SearchVariantResponse<T> {
   SearchVariantResponse([this.text, this.data]);
+
   final String? text;
   final T? data;
 }

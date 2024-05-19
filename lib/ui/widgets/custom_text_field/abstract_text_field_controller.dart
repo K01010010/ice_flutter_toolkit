@@ -20,6 +20,8 @@ part of '../../../ice_flutter_toolkit.dart';
 
 
 abstract class AbstractTextFieldController {
+  AbstractTextFieldController(this.enableObscure);
+
 
   // final bool enableObscure;
   // TextFieldState state = TextFieldState.clean;
@@ -28,9 +30,6 @@ abstract class AbstractTextFieldController {
 
   // String oldText = "";
   // String text = "";
-  bool get obscure; // = false;
-  set obscure(bool val); // = false;
-
   TextEditingController get textEditingController; // = TextEditingController();
 
   bool get validated;
@@ -77,6 +76,22 @@ abstract class AbstractTextFieldController {
     if (errorMessage != null) return false;
     return true;
   }
+
+
+
+  final bool enableObscure;
+  bool get obscure;
+  set obscure(bool val);
+
+  @action
+  void switchObscure() {
+    if (!enableObscure) return;
+    obscure = !obscure;
+  }
+
+  bool get readOnly;
+  set readOnly(bool val);
+  void switchReadOnly({bool? val}) => readOnly = val ?? !readOnly;
 }
 enum InputBorderType {
   none, underline, outline

@@ -1,14 +1,10 @@
 part of '../../../ice_flutter_toolkit.dart';
 
-class CustomTextFieldController extends CustomTextFieldControllerBase
-    with _$CustomTextFieldController {
-  CustomTextFieldController({bool enableObscure = false})
-      : super(enableObscure);
-}
+class CustomTextFieldController = CustomTextFieldControllerBase with _$CustomTextFieldController;
 
 abstract class CustomTextFieldControllerBase extends AbstractTextFieldController
     with Store {
-  CustomTextFieldControllerBase(this.enableObscure);
+  CustomTextFieldControllerBase([super.enableObscure = false]);
 
   @observable
   TextFieldState state = TextFieldState.clean;
@@ -100,25 +96,18 @@ abstract class CustomTextFieldControllerBase extends AbstractTextFieldController
   @observable
   bool specialSymbols = false;
 
-
-  final bool enableObscure;
-  @override
-  @observable
+  @override @observable
   bool obscure = false;
-
-  @action
+  @override @action
   void switchObscure() {
     if (!enableObscure) return;
     obscure = !obscure;
   }
 
-  @observable
+  @override @observable
   bool readOnly = false;
-
-  @action
-  void switchReadOnly({bool? val}) {
-    readOnly = val ?? !readOnly;
-  }
+  @override @action
+  void switchReadOnly({bool? val}) => readOnly = val ?? !readOnly;
 }
 
 enum TextFieldState {

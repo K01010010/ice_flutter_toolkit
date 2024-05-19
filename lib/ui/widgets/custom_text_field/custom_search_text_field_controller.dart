@@ -44,6 +44,7 @@ abstract class CustomSearchTextFieldControllerBase
 
   @observable
   Timer? timer;
+  @observable
   String? lastSearch;
 
   @action

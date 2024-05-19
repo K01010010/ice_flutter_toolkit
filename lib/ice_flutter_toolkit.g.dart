@@ -517,6 +517,22 @@ mixin _$CustomSearchTextFieldController
     });
   }
 
+  late final _$lastSearchAtom = Atom(
+      name: 'CustomSearchTextFieldControllerBase.lastSearch', context: context);
+
+  @override
+  String? get lastSearch {
+    _$lastSearchAtom.reportRead();
+    return super.lastSearch;
+  }
+
+  @override
+  set lastSearch(String? value) {
+    _$lastSearchAtom.reportWrite(value, super.lastSearch, () {
+      super.lastSearch = value;
+    });
+  }
+
   late final _$selectedVariantAtom = Atom(
       name: 'CustomSearchTextFieldControllerBase.selectedVariant',
       context: context);
@@ -679,6 +695,7 @@ mixin _$CustomSearchTextFieldController
     return '''
 errorMessage: ${errorMessage},
 timer: ${timer},
+lastSearch: ${lastSearch},
 selectedVariant: ${selectedVariant},
 focused: ${focused},
 obscure: ${obscure},

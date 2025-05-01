@@ -60,7 +60,7 @@ class TitleCustomBar extends StatelessWidget {
       margin: marginArrow ?? style.marginArrow,
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         GestureDetector(
-          onTap: () => AutoRouter.of(context).maybePop(),
+          onTap: () => Navigator.of(context).maybePop(),
           child: Container(
             color: backgroundColor,
             height: heightSize,

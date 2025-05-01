@@ -1,19 +1,9 @@
+// ignore_for_file: avoid_print
+
 part of '../ice_flutter_toolkit.dart';
-//
+//example of enums:
 // enum SecureKey {  phone, token } // email, password,
-//
-// enum SharePrefsKey {
-//   cameraAccess,
-//   galleryAccess,
-//   onboarding,
-//   pushes,
-//   authInfo,
-//   user,
-//   profilePhotos,
-//   photos,
-//   settings,
-//   typeAccount
-// }
+// enum SharePrefsKey { cameraAccess, pushes, user, photos, settings }
 
 class Storage {
   static FlutterSecureStorage get _secureStorage =>

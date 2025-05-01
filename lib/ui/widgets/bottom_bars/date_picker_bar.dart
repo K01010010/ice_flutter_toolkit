@@ -40,6 +40,7 @@ class DatePickerBar extends StatefulWidget {
             );
           });
     }
+    return null;
   }
 
   @override
@@ -59,7 +60,7 @@ class _DatePickerBarState extends State<DatePickerBar> {
         children: [
           Expanded(
             child: GestureDetector(
-                onTap: () => AutoRouter.of(context).pop(dateTime),
+                onTap: () => Navigator.of(context).pop(dateTime),
                 child: const SizedBox(
                   height: double.maxFinite,
                   width: double.maxFinite,

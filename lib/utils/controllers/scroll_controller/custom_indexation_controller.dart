@@ -73,7 +73,9 @@ abstract class CustomIndexationControllerBase with Store {
           animateToPage!(_index.toDouble(), duration: duration, curve: curve);
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      return;
+    }
   }
 
   // final PageController pageController = PageController(initialPage: 0);

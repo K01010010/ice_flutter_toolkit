@@ -1,7 +1,6 @@
 name: ice_flutter_toolkit
 description: "Ledokol Flutter UI Library"
 version: 0.1.5
-#homepage:
 
 environment:
   sdk: '>=3.2.1 <4.0.0'
@@ -12,64 +11,24 @@ dependencies:
     sdk: flutter
 
   #Architecture Packages
-  mobx: ^2.3.0                            #для стейтменеджмента
-  flutter_mobx: ^2.2.0+1                  #для стейтменеджмента
-  auto_route: ^8.1.3                      #для навигации между страницами
-  dio: ^5.4.0                             #для REST/CURL запросов
-  retrofit: ^4.0.3                        #для упрощенной разработки запросов на основе dio/http
-  #  web_socket_channel: ^2.4.0              #для чатов на websocket-ах
-  #  socket_io_client: ^2.0.3+1              #для чатов на websocket-ах
-  json_annotation: ^4.8.1                 #для генерации моделей и dto
-  freezed_annotation: ^2.4.1              #для генерации моделей и dto
-  auto_mappr_annotation: ^2.1.0           #для сопоставления моделей к dto
+  flutter_mobx: ^2.3.0                    #для стейтменеджмента
+  dio: ^5.8.0+1                           #для REST/CURL запросов
 
   #Native Packages
-  image_picker: ^1.1.1
-  permission_handler: ^11.1.0             #для запроса разрешений
-  #  photo_manager_image_provider: ^2.1.0   #не работает под новый flutter
-  #  photo_manager: ^2.7.1                  #не работает под новый flutter
-  #  camera: ^0.10.5+5                      #это базовая бибилотека камеры
-  #  camera_camera: ^3.0.0                   #это упрощенная библиотека камеры
-  #  camera_avfoundation: ^0.9.13+6          #camera dependency
-  #  package_info_plus: ^4.2.0               #для получения информации о Flutter version, и версии приложения без hard-coding
-  shared_preferences: ^2.2.2             #это не защищенное хранилище общего назначения
-  flutter_secure_storage: ^9.0.0          #это защищенное от чтения из вне хранилище
-  #  path_provider: ^2.1.1                   #для доступа к разным директориям памяти
-  #  url_launcher: ^6.1.14                   #для открытия в системном бразузере нужных ссылок
-  connection_notifier: ^2.0.1           #для отслеживания connect-соединения
-#  image_picker: ^1.0.4                    #для выбора фоток из галлереи
-  responsive_framework: ^1.1.1            #для адаптивного интерфейса под разные размеры
-  bind3: ^0.0.5            #для адаптивного интерфейса под разные размеры
+  image_picker: ^1.1.2
+  permission_handler: ^12.0.0+1           #для запроса разрешений
+  shared_preferences: ^2.5.3              #это не защищенное хранилище общего назначения
+  flutter_secure_storage: ^9.2.4          #это защищенное от чтения из вне хранилище
+  connection_notifier: ^2.0.1             #для отслеживания connect-соединения
 
   #UI Packages
-  flutter_svg: ^2.0.9                     #для векторных изображений
-  cached_network_image: ^3.3.0            #для загрузки фото по url с кэшированием внутри приложения
-  #  pinput: ^3.0.0                          #для ввода Pin-кода
-  shimmer: ^3.0.0                         #для шиммер-анимации загрузки
-  #  flutter_switch: ^0.3.2                  #для switch-виджета (переключатель аналогичный комнатному выключателю люстры)
-  flutter_staggered_grid_view: ^0.7.0     #для отбражения виджетов в сетку (напиши Кириллу для разъяснения, думаю пригодится для отображения фоток разного размера)
-  blur: ^3.1.0                            #для blur эффекта
-  flutter_blurhash: ^0.8.2                #для blur оптимизированного blur-эффекта на основе предзагруженного изображения
-  #  flutter_slidable: ^3.0.1                #для слайдинга-элементов, например для сдвига кнопок чатов, и выбора контекстных действий вроде mute chat/delete chat/archive chat etc
-  #cupertino_icons: ^1.0.2                #для ios иконок
-  #step_progress_indicator: ^1.0.2        #для разных индикаторов загрузки
-  #country_icons: ^2.0.2                  #для отображения флагов стран
-  #dots_indicator: ^2.1.1                 #для индикации текущей страницы (отображение точками)
-  #share_plus: ^7.1.0                     #для кнопки поделится
+  flutter_svg: ^2.1.0                     #для векторных изображений
+  cached_network_image: ^3.4.1            #для загрузки фото по url с кэшированием внутри приложения
 
   #Compute Packages
-  phone_numbers_parser: ^8.2.1            #для валидации номера телефона любого региона
-#  image: ^4.1.3                           #для расширенния функционала изображений
-#  mime: ^1.0.4                            #для сбора и записи mime type
+  phone_numbers_parser: ^9.0.3            #для валидации номера телефона любого региона
 
 dev_dependencies:
-  build_runner: ^2.4.7                    #для кодогенерации
-  mobx_codegen: ^2.6.0                    #для кодогенерации стейт-менеджеров
-  auto_route_generator: ^8.0.0           #для кодогенерации навигации
-  auto_mappr: ^2.2.0                      #для кодогенерации сопоставителей dto к моделям
-  json_serializable: ^6.7.1               #для кодогенерации моделей и dto
-  freezed: ^2.4.6                         #для кодогенерации моделей и dto
-  retrofit_generator: ^8.0.6              #для кодогенерации REST/CURL запросов
   flutter_lints: ^3.0.1                   #линтер
   flutter_test:
     sdk: flutter

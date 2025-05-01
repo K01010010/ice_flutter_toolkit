@@ -60,7 +60,7 @@ class _MediaMenuBarState extends State<MediaMenuBar> {
         children: [
           Expanded(
             child: GestureDetector(
-                onTap: () => AutoRouter.of(context).maybePop(),
+                onTap: () => Navigator.of(context).maybePop(),
                 child: const SizedBox(
                   height: double.maxFinite,
                   width: double.maxFinite,
@@ -130,7 +130,7 @@ class _MediaMenuBarState extends State<MediaMenuBar> {
                               waitingPermissionStatus = false;
 
                               if (context.mounted && file != null) {
-                                AutoRouter.of(context).maybePop<File?>(file);
+                                Navigator.of(context).maybePop<File?>(file);
                               }
                             }),
                           if (widget.pickCamera)
@@ -175,14 +175,14 @@ class _MediaMenuBarState extends State<MediaMenuBar> {
                               waitingPermissionStatus = false;
 
                               if (context.mounted && file != null) {
-                                AutoRouter.of(context).maybePop<File?>(file);
+                                Navigator.of(context).maybePop<File?>(file);
                               }
                             }),
                           if (widget.showPhotos != null)
                             _MediaButtonData('Show Photo', widget.textColor,
                                 () {
                               widget.showPhotos!(context);
-                              AutoRouter.of(context).maybePop();
+                              Navigator.of(context).maybePop();
                             }),
                           if (widget.deleteHandler != null)
                             _MediaButtonData(
@@ -190,7 +190,7 @@ class _MediaMenuBarState extends State<MediaMenuBar> {
                               widget.deleteColor,
                               () {
                                 widget.deleteHandler!(context);
-                                AutoRouter.of(context).maybePop();
+                                Navigator.of(context).maybePop();
                               },
                             ),
                         ].map(
@@ -218,7 +218,7 @@ class _MediaMenuBarState extends State<MediaMenuBar> {
                   ColoredButton(
                     borderRadius: BorderRadius.circular(15),
                     splashEffect: false,
-                    onTap: () => AutoRouter.of(context).maybePop(null),
+                    onTap: () => Navigator.of(context).maybePop(null),
                     width: double.maxFinite,
                     title: 'Cancel',
                     titleStyle:

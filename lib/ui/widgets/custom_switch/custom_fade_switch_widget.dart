@@ -9,14 +9,13 @@ class CustomFadeSwitchWidget extends StatefulWidget {
   final void Function(int)? onSwitch;
 
   const CustomFadeSwitchWidget(
-      {Key? key,
+      {super.key,
       required this.firstWord,
       required this.secondWord,
       required this.switchController,
       required this.animator,
       required this.decorator,
-      this.onSwitch})
-      : super(key: key);
+      this.onSwitch});
 
   @override
   State<CustomFadeSwitchWidget> createState() => _CustomFadeSwitchWidgetState();
@@ -34,8 +33,9 @@ class _CustomFadeSwitchWidgetState extends State<CustomFadeSwitchWidget>
                 duration: duration ?? const Duration(milliseconds: 300),
                 curve: curve ?? Curves.linear);
         widget.switchController.toNext();
-        if (widget.onSwitch != null)
+        if (widget.onSwitch != null) {
           widget.onSwitch!(widget.switchController.index);
+        }
       },
       child: Align(
         alignment: Alignment.center,
